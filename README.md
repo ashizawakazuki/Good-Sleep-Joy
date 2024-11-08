@@ -1,4 +1,4 @@
-# sotusei
+# Good Sleep Joy
 ■サービス概要
 
 「Good Sleep Joy」は、「良い眠り」から「喜び」を感じていただく、睡眠サポートアプリです。<br>
