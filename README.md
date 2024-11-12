@@ -103,6 +103,7 @@ MVPリリース時<br>
 お気に入りのアイテムや習慣を投稿した時に、Xへのシェア機能を実装するため、「X（Twitter）API」を導入予定です。
 
 
-画面遷移図
-Figma:
+■ 画面遷移図
+
+Figma:<br>
 https://www.figma.com/design/BUc4G6KITT0L4Y69CnmWpn/Good-Sleep-Joy?node-id=0-1&node-type=canvas&t=FjWFsqQC6Mv8XtrJ-0
