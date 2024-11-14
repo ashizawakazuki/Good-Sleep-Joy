@@ -107,3 +107,9 @@ MVPリリース時<br>
 
 Figma:<br>
 https://www.figma.com/design/BUc4G6KITT0L4Y69CnmWpn/Good-Sleep-Joy?node-id=0-1&node-type=canvas&t=FjWFsqQC6Mv8XtrJ-0
+
+
+■ ER図
+
+draw.io<br>
+https://gyazo.com/282c1e12ca45f2f26e20461d8dbb1532
