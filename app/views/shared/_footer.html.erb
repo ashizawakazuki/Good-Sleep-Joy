@@ -1,0 +1,20 @@
+<!--「w-full」で要素の幅を画面100%、「text-center」でフッター内のテキストを中央揃え、-->
+<!--「p-4」上下左右に16pxの余白を加えてゆとりを持たせる、「fixed」で要素を固定配置、「bottom-0」で最下部に-->
+<footer class="bg-sky-100 w-full text-center p-4 fixed bottom-0">
+
+  <!--Tailwind によるスタイリングで,「grid-flow-col」で横方向に並べ、「gap-20」で要素間の間隔を設定 -->
+  <nav class="grid-flow-col gap-10">
+
+    <!-- 「hover」でカーソルを合わせた時に適用されるスタイルを指定する機能 -->
+    <!-- text-blue-900で青色に、「link-hover」で下線が引かれる -->
+    <%= link_to "利用規約", "#", class: "hover:text-blue-900 link-hover" %>           
+    <%= link_to "プライバシーポリシー", "#" , class: "hover:text-blue-900 link-hover" %>
+    <%= link_to "お問い合わせ先", "#", class: "hover:text-blue-900 link-hover" %>
+  </nav>
+
+    <!-- <aside>では本文ではない補足情報を囲むタグ -->
+    
+  <aside>
+    <p>© <%= Time.current.year %> Good-Sleep-Joy</p>
+  </aside>
+</footer>
