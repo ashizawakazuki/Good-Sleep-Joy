@@ -1,17 +1,17 @@
 <header class="bg-sky-100 p-4">
-  <div class="navbar justify-between items-center">
-    <div class ='btn btn-ghost text-lg'>
-      <%= link_to 'Good-Sleep-Joy', '#', class: 'text-2xl' %>
+  <div class="navbar container mx-auto flex justify-between items-center  px-8 md:px-14 lg:px-24 w-full">
+    <div class ='btn btn-ghost text-3xl font-bold'>
+      <%= link_to 'Good-Sleep-Joy', '#' %>
     </div>
-    <div class="flex space-x-4">
-      <ul class="flex space-x-4">
-        <li>
-          <%= link_to 'ログアウト', '#', class: 'btn btn-ghost text-lg' %>
-        </li>
-        <li>
-          <%= link_to 'マイページ', '#', class: 'btn btn-ghost text-lg' %>
-        </li>
-      </ul>
-    </div>  
+    <!-- md(768px)以上の時は表示される -->
+    <div class="space-x-4 hidden md:flex">
+      <%= link_to 'ログアウト', '#', class: 'btn btn-ghost' %>
+      <%= link_to 'マイページ', '#', class: 'btn btn-ghost' %>
+    </div>
+    <!-- md(768px)以上の時はこのハンバーガーメニューがhidden（隠れる）する -->
+    <!-- ただし今現在はハンバーガーを押しても何も表示されない（例えばスマホサイズだと何もできない） -->
+    <div class="md:hidden">
+      <i class="fa-solid fa-bars"></i>
+    </div>
   </div>
 </header>
