@@ -1,3 +1,4 @@
+<!-- 最後に①Railsと②DaisyUIを考慮する必要あり（繰り返しの多い構造をパーシャルを使用して整理する）-->
 <div class="container mt-16 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full" >
     <!-- flex-wrapは折り返す、md:flex-nowrapで768以上で折り返さない　-->
     <div class="flex flex-wrap md:flex-nowrap">
@@ -19,4 +20,59 @@
       <!-- absoluteを含めのちに確認する必要あり-->
       <%= image_tag 'bed-4183710_1280.png', alt: 'image', class: 'md:absolute lg:top-2 lg:right-52 md:w-3/5 w-10/12 mt-12 md:mt-0 right-6 mx-auto -z-10 lg:w-3/6 opacity-50' %>
     </div>
+</div>
+
+<!-- 機能の説明 -->
+<!-- アイテム -->
+<div class="m-16">
+  <div class="w-full border-4 border-sky-300 p-16 lg:px-32 lg:py-20 flex justify-center lg:justify-start flex-wrap lg:space-x-32 hover:border-orange-400 transition-300 cursor-pointer">
+    <!-- ロゴ -->
+    <div class="mb-6 lg:mb-0 self-center">
+      <i class="fa-solid fa-bed text-9xl"></i>
+    </div>
+    <!-- 説明 -->
+    <div class="text-center flex flex-wrap justify-center lg:text-left lg:block">
+      <h3 class="text-3xl font-semibold">睡眠関連アイテム共有</h3>
+      <div class="flex flex-wrap w-full justify-center gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
+        <p>~説明~</p>
+        <%= link_to "投稿一覧を見てみる", "#", class: "text-yellow-600 hover:text-blue-900 link-hover" %>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- 習慣 -->
+<div class="m-16">
+  <div class="w-full border-4 border-sky-300 p-16 lg:px-32 lg:py-20 flex justify-center lg:justify-start flex-wrap lg:space-x-32 hover:border-orange-400 transition-300 cursor-pointer">
+    <!-- ロゴ -->
+    <div class="mb-6 lg:mb-0 self-center">
+      <i class="fa-solid fa-moon text-9xl"></i>
+    </div>
+    <!-- 説明 -->
+    <div class="text-center flex flex-wrap justify-center lg:text-left lg:block">
+      <h3 class="text-3xl font-semibold">睡眠前の習慣投稿機能</h3>
+      <div class="flex flex-wrap w-full justify-center gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
+        <p>~説明~</p>
+        <%= link_to "投稿一覧を見てみる", "#", class: "text-yellow-600 hover:text-blue-900 link-hover" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 日記 -->
+<div class="m-16">
+  <div class="w-full border-4 border-sky-300 p-16 lg:px-32 lg:py-20 flex justify-center lg:justify-start flex-wrap lg:space-x-32 hover:border-orange-400 transition-300 cursor-pointer">
+    <!-- ロゴ -->
+    <div class="mb-6 lg:mb-0 self-center">
+      <i class="fa-solid fa-book text-9xl"></i>
+    </div>
+    <!-- 説明 -->
+    <div class="text-center flex flex-wrap justify-center lg:text-left lg:block">
+      <h3 class="text-3xl font-semibold">3行ポジティブ日記機能</h3>
+      <div class="flex flex-wrap w-full justify-center gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
+        <p>~説明~</p>
+        <%= link_to "使ってみる", "#", class: "text-yellow-600 hover:text-blue-900 link-hover" %>
+      </div>
+    </div>
+  </div>
+</div>
