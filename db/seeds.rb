@@ -7,3 +7,25 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# 既存のデータを削除
+ItemPost.delete_all
+User.delete_all
+
+# ユーザーを10人作成
+10.times do
+    user = User.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.unique.email,
+      password: "password",  # 同じパスワードを使用
+      password_confirmation: "password"
+    )
+  
+    # 各ユーザーにランダムな投稿を3件作成
+    3.times do
+      user.item_posts.create!(
+        title: Faker::Lorem.sentence(word_count: 3),
+        body: Faker::Lorem.paragraph(sentence_count: 5)
+      )
+    end
+  end
