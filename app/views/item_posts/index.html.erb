@@ -1,0 +1,31 @@
+<!-- GPTより生成 -->
+<div class="container mx-auto my-8">
+  <h1 class="text-2xl font-bold mb-6 text-center">投稿一覧</h1>
+  <% if @item_posts.present? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- ①collectionオプションを使わずに記述した場合 -->
+      <!-- <% @item_posts.each do |item_post| %> -->
+        <!-- <%= render partial: 'item_post', locals: { item_post: item_post } %> -->
+      <!-- <% end %> -->
+      <!-- locals: { item_post: item_post }の右側のitem_postは、上のeach文で指定した|item_post|のこと -->
+      <!-- 左側のitem_postは、レンダリング先のパーシャル（_item_post）で使う変数名を指している（例:パーシャル内でitem_post.titleや、item_post.bodyのように使う）-->
+      <!-- 要は、「@item_postsに含まれている複数のデータを一つずつ |item_post|→item_post（右側）に入れて、その一つ一つのデータをitem_post(左側)としてパーシャルに渡し、パーシャル内ではitem_post（左側）という変数名で使う」という意味 -->
+    
+      <!-- ↓ collectionを使う場合 -->
+    
+      <!-- ②collectionオプションを使って記述した場合 -->
+      <!-- <%= render partial: 'item_post', collection: @item_posts %> -->
+      <!-- collectionオプションを使う場合は、「partial:」と明記する必要がある -->
+      <!-- collection: @item_posts はeach文の @item_postsを指している。collectionは「複数のデータを1つのまとまりとして扱うもの」という意味 -->
+
+      <!-- ↓ さらに省略する場合 -->
+    
+      <!-- ③collectionオプションを使った上で、さらに省略した場合（ <%= render @item_posts %>） -->
+      <!-- これを使える条件としては、①パーシャルが同じディレクトリ内にある ②パーシャルのファイル名がitem_postsの単数系 ③パーシャル内で使用する変数がitem_postsの単数系 -->
+      <!-- 下記を一言で言うと「『@item_posts』の中に複数ある投稿データを1つずつ取り出して、対応するパーシャル（_item_post.html_erb ※単数系にしたもの）を使ってデータの数だけ表示する」 -->
+      <%= render @item_posts %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-center">投稿がまだありません。</p>
+  <% end %>
+</div>
