@@ -23,7 +23,9 @@
       <!-- ③collectionオプションを使った上で、さらに省略した場合（ <%= render @item_posts %>） -->
       <!-- これを使える条件としては、①パーシャルが同じディレクトリ内にある ②パーシャルのファイル名がitem_postsの単数系 ③パーシャル内で使用する変数がitem_postsの単数系 -->
       <!-- 下記を一言で言うと「『@item_posts』の中に複数ある投稿データを1つずつ取り出して、対応するパーシャル（_item_post.html_erb ※単数系にしたもの）を使ってデータの数だけ表示する」 -->
+
       <%= render @item_posts %>
+
     </div>
   <% else %>
     <p class="text-gray-500 text-center">投稿がまだありません。</p>
