@@ -2,9 +2,13 @@
 <div class="container mx-auto my-8 text-center">
   <h1 class="text-3xl font-bold mb-6 ">投稿一覧</h1>
   <div class="px-1 py-2">
-    <%= link_to '投稿してみる', new_item_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <% if user_signed_in? %>
+      <%= link_to '投稿してみる', new_item_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <% else %> <!-- ①collectionオプションを使わずに記述した場合 -->
+      <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', new_user_session_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <% end %>
   </div>
-    <% if @item_posts.present? %>
+  <% if @item_posts.present? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- ①collectionオプションを使わずに記述した場合 -->
       <!-- <% @item_posts.each do |item_post| %> -->
