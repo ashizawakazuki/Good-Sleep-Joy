@@ -27,10 +27,14 @@ class ItemPostsController < ApplicationController
     end
   end
 
-  def show
+  def show #あとで確認
     @item_post = ItemPost.find(params[:id])
   end
   
+  def edit #あとで確認
+    @item_post = current_user.item_posts.find(params[:id])
+  end
+     
 
   private
 

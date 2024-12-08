@@ -9,7 +9,15 @@
         <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
         <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
         <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>
-        
-        <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
+        <% if user_signed_in? %>
+          <div>
+            <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
+          </div>
+          <% if current_user.own?(item_post) %> <!-- 確認 -->
+            <div>
+              <%= link_to '編集', edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
