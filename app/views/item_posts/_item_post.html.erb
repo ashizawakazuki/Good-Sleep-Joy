@@ -3,6 +3,12 @@
       <p class="text-sm text-gray-500 mt-2"><%= item_post.body.truncate(100) %></p>
       <p class="text-sm text-gray-400 mt-4">投稿者: <%= item_post.user.name %></p>
       <div class="mt-4">
-        <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
+      <%# 「(item_post)」が必要な理由 %>
+      <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
+      <%# indexファイルで render @item_posts %>
+      <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
+      <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
+      <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>
+      <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
       </div>
     </div>
