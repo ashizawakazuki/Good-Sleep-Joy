@@ -27,6 +27,11 @@ class ItemPostsController < ApplicationController
     end
   end
 
+  def show
+    @item_post = ItemPost.find(params[:id])
+  end
+  
+
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」

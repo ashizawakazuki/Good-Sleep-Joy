@@ -3,6 +3,6 @@
       <p class="text-sm text-gray-500 mt-2"><%= item_post.body.truncate(100) %></p>
       <p class="text-sm text-gray-400 mt-4">投稿者: <%= item_post.user.name %></p>
       <div class="mt-4">
-        <a href="<%= item_posts_path(item_post) %>" class="text-blue-500 hover:underline">詳細を見る</a>
+        <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
       </div>
     </div>
