@@ -4,7 +4,7 @@
   <div class="px-1 py-2">
     <% if user_signed_in? %>
       <%= link_to '投稿してみる', new_item_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
-    <% else %> <!-- ①collectionオプションを使わずに記述した場合 -->
+    <% else %> 
       <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', new_user_session_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
     <% end %>
   </div>
@@ -13,7 +13,7 @@
 
     <%# ①collectionオプションを使わずに記述した場合 %>
     <%# @item_posts.each do |item_post| %>
-      <%# render partial: 'item_post', locals: { item_post: item_post } %>
+      <%# render 'item_post', locals: { item_post: item_post } %>
     <%# end %>
     <%# 
        locals: { item_post: item_post } の右側の item_post は、each文で指定した |item_post| のこと。

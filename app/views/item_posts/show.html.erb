@@ -1,4 +1,5 @@
 <!-- GPTによる作成（のちに確認） -->
+<!-- showコントローラからきたインスタンス変数@item_postには、findで取り出したそれぞれの投稿のレコードが入ってる --> 
 <div class="container mx-auto my-8 p-4 border rounded-lg shadow">
   <!-- 投稿タイトル -->
   <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @item_post.title %></h1>
@@ -11,6 +12,13 @@
 
   <!-- 投稿日時 -->
   <p class="text-sm text-gray-400 mt-2">投稿日: <%= @item_post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+  
+  <% if current_user.own?(@item_post) %> <!-- 確認 -->
+    <!-- 投稿編集 -->
+    <div class="mt-6">
+      <%= link_to '編集', edit_item_post_path, class: 'text-blue-500 hover:underline' %>
+    </div>
+  <% end %>
 
   <!-- 戻るリンク -->
   <div class="mt-6">
