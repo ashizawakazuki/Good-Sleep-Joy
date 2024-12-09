@@ -13,7 +13,9 @@
           <div>
             <%= link_to '詳細を見る', item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
           </div>
-          <% if current_user.own?(item_post) %> <!-- 確認 -->
+        
+          <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
+          <% if current_user.own?(item_post) %> <!-- 確認 --> 
             <div>
               <%= link_to '編集', edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
             </div>
