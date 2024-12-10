@@ -15,7 +15,9 @@
           </div>
         
           <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
-          <% if current_user.own?(item_post) %> <!-- 確認 --> 
+          <!-- Userモデルで定義した「own?」を使用し、(item_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
+          <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
+          <% if current_user.own?(item_post) %> 
             <div>
               <%= link_to '編集', edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
             </div>
