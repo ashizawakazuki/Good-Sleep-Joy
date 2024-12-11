@@ -1,0 +1,27 @@
+<div class="p-4 border rounded-lg shadow hover:shadow-lg transition">
+  <h2 class="text-xl font-semibold text-gray-800"><%= habit_post.title %></h2>
+  <p class="text-sm text-gray-500 mt-2"><%= habit_post.body.truncate(100) %></p>
+  <p class="text-sm text-gray-400 mt-4">投稿者: <%= habit_post.user.name %></p>
+  <div class="mt-4">
+    <%# 「(habit_post)」が必要な理由 %>
+    <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、habit_post を引数として渡す必要がある。 %>
+    <%# indexファイルで render @habit_posts %>
+    <%# を使うと、@habit_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
+    <%# パーシャル内では、単数形の名前（例: habit_post）でデータが扱えるようになる。%>
+    <%# そのため、「habit_post_path(habit_post)」の「(habit_post)」は、渡されたそれぞれの投稿を参照している。%>
+    <% if user_signed_in? %>
+      <div>
+        <%= link_to '詳細を見る', "#", class: 'text-blue-500 hover:underline' %>
+      </div>
+        
+      <!-- @habit_postとしなくていい理由は、indexからrenderでローカル変数habit_postをこのファイルに渡しているから定義されている -->
+      <!-- Userモデルで定義した「own?」を使用し、(habit_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
+      <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
+      <% if current_user.own?(habit_post) %> 
+        <div>
+          <%= link_to '編集', '#', class: 'text-blue-500 hover:underline' %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

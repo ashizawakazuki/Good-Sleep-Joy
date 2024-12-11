@@ -1,0 +1,55 @@
+<!-- GPTより生成 -->
+<div class="container mx-auto my-8 text-center">
+  <h1 class="text-3xl font-bold mb-6 ">投稿一覧</h1>
+  <div class="px-1 py-2">
+    <% if user_signed_in? %>
+      <%= link_to '投稿してみる', '#', class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <% else %> 
+      <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', '#', class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <% end %>
+  </div>
+  <% if @habit_posts.present? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <%# ①collectionオプションを使わずに記述した場合 %>
+    <%# @habit_posts.each do |habit_post| %>
+      <%# render 'habit_post', locals: { habit_post: habit_post } %>
+    <%# end %>
+    <%# 
+       locals: { habit_post: habit_post } の右側の habit_post は、each文で指定した |habit_post| のこと。
+       左側の habit_post は、パーシャル（_habit_post.html.erb）で使う変数名を指している。
+       つまり、@habit_posts に含まれる複数のデータを一つずつ |habit_post| に取り出し、
+       habit_post としてパーシャルに渡し、パーシャル内では habit_post として扱うことを意味する。
+    %>
+
+   <%# ↓ collectionオプションを使う場合 %>
+
+   <%# ②collectionオプションを使って記述した場合 %>
+   <%# render partial: 'habit_post', collection: @habit_posts %>
+   <%# 
+      collectionオプションを使うと、@habit_posts の中にある複数のデータをまとめて処理できる。
+      「partial:」と明記する必要がある。
+    %>
+
+    <%# ↓ さらに省略する場合 %>
+
+    <%# ③collectionオプションを使った上で、さらに省略した場合 %>
+    <%# render @habit_posts %>
+    <%# 
+       以下の条件を満たす場合に省略可能：
+       1. パーシャルが同じディレクトリ内にある。
+       2. パーシャルのファイル名が、habit_posts の単数形である (_habit_post.html.erb)。
+       3. パーシャル内で使用する変数が habit_posts の単数形である (habit_post)。
+    %>
+   <%# 
+       一言で言うと、「@habit_posts の中の複数の投稿データを1つずつ対応するパーシャルに渡して
+       データの数だけ表示する」という意味。
+    %>
+
+    <%= render @habit_posts %>
+
+  </div>
+  <% else %>
+    <p class="text-gray-500 text-center">投稿がまだありません。</p>
+  <% end %>
+</div>

@@ -1,5 +1,6 @@
 #ルーティングとは「どのURLにアクセスすると、どのコントローラのどのアクションが実行されるか決めるもの」
 Rails.application.routes.draw do
+  get 'habit_posts/index'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   #get 'item_posts/new', to: 'item_posts#new' → item_posts_new_path(resourcesと異なるpath)が生成
   #post 'item_posts', to: 'item_posts#create' → item_posts_pathが生成
   resources :item_posts, only: %i[new index create show edit update]
+  resources :habit_posts, only: %i[index]
   # Defines the root path route ("/")
   # root "posts#index"
 end
