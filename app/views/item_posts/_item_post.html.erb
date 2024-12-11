@@ -1,7 +1,7 @@
     <div class="p-4 border rounded-lg shadow hover:shadow-lg transition">
       <h2 class="text-xl font-semibold text-gray-800"><%= item_post.title %></h2>
       <p class="text-sm text-gray-500 mt-2"><%= item_post.body.truncate(100) %></p>
-      <p class="text-sm text-gray-400 mt-4">投稿者: <%= item_post.user.name %></p>
+      <p class="text-sm text-gray-400 mt-4">投稿者: <%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
       <div class="mt-4">
         <%# 「(item_post)」が必要な理由 %>
         <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
