@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :item_posts, dependent: :destroy #ユーザーが削除された時、関連するモデル（item_post）のレコード削除される
-
+  has_many :habit_posts, dependent: :destroy
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
