@@ -21,11 +21,20 @@ User.delete_all
       password_confirmation: "password"
     )
   
-    # 各ユーザーにランダムな投稿を3件作成
+    # 各ユーザーにランダムなアイテム投稿を3件作成
     3.times do
       user.item_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
         body: Faker::Lorem.paragraph(sentence_count: 5)
       )
     end
+
+    # 各ユーザーにランダムな習慣投稿を3件作成
+    3.times do
+      user.habit_posts.create!(
+        title: Faker::Lorem.sentence(word_count: 3),
+        body: Faker::Lorem.paragraph(sentence_count: 5)
+      )
+      end
+
   end
