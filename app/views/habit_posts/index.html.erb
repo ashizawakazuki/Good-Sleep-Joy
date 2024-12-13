@@ -3,9 +3,9 @@
   <h1 class="text-3xl font-bold mb-6 ">投稿一覧</h1>
   <div class="px-1 py-2">
     <% if user_signed_in? %>
-      <%= link_to '投稿してみる', '#', class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+      <%= link_to '投稿してみる', new_habit_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
     <% else %> 
-      <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', '#', class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+      <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', new_user_session_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
     <% end %>
   </div>
   <% if @habit_posts.present? %>

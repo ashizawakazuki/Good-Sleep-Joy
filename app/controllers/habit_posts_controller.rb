@@ -5,4 +5,23 @@ class HabitPostsController < ApplicationController
   def index
     @habit_posts = HabitPost.includes(:user)
   end
+
+  def new
+    @habit_post = HabitPost.new
+  end
+
+  def create
+    @habit_post = current_user.habit_posts.build(habit_post_params)
+    if @habit_post.save
+      redirect_to habit_posts_path, notice: '投稿が成功しました！'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def habit_post_params
+    params.require(:habit_post).permit(:title, :body)
+  end
 end

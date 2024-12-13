@@ -53,7 +53,7 @@ class ItemPostsController < ApplicationController
   def update
     @item_post = current_user.item_posts.find(params[:id])
     if @item_post.update(item_post_params)
-      redirect_to item_post_path, notice: '投稿が成功しました。'
+      redirect_to item_post_path, notice: '投稿が成功しました！'
     else
       render :edit, status: :unprocessable_entity #あとでフラッシュメッセージ実装する
     end
