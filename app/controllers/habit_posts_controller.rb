@@ -23,8 +23,18 @@ class HabitPostsController < ApplicationController
     @habit_post = HabitPost.find(params[:id])
   end
 
+  def edit
+    @habit_post = current_user.habit_posts.find(params[:id])
+  end
 
-
+  def update
+    @habit_post = current_user.habit_posts.find(params[:id])
+    if @habit_post.update(habit_post_params)
+      redirect_to habit_post_path,notice: '編集が成功しました！'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   private
 
   def habit_post_params

@@ -19,7 +19,7 @@
       <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
       <% if current_user.own?(habit_post) %> 
         <div>
-          <%= link_to '編集', '#', class: 'text-blue-500 hover:underline' %>
+          <%= link_to '編集', edit_habit_post_path(habit_post), class: 'text-blue-500 hover:underline' %>
         </div>
       <% end %>
     <% end %>

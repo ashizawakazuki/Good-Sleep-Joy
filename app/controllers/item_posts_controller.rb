@@ -41,7 +41,7 @@ class ItemPostsController < ApplicationController
   end
   
   #今ログインしているユーザーの投稿（DBのテーブルの表を思い浮かべる。）のうち、paramsに格納されているIDの該当するものをfindで探して、インスタンス変数に代入している
-  #インスタンス変数は、form_withがあるshow.html.erbへ。
+  #インスタンス変数は、form_withがあるedit.html.erbへ。
   def edit 
     @item_post = current_user.item_posts.find(params[:id])
   end
@@ -53,7 +53,7 @@ class ItemPostsController < ApplicationController
   def update
     @item_post = current_user.item_posts.find(params[:id])
     if @item_post.update(item_post_params)
-      redirect_to item_post_path, notice: '投稿が成功しました！'
+      redirect_to item_post_path, notice: '編集が成功しました！'
     else
       render :edit, status: :unprocessable_entity #あとでフラッシュメッセージ実装する
     end

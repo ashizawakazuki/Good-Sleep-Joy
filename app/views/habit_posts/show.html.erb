@@ -16,7 +16,7 @@
   <% if current_user.own?(@habit_post) %> <!-- 確認 -->
     <!-- 投稿編集 -->
     <div class="mt-6">
-      <%= link_to '編集', "#", class: 'text-blue-500 hover:underline' %>
+      <%= link_to '編集', edit_habit_post_path, class: 'text-blue-500 hover:underline' %>
     </div>
   <% end %>
 
