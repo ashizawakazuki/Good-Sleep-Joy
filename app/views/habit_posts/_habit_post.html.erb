@@ -11,7 +11,7 @@
     <%# そのため、「habit_post_path(habit_post)」の「(habit_post)」は、渡されたそれぞれの投稿を参照している。%>
     <% if user_signed_in? %>
       <div>
-        <%= link_to '詳細を見る', "#", class: 'text-blue-500 hover:underline' %>
+        <%= link_to '詳細を見る', habit_post_path(habit_post), class: 'text-blue-500 hover:underline' %>
       </div>
         
       <!-- @habit_postとしなくていい理由は、indexからrenderでローカル変数habit_postをこのファイルに渡しているから定義されている -->

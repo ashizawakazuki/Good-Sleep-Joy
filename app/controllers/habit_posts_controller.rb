@@ -19,6 +19,12 @@ class HabitPostsController < ApplicationController
     end
   end
 
+  def show
+    @habit_post = HabitPost.find(params[:id])
+  end
+
+
+
   private
 
   def habit_post_params
