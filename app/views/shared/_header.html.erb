@@ -8,7 +8,7 @@
       <!-- 「user_signed_in?」はDeviseが提供するヘルパーメソッド、ログインしている場合は「true」、ログインしてない場合は「false」-->
       <% if user_signed_in? %>
       <!-- 「data: { turbo_method: :delete }」について、のちに要確認-->
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-ghost' %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: 'btn btn-ghost' %>
         <%= link_to 'マイページ', '#', class: 'btn btn-ghost' %>
       <% else %>
         <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-ghost' %>
