@@ -38,6 +38,6 @@ class HabitPostsController < ApplicationController
   private
 
   def habit_post_params
-    params.require(:habit_post).permit(:title, :body)
+    params.require(:habit_post).permit(:title, :body, :image)
   end
 end
