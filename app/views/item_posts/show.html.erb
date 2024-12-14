@@ -7,6 +7,8 @@
   <!-- 投稿本文 -->
   <p class="text-lg text-gray-600 mb-6"><%= @item_post.body %></p>
 
+  <%= image_tag @item_habit.image %>
+
   <!-- 投稿者情報 -->
   <p class="text-sm text-gray-400">投稿者: <%= @item_post.user.name %></p>
 

@@ -13,7 +13,7 @@
   </div>
   <!-- 画像選択(GPTによる作成（のちに確認）)  -->
   <div class="flex flex-col">
-    <% f.label :image, "画像を1つ選択してください", class: "text-lg font-medium text-gray-700 mb-2" %>
+    <%= f.label :image, "画像を1つ選択してください", class: "text-lg font-medium text-gray-700 mb-2" %>
     <div class="grid grid-cols-3 gap-4">
     <% images = [
         { file: "headphone.png", title: "ヘッドホン" },
