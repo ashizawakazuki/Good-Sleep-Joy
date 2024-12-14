@@ -59,6 +59,13 @@ class ItemPostsController < ApplicationController
     end
   end
 
+  #destroy!では失敗時に例外を発生させ、その場で処理が止まるので、if文で成功・失敗を分ける必要がなくなる
+  def destroy
+    item_post = current_user.item_posts.find(params[:id])
+    item_post.destroy!
+    redirect_to item_posts_path, notice: '削除が成功しました！'
+  end
+  
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」
