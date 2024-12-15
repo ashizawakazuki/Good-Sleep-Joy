@@ -14,10 +14,6 @@ class ItemPostImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  #画像が選択されない場合はデフォルトで画像を選択
-  def default_url
-    'post_placeholder'
-  end
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
