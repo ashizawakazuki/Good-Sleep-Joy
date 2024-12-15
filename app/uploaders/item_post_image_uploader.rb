@@ -42,6 +42,14 @@ class ItemPostImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  #S3を使用するのに記述した箇所
+  #Rails.env.production? の場合(つまり本番環境)で storage :fog を使用し、それ以外の環境（開発・テスト）では storage :file する
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
