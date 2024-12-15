@@ -4,4 +4,9 @@ class ItemPost < ApplicationRecord
   validates :body, presence: true, length: { maximum: 1000 } #空でない、最大1000文字
 
   belongs_to :user
+
+  #ItemPostImageUploaderは「画像管理の機能」、item_post_imageは「画像を置く場所」
+  #ここでのマウントとは「CarrierWaveのアップロード機能をモデルのカラムに関連付け、カラムに特別な機能を付与する操作]
+  #下記を書くことで、CarrierWaveでアップロードされた画像のURLを取得することができるようになる
+  mount_uploader :item_post_image, ItemPostImageUploader
 end

@@ -72,7 +72,7 @@ class ItemPostsController < ApplicationController
   #requireは、受け取る値のキーを書く（<%= form_with model: @item_post do |f| %>の場合、「item_post」になる）
   #permitには許可するカラム名を書く
   def item_post_params
-    params.require(:item_post).permit(:title, :body)
+    params.require(:item_post).permit(:title, :body, :item_post_image, :item_post_image_cache)
   end
   #送られてくるデータは、例えば以下の通り（正確にはrequireには、このキー（item_post）をかく
   #{
