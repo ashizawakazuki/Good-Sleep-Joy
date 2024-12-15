@@ -1,11 +1,12 @@
   <div class="p-4 border rounded-lg shadow hover:shadow-lg transition">
     <!-- 後に確認 -->
     <div class="flex justify-center">
-    <% if item_post.item_post_image_url.present? %>
-      <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover rounded-t-md", alt: "Item post image" %>
-    <% else %>
-      <%= image_tag asset_path('post_placeholder.png'), class: "w-72 h-48 object-cover rounded-t-md", alt: "Default post image" %>
-    <% end %>
+      <% if item_post.item_post_image_url.present? %>
+        <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover rounded-t-md", alt: "Item post image" %>
+      <% else %>
+        <%= image_tag asset_path('post_placeholder.png'), class: "w-72 h-48 object-cover rounded-t-md", alt: "Default post image" %>
+      <% end %>
+    </div>
     <h2 class="text-xl font-semibold text-gray-800"><%= item_post.title %></h2>
     <p class="text-sm text-gray-500 mt-2"><%= item_post.body.truncate(100) %></p>
     <p class="text-sm text-gray-400 mt-4">投稿者: <%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
