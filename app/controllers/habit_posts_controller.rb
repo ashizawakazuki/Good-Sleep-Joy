@@ -37,9 +37,9 @@ class HabitPostsController < ApplicationController
   end
 
   def destroy
-    item_post = current_user.item_posts.find(params[:id])
-    item_post.destroy!
-    redirect_to item_posts_path, notice: '削除が成功しました！'
+    habit_post = current_user.habit_posts.find(params[:id])
+    habit_post.destroy!
+    redirect_to habit_posts_path, notice: '削除が成功しました！'
   end
 
   private
