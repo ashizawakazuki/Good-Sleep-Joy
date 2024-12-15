@@ -12,4 +12,3 @@ Rails.application.config.assets.version = "1.0"
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 # config/initializers/assets.rb
-Rails.application.config.assets.precompile += %w(post_placeholder.png)
