@@ -35,6 +35,13 @@ class HabitPostsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    item_post = current_user.item_posts.find(params[:id])
+    item_post.destroy!
+    redirect_to item_posts_path, notice: '削除が成功しました！'
+  end
+
   private
 
   def habit_post_params

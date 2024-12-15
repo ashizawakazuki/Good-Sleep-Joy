@@ -25,6 +25,11 @@
         <div>
           <%= link_to '編集', edit_habit_post_path(habit_post), class: 'text-blue-500 hover:underline' %>
         </div>
+        <!-- 後に確認 -->
+        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
+        <div>
+          <%= link_to '削除', habit_post_path(habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
+        </div>
       <% end %>
     <% end %>
   </div>
