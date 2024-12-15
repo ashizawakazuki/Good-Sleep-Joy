@@ -53,6 +53,11 @@ gem 'faker'
 
 gem 'carrierwave', '~> 3.0'
 
+gem 'fog-aws'
+
+#dotenv-rails を 開発環境 と テスト環境 でのみ有効にする（本番環境では不要なので有効にしない（セキュリティ対策）。）
+gem 'dotenv-rails', groups: [:development, :test]
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
