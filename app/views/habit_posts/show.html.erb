@@ -3,7 +3,7 @@
 <div class="container mx-auto my-8 p-4 border rounded-lg shadow">
   <!-- 選択した画像 -->
   <% if @habit_post.image.present? %>
-  <%= image_tag @habit_post.image, class: "w-72 h-48 object-cover rounded-lg shadow-md", alt: "Habit post image" %>
+    <%= image_tag @habit_post.image, class: "w-72 h-48 object-cover rounded-lg shadow-md", alt: "Habit post image" %>
   <% end %>
 
   <!-- 投稿タイトル -->
