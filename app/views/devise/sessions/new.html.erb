@@ -1,6 +1,4 @@
-<div class="container home-sections d-flex flex-row justify-content-center
-  align-items-center"
->
+<div class="container home-sections min-h-screen flex justify-center items-center w-full mx-auto">
   <div class="images-section pt-3 d-none d-lg-block"></div>
 
   <div class="login-section pt-3">
@@ -9,7 +7,7 @@
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="mb-3 mt-4">
-            <%= f.email_field :email, class: "form-control", placeholder: "電話番号, ユーザ名, Eメール" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Eメール" %>
           </div>
 
           <div class="mb-3">
