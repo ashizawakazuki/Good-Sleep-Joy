@@ -1,5 +1,8 @@
 class ItemPostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  #確認ラスト
+  before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
+  before_action :set_item_post, only: [:edit, :update, :destroy]
+  
   #N+1問題が発生しないように、最初にItemPost（投稿）とUser（ユーザー）のデータを、includesで@item_postsに入れておく
   #「_item_post.html.erb」の「item_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_item_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
@@ -40,29 +43,30 @@ class ItemPostsController < ApplicationController
     @item_post = ItemPost.find(params[:id])
   end
   
+  #確認ラスト（set_habit_postを書いたことで短くなった）(なんでfindからfind_byになったのか確認)
   #今ログインしているユーザーの投稿（DBのテーブルの表を思い浮かべる。）のうち、paramsに格納されているIDの該当するものをfindで探して、インスタンス変数に代入している
   #インスタンス変数は、form_withがあるedit.html.erbへ。
   def edit 
-    @item_post = current_user.item_posts.find(params[:id])
+  
   end
 
+  #確認ラスト（set_habit_postを書いたことで短くなった）
   #①「@item_post = current_user.item_posts.find(params[:id])」で、更新対象のデータをまず持ってくる
   #②createアクション同様、フォームで更新した内容がparamsで送られてくる（ストロングパラメータであるitem_post_paramsで絞り込み）
   #③updateメソッドで、フォームからきた新しいデータに、用意した更新対象の@item_postを更新する
   #④成功時は詳細画面へ、失敗時はもう一度編集画面を描写する
   def update
-    @item_post = current_user.item_posts.find(params[:id])
     if @item_post.update(item_post_params)
-      redirect_to item_post_path, notice: '編集が成功しました！'
+      redirect_to item_post_path(@item_post), notice: '編集が成功しました！'
     else
       render :edit, status: :unprocessable_entity #あとでフラッシュメッセージ実装する
     end
   end
 
+  #確認ラスト（set_habit_postを書いたことで短くなった）
   #destroy!では失敗時に例外を発生させ、その場で処理が止まるので、if文で成功・失敗を分ける必要がなくなる
   def destroy
-    item_post = current_user.item_posts.find(params[:id])
-    item_post.destroy!
+    @item_post.destroy!
     redirect_to item_posts_path, notice: '削除が成功しました！'
   end
   
@@ -81,4 +85,16 @@ class ItemPostsController < ApplicationController
   #   "body" => "本文内容"
   #  }
   # }
+
+  #確認ラスト
+  #投稿が消されるなど、なかった場合または現在ログインしているユーザーではない場合、一覧画面に遷移されメッセージが表示される
+  #どのタイミングで@habit_postにデータが入るのか確認
+  def set_item_post
+    @item_post = current_user.item_posts.find_by(id: params[:id])
+    unless @item_post
+      flash[:alert] = "投稿が見つからない、もしくはアクセス権限がありません。"
+      redirect_to habit_posts_path
+    end
+  end
+    
 end
