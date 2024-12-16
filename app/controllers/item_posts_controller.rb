@@ -93,7 +93,7 @@ class ItemPostsController < ApplicationController
     @item_post = current_user.item_posts.find_by(id: params[:id])
     unless @item_post
       flash[:alert] = "投稿が見つからない、もしくはアクセス権限がありません。"
-      redirect_to habit_posts_path
+      redirect_to item_posts_path
     end
   end
     
