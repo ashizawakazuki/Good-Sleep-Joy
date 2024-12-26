@@ -55,7 +55,8 @@ class HabitPostsController < ApplicationController
   end
 
   #投稿が消されるなどして存在しない場合、または現在ログインしているユーザーではない場合、メッセージが表示され一覧画面に遷移される
-  #「find」はIDが存在しない場合に例外（エラー）を発生させてしまうため、IDが存在しない場合、nilを返す「find_by」使用してフラッシュメッセージを表示している
+  #「find」はIDが存在しない場合に例外（エラー）を発生させてしまうため、IDが存在しない場合、nilを返す「find_by」を使用してフラッシュメッセージを表示している
+  # if文の横に「nil」or「false」がと評価される場合、今回のunless文はその続きの処理を実行する（if文の場合は「true」で処理を実行する）
   def set_habit_post
     @habit_post = current_user.habit_posts.find_by(id: params[:id])
     unless @habit_post

@@ -2,11 +2,8 @@
 <div class="container mx-auto my-8 text-center">
   <h1 class="text-3xl font-bold mb-6 ">アイテム投稿一覧</h1>
   <div class="px-1 py-2">
-    <% if user_signed_in? %>
-      <%= link_to '投稿してみる', new_item_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
-    <% else %> 
-      <%= link_to '投稿するにはログインが必要です（ログインページへ移動します）', new_user_session_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
-    <% end %>
+    <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
+    <%= link_to '投稿してみる', new_item_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
   </div>
   <% if @item_posts.present? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
