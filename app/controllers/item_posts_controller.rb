@@ -1,6 +1,7 @@
 class ItemPostsController < ApplicationController
-  #確認ラスト
+  #Deviseを導入したために使えるようになったメソッドで、ユーザーがログインしているかを判別し、未ログイン時には、自動的にログインページにリダイレクトさせる
   before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
+  #set_habit_postで[:edit, :update, :destroy]アクションの前に、「投稿が削除されておらず存在するかどうか、また、アクセス権限があるか（人の投稿でないか）」を確認している
   before_action :set_item_post, only: [:edit, :update, :destroy]
   
   #N+1問題が発生しないように、最初にItemPost（投稿）とUser（ユーザー）のデータを、includesで@item_postsに入れておく
@@ -43,14 +44,13 @@ class ItemPostsController < ApplicationController
     @item_post = ItemPost.find(params[:id])
   end
   
-  #確認ラスト（set_habit_postを書いたことで短くなった）(なんでfindからfind_byになったのか確認)
+  #set_habit_postで投稿データを先に取得している
   #今ログインしているユーザーの投稿（DBのテーブルの表を思い浮かべる。）のうち、paramsに格納されているIDの該当するものをfindで探して、インスタンス変数に代入している
   #インスタンス変数は、form_withがあるedit.html.erbへ。
-  def edit 
-  
-  end
+  def edit; end
 
-  #確認ラスト（set_habit_postを書いたことで短くなった）
+
+  #set_habit_postで投稿データを先に取得している
   #①「@item_post = current_user.item_posts.find(params[:id])」で、更新対象のデータをまず持ってくる
   #②createアクション同様、フォームで更新した内容がparamsで送られてくる（ストロングパラメータであるitem_post_paramsで絞り込み）
   #③updateメソッドで、フォームからきた新しいデータに、用意した更新対象の@item_postを更新する
@@ -63,8 +63,9 @@ class ItemPostsController < ApplicationController
     end
   end
 
-  #確認ラスト（set_habit_postを書いたことで短くなった）
-  #destroy!では失敗時に例外を発生させ、その場で処理が止まるので、if文で成功・失敗を分ける必要がなくなる
+  #set_item_postで投稿データを先に取得している
+  #最初はインスタンス変数でではなかったが、他のアクション（updateやedit）と揃えるためにインスタンス変数に統一した
+  #destroy!では失敗時に例外（エラー）を発生させ、その場で処理が止まるので、if文で成功・失敗を分ける必要がなくなる
   def destroy
     @item_post.destroy!
     redirect_to item_posts_path, notice: '削除が成功しました！'
@@ -86,15 +87,13 @@ class ItemPostsController < ApplicationController
   #  }
   # }
 
-  #確認ラスト
-  #投稿が消されるなど、なかった場合または現在ログインしているユーザーではない場合、一覧画面に遷移されメッセージが表示される
-  #どのタイミングで@habit_postにデータが入るのか確認
+  #投稿が消されるなどして存在しない場合、または現在ログインしているユーザーではない場合、メッセージが表示され一覧画面に遷移される
+  #「find」はIDが存在しない場合に例外（エラー）を発生させてしまうため、IDが存在しない場合、nilを返す「find_by」を使用してフラッシュメッセージを表示している
+  # if文の横の条件が「nil」or「false」と評価される場合、今回のunless文はその続きの処理を実行する（if文の場合は「true」で処理を実行する）
   def set_item_post
     @item_post = current_user.item_posts.find_by(id: params[:id])
     unless @item_post
-      flash[:alert] = "投稿が見つからない、もしくはアクセス権限がありません。"
-      redirect_to item_posts_path
+      redirect_to item_posts_path, alert: "投稿が見つからない、もしくはアクセス権限がありません。"
     end
   end
-    
 end
