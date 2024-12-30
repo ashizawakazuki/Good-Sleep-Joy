@@ -1,10 +1,13 @@
-<!-- GPTより生成 -->
+<!-- 確認済み -->
+<!-- 「container」でそれぞれの投稿を中央揃え（これがないと投稿の幅が伸びる）、「mx-auto」で両サイドに余白を生み出す（こればないと左寄りになる） -->
 <div class="container mx-auto my-8 text-center">
   <h1 class="text-3xl font-bold mb-6 ">習慣投稿一覧</h1>
-  <div class="px-1 py-2">
+  <div class="mb-6">
     <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
-    <%= link_to '投稿してみる', new_habit_post_path, class:"text-xl text-yellow-600 hover:text-blue-900 font-bold my-20"%>
+    <%= link_to '投稿する', new_habit_post_path, class:"bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
   </div>
+
+  <!-- 投稿がある場合、「grid」を使用して、sm(640px)以上は2列(カラム)、lg(1024px)以上は3列(カラム)、それ以外(幅が狭い時)は1列(カラム) -->
   <% if @habit_posts.present? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
@@ -43,9 +46,9 @@
        データの数だけ表示する」という意味。
     %>
 
-    <%= render @habit_posts %>
+      <%= render @habit_posts %>
 
-  </div>
+    </div>
   <% else %>
     <p class="text-gray-500 text-center">投稿がまだありません。</p>
   <% end %>
