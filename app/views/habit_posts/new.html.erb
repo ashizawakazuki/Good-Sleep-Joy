@@ -9,15 +9,15 @@
       <!-- 「:title」でモデルのカラム名を指定(ここではhabitPostモデルのtitleカラム) -->
       <%= f.label :title, "習慣", class: "text-lg font-medium text-gray-700 mb-2" %>  
       <!-- 上記同様 -->
-      <%= f.text_field :title, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
+      <%= f.text_field :title, placeholder: "あなたが大事にしている就寝前の習慣を入力してください", class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
     </div>
 
     <!--「flex-col」でラベルとフォームを縦列に並べる（これを指定しないと横になる）-->
     <div class="flex flex-col mb-6"> 
       <!-- 「:body」でモデルのカラム名を指定(ここではHabitPostモデルのbodyカラム) -->
-      <%= f.label :body, "本文（安眠効果など）", class: "text-lg font-medium text-gray-700 mb-2" %>  
+      <%= f.label :body, "本文", class: "text-lg font-medium text-gray-700 mb-2" %>  
       <!-- 上記同様 -->
-      <%= f.text_area :body, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
+      <%= f.text_area :body, placeholder: "やり方、安眠効果などを自由に入力してください", class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
     </div>
 
     <!--「flex-col」でラベルとフォームを縦列に並べる（これを指定しないと横になる）-->
