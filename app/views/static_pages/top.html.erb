@@ -1,30 +1,35 @@
 <!-- 最後に①Railsと②DaisyUIを考慮する必要あり（繰り返しの多い構造をパーシャルを使用して整理する）-->
-<div class="container mt-16 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full" >
-    <!-- flex-wrapは折り返す、md:flex-nowrapで768以上で折り返さない -->
-    <div class="flex flex-wrap md:flex-nowrap">
-      <div class="md:my-12 lg:ml-20 justify-center-start max-w-xl">
-        <h1 class="text-5xl font-bold text-center md:text-left lg:text-7xl md:text-6xl" >
-          人生の<br>
-          3分の1は<br>
-          睡眠です
-        </h1>
-        <h1 class="my-4 font_bold">
-        人生の約3分の1は睡眠で占められています。<br>
-        質の高い睡眠を取ることで、それ以外の時間も充実させることができます。<br>
-        つまり、人生の本番は『寝ること』にあると言っても過言ではありません。<br>
-        『Good Sleep Joy』は、ユーザー同士で睡眠に関する情報を共有したり、<br>
-        毎日ポジティブな気持ちで眠りにつくための機能を備えています。<br>
-        あなたの睡眠をより良いものにし、日々の生活を充実させるためにサポートします。<br>
-        </h1>
-      </div>
-      <!-- absoluteを含めのちに確認する必要あり-->
-      <%= image_tag 'bed-4183710_1280.png', alt: 'image', class: 'md:absolute lg:top-2 lg:right-52 md:w-3/5 w-10/12 mt-12 md:mt-0 right-6 mx-auto -z-10 lg:w-3/6 opacity-50' %>
-    </div>
+<div class="flex items-center justify-center" 
+ style="background-image: url('<%= asset_path 'top_page.jpg' %>'); min-height: 600px; background-size: cover; background-position: center;">
+  <h1 class="text-gray-500 text-5xl font-bold text-center md:text-left lg:text-7xl md:text-6xl">
+    人生の<br>
+    3分の1は<br>
+    睡眠です
+  </h1>
 </div>
 
+<div class="container mx-auto text-center mt-16 text-3xl font-bold">
+  <div class="my-4">
+    <p>人生の約3分の1は睡眠で占められています。</p>
+  </div>
+  <div class="my-4">
+    <p>
+    質の高い睡眠を取ることで、それ以外の時間も充実させることができます。<br>
+    つまり、人生の本番は『寝ること』にあると言っても過言ではありません。<br>
+    『Good Sleep Joy』は、ユーザー同士で睡眠に関する情報を共有したり、<br>
+    毎日ポジティブな気持ちで眠りにつくための機能を備えています。<br>
+    </p>
+  </div>
+  <div>
+    <p>あなたの睡眠をより良いものにし、日々の生活を充実させるためにサポートします。</p>
+  </div>
+</div>
+
+
 <!-- 機能の説明 -->
-<!-- アイテム -->
-<div class="m-16 flex flex-col justify-center items-center">
+<div class="mt-16 flex flex-col justify-center items-center">
+  <h2 class="text-3xl font-semibold mt-6 ">🔽このアプリでできること🔽</h2>
+  <!-- アイテム -->
   <div class="border-4 border-sky-300 p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
     <!-- ロゴ -->
     <div class="mb-6 lg:mb-0 self-center">
@@ -32,47 +37,43 @@
     </div>
     <!-- 説明 -->
     <div class="text-center flex flex-wrap justify-center lg:block">
-      <h3 class="text-3xl font-semibold mt-6 ">睡眠関連アイテム共有</h3>
+      <p class="text-3xl font-semibold mt-6 ">睡眠関連アイテム共有</>
       <div class="flex flex-wrap w-full justify-center lg:text-left gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
-        <h1>
+        <p>
           （仮）良質な睡眠を取るために欠かせないアイテムを、他のユーザーと共有する機能です。<br>
           お気に入りの寝具やアロマ、睡眠をサポートするガジェットなど、自分が愛用しているアイテムを投稿し、その魅力を共有しましょう。<br>
           他のユーザーの投稿から、新たな睡眠アイテムとの出会いや、睡眠の質を向上させるヒントを得られます。
-        </h1>
+        </p>
       </div>
       <div class="mt-4">
         <%= link_to "投稿一覧を見てみる", item_posts_path, class: "text-yellow-600 hover:text-blue-900 link-hover" %>
       </div>
     </div>
   </div>
-</div>
-
-<!-- 習慣 -->
-<div class="m-16 flex flex-col justify-center items-center">
+  
+  <!-- 習慣 -->
   <div class="border-4 border-sky-300 p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
-    <!-- ロゴ -->
+  <!-- ロゴ -->
     <div class="mb-6 lg:mb-0 self-center">
-      <i class="fa-solid fa-moon text-9xl"></i>
+       <i class="fa-solid fa-moon text-9xl"></i>
     </div>
     <!-- 説明 -->
     <div class="text-center flex flex-wrap justify-center lg:block">
-      <h3 class="text-3xl font-semibold mt-6">睡眠前の習慣投稿機能</h3>
+      <p class="text-3xl font-semibold mt-6">睡眠前の習慣投稿機能</p>
       <div class="flex flex-wrap w-full justify-center lg:text-left gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
-        <h1>
-          （仮）この機能では、ユーザーが実践している睡眠前の習慣を投稿・共有できます。<br>
-          ストレッチや読書、瞑想、スマホを置く時間など、睡眠の質を高めるための行動を他の人とシェアしましょう。<br>
-          投稿を通じて、自分に合った新しいナイトルーティンを見つけるきっかけになります。<br>
-        </h1>
+        <p>
+        （仮）この機能では、ユーザーが実践している睡眠前の習慣を投稿・共有できます。<br>
+        ストレッチや読書、瞑想、スマホを置く時間など、睡眠の質を高めるための行動を他の人とシェアしましょう。<br>
+        投稿を通じて、自分に合った新しいナイトルーティンを見つけるきっかけになります。<br>
+        </p>
       </div>
       <div class="mt-4">
         <%= link_to "投稿一覧を見てみる", habit_posts_path, class: "text-yellow-600 hover:text-blue-900 link-hover" %>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 日記 -->
-<div class="m-16 flex flex-col justify-center items-center">
+  <!-- 日記 -->
   <div class="border-4 border-sky-300 p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
     <!-- ロゴ -->
     <div class="mb-6 lg:mb-0 self-center">
@@ -80,7 +81,7 @@
     </div>
     <!-- 説明 -->
     <div class="text-center flex flex-wrap justify-center lg:block">
-      <h3 class="text-3xl font-semibold mt-6">3行ポジティブ日記機能 ※MVPでは未実装</h3>
+      <p class="text-3xl font-semibold mt-6">3行ポジティブ日記機能 ※MVPでは未実装</p>
       <div class="flex flex-wrap w-full justify-center  lg:text-left gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
         <p>~説明~</p>
       </div>
@@ -90,3 +91,9 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
