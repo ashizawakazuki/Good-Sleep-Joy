@@ -36,76 +36,97 @@
 
 
   <!-- アイテム -->
-<div class="w-full text-white ">
-  <div class="bg-blue-800 p-4 border-4 rounded-lg shadow p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
+<div class="w-full text-white">
+  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
     <!-- ロゴ -->
-    <div class="flex gap-8">
-      <i class="fa-solid fa-bed"></i>
-      <h3>睡眠関連アイテム共有</h3>
+    <div class="flex gap-4 text-3xl mb-4 font-bold">
+      
+      <h3><i class="fa-solid fa-bed"></i>  睡眠関連アイテム共有  <i class="fa-solid fa-bed"></i></h3>
+     
     </div>
-
     <!-- 左右分割 -->
-    <div class="flex w-full">
+    <div class="flex flex-wrap w-full md:flex-nowrap">
       <!-- 左側: Pタグ -->
-      <div class="w-1/2 text-left flex flex-col justify-center">
+      <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
         <p>
-          （仮）良質な睡眠を取るために欠かせないアイテムを、他のユーザーと共有する機能です。<br>
+          良質な睡眠を取るために欠かせないアイテムを、他のユーザーと共有する機能です。<br>
           お気に入りの寝具やアロマ、睡眠をサポートするガジェットなど、自分が愛用しているアイテムを投稿し、その魅力を共有しましょう。<br>
           他のユーザーの投稿から、新たな睡眠アイテムとの出会いや、睡眠の質を向上させるヒントを得られます。
         </p>
         <!-- ボタン -->
-        <div class="mt-4 text-center">
-          <%= link_to "投稿一覧を見てみる", item_posts_path, class: "text-yellow-600 hover:text-blue-900 link-hover" %>
+        <div class="flex flex-row flex-wrap justify-center gap-4 mt-16">
+          <%= link_to "投稿する", new_item_post_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
+          <%= link_to "投稿一覧", item_posts_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
         </div>
       </div>
-
       <!-- 右側（スペース） -->
-      <div class="w-1/2">
-        <img src="https://i.gyazo.com/b8579151990c976108c3aad1130d82f3.gif">
+      <div class="w-full md:w-1/2">
+        <img src="https://i.gyazo.com/b8579151990c976108c3aad1130d82f3.gif" alt="イメージ">
       </div>
+    </div>
   </div>
 </div>
-  
-  <!-- 習慣 -->
-  <div class="border-4 border-sky-300 p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
-  <!-- ロゴ -->
-    <div class="mb-6 lg:mb-0 self-center">
-       <i class="fa-solid fa-moon text-9xl"></i>
+
+<!-- 習慣 -->
+<div class="w-full text-white ">
+  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
+    <!-- ロゴ -->
+    <div class="flex gap-4 text-3xl mb-4 font-bold">
+    <h3><i class="fa-solid fa-moon text-9xl"></i>  睡眠前の習慣投稿機能  <i class="fa-solid fa-moon text-9xl"></i>
+    </h3>
     </div>
-    <!-- 説明 -->
-    <div class="text-center flex flex-wrap justify-center lg:block">
-      <p class="text-3xl font-semibold mt-6">睡眠前の習慣投稿機能</p>
-      <div class="flex flex-wrap w-full justify-center lg:text-left gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
+
+    <!-- 左右分割 -->
+    <div class="flex flex-wrap w-full md:flex-nowrap">
+      <!-- 左側: Pタグ -->
+      <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
         <p>
         （仮）この機能では、ユーザーが実践している睡眠前の習慣を投稿・共有できます。<br>
         ストレッチや読書、瞑想、スマホを置く時間など、睡眠の質を高めるための行動を他の人とシェアしましょう。<br>
         投稿を通じて、自分に合った新しいナイトルーティンを見つけるきっかけになります。<br>
         </p>
+        <!-- ボタン -->
+        <div class="flex flex-row flex-wrap justify-center gap-4 mt-16">
+          <%= link_to "投稿する", new_habit_post_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
+          <%= link_to "投稿一覧", habit_posts_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
+        </div>
       </div>
-      <div class="mt-4">
-        <%= link_to "投稿一覧を見てみる", habit_posts_path, class: "text-yellow-600 hover:text-blue-900 link-hover" %>
-      </div>
-    </div>
-  </div>
-
-  <!-- 日記 -->
-  <div class="border-4 border-sky-300 p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
-    <!-- ロゴ -->
-    <div class="mb-6 lg:mb-0 self-center">
-      <i class="fa-solid fa-book text-9xl"></i>
-    </div>
-    <!-- 説明 -->
-    <div class="text-center flex flex-wrap justify-center lg:block">
-      <p class="text-3xl font-semibold mt-6">3行ポジティブ日記機能 ※MVPでは未実装</p>
-      <div class="flex flex-wrap w-full justify-center  lg:text-left gap-3 lg:w-auto lg:justify-start mt-6 mb-8">
-        <p>~説明~</p>
-      </div>
-      <div class="mt-4">
-        <%= link_to "使ってみる", "#", class: "text-yellow-600 hover:text-blue-900 link-hover" %>
+      <!-- 右側（スペース） -->
+      <div class="w-full md:w-1/2">
+        <img src="https://i.gyazo.com/b8579151990c976108c3aad1130d82f3.gif">
       </div>
     </div>
   </div>
 </div>
+
+<!-- 日記 -->
+<div class="w-full text-white">
+  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-orange-400 transition-300 cursor-pointer">
+    <!-- ロゴ -->
+    <div class="flex gap-4 text-3xl mb-4 font-bold">
+      <h3><i class="fa-solid fa-book"></i>  3行ポジティブ日記機能  <i class="fa-solid fa-book"></i></h3>
+    </div>
+
+    <!-- 左右分割 -->
+    <div class="flex flex-wrap w-full md:flex-nowrap">
+      <!-- 左側: Pタグ -->
+      <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
+        <p>
+        ~説明~
+        </p>
+        <!-- ボタン -->
+        <div class="flex flex-row mt-16">
+          <%= link_to "使ってみる", "#", class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600 mx-auto" %>
+        </div>
+      </div>
+      <!-- 右側（スペース） -->
+      <div class="w-1/2">
+        <img src="https://i.gyazo.com/b8579151990c976108c3aad1130d82f3.gif">
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
