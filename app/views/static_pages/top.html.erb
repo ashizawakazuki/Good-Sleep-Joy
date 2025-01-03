@@ -8,58 +8,54 @@
   </h1>
 </div>
 
-<div class="container mx-auto text-center mt-16 text-3xl font-bold">
+<div class="container mx-auto text-center mt-16 text-lg font-bold">
   <div class="my-4">
     <p>人生の約3分の1は睡眠で占められています。</p>
   </div>
-  <div class="my-4">
-    <p>
-    質の高い睡眠を取ることで、それ以外の時間も充実させることができます。<br>
-    つまり、人生の本番は『寝ること』にあると言っても過言ではありません。<br>
-    『Good Sleep Joy』は、ユーザー同士で睡眠に関する情報を共有したり、<br>
-    毎日ポジティブな気持ちで眠りにつくための機能を備えています。<br>
-    </p>
+  <div class="my-8">
+    <p>質の高い睡眠を取ることで、<br>それ以外の時間も充実できます。</p>
+  <div class="my-8">
+    <p>人生の本番は『寝ること』と言っても<br>過言ではありません。</p>
   </div>
-  <div>
-    <p>あなたの睡眠をより良いものにし、日々の生活を充実させるためにサポートします。</p>
+  <div class="my-8">
+    <p>『Good Sleep Joy』は、<br>ユーザー同士で睡眠に関する情報を共有し、<br>
+    毎日ポジティブな気持ちで寝るための機能を備えています。<br></p>
   </div>
 </div>
 
 
 <!-- 機能の説明 -->
 <div class="mt-16 flex flex-col justify-center items-center">
-  <h2 class="text-3xl font-semibold mt-6 ">
+  <h2 class="text-xl font-semibold mt-6 ">
     <i class="fa-solid fa-angles-down"></i>このアプリでできること
     <i class="fa-solid fa-angles-down"></i>
   </h2>
-
+</div>
 
 
   <!-- アイテム -->
 <div class=" container w-full text-white">
-  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
-    <!-- ロゴ -->
-    <div class="flex gap-4 text-3xl mb-4 font-bold">
-      
-      <h3><i class="fa-solid fa-bed"></i>  睡眠関連アイテム共有  <i class="fa-solid fa-bed"></i></h3>
-     
+  <div class="bg-black border-4 rounded-lg p-4 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
+    <div class="flex gap-4 text-xl mb-8 font-bold">
+      <h3><i class="fa-solid fa-bed"></i>  アイテム共有機能  <i class="fa-solid fa-bed"></i></h3>
     </div>
+  
     <!-- 左右分割 -->
     <div class="flex flex-wrap w-full md:flex-nowrap gap-4">
-      <!-- 左側: Pタグ -->
-      <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
-        <p>
-          良質な睡眠を取るために欠かせないアイテムを、他のユーザーと共有する機能です。<br>
-          お気に入りの寝具やアロマ、睡眠をサポートするガジェットなど、自分が愛用しているアイテムを投稿し、その魅力を共有しましょう。<br>
-          他のユーザーの投稿から、新たな睡眠アイテムとの出会いや、睡眠の質を向上させるヒントを得られます。
+    <!-- 左側: Pタグ -->
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <p class="text-sm">
+          良質な睡眠を取るために欠かせないアイテムを、<br>他のユーザーと共有する機能です。<br>
+          お気に入りの寝具やアロマ、睡眠をサポートするガジェットなど、<br>自分が愛用しているアイテムを投稿し、その魅力を共有しましょう。<br>
+          他のユーザーの投稿から、新たな睡眠アイテムとの出会いや、<br>睡眠の質を向上させるヒントを得られます。
         </p>
-        <!-- ボタン -->
+      <!-- ボタン -->
         <div class="flex flex-row flex-wrap justify-center gap-4 mt-16">
           <%= link_to "投稿する", new_item_post_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
           <%= link_to "投稿一覧", item_posts_path, class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
         </div>
       </div>
-      <!-- 右側（スペース） -->
+    <!-- 右側（スペース） -->
       <div class="w-full md:w-1/2">
         <img src="https://i.gyazo.com/b8579151990c976108c3aad1130d82f3.gif" alt="イメージ">
       </div>
@@ -68,11 +64,11 @@
 </div>
 
 <!-- 習慣 -->
-<div class="container w-full text-white ">
-  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
-    <!-- ロゴ -->
-    <div class="flex gap-4 text-3xl mb-4 font-bold">
-    <h3><i class="fa-solid fa-moon"></i>  睡眠前の習慣投稿機能  <i class="fa-solid fa-moon"></i>
+<div class="container w-full text-white">
+  <div class="bg-black border-4 rounded-lg p-4 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
+
+    <div class="flex gap-4 text-xl mb-8 font-bold">
+    <h3><i class="fa-solid fa-moon"></i>  習慣共有機能  <i class="fa-solid fa-moon"></i>
     </h3>
     </div>
 
@@ -80,7 +76,7 @@
     <div class="flex flex-wrap w-full md:flex-nowrap gao-4">
       <!-- 左側: Pタグ -->
       <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
-        <p>
+      <p class="text-sm">
         （仮）この機能では、ユーザーが実践している睡眠前の習慣を投稿・共有できます。<br>
         ストレッチや読書、瞑想、スマホを置く時間など、睡眠の質を高めるための行動を他の人とシェアしましょう。<br>
         投稿を通じて、自分に合った新しいナイトルーティンを見つけるきっかけになります。<br>
@@ -101,9 +97,9 @@
 
 <!-- 日記 -->
 <div class="container w-full text-white">
-  <div class="bg-black p-16 border-4 rounded-lg p-16 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
+  <div class="bg-black border-4 rounded-lg p-4 m-16 flex flex-col justify-center items-center flex-wrap hover:border-gray-400 transition-300 cursor-pointer">
     <!-- ロゴ -->
-    <div class="flex gap-4 text-3xl mb-4 font-bold">
+    <div class="flex gap-4 text-xl mb-8 font-bold">
       <h3><i class="fa-solid fa-book"></i>  3行ポジティブ日記機能  <i class="fa-solid fa-book"></i></h3>
     </div>
 
@@ -111,7 +107,7 @@
     <div class="flex flex-wrap w-full md:flex-nowrap gap-4">
       <!-- 左側: Pタグ -->
       <div class="w-full md:w-1/2 text-left flex flex-col justify-center">
-        <p>
+        <p class="text-sm">
         ~説明~
         </p>
         <!-- ボタン -->
