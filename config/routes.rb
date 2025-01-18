@@ -1,7 +1,7 @@
 #ルーティングとは「どのURLにアクセスすると、どのコントローラのどのアクションが実行されるか決めるもの」
 Rails.application.routes.draw do
   get 'habit_posts/index'
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
