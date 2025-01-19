@@ -20,6 +20,7 @@ class HabitPostsController < ApplicationController
     if @habit_post.save
       redirect_to habit_posts_path, notice: '投稿が成功しました！'
     else
+      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
       render :edit, status: :unprocessable_entity
     end
   end
@@ -42,6 +43,7 @@ class HabitPostsController < ApplicationController
     if @habit_post.update(habit_post_params)
       redirect_to habit_post_path(@habit_post), notice: '編集が成功しました！'
     else
+      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
       render :edit, status: :unprocessable_entity
     end
   end
