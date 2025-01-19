@@ -31,7 +31,8 @@ class ItemPostsController < ApplicationController
     if @item_post.save
       redirect_to item_posts_path, notice: '投稿が成功しました。'
     else
-      render :new, status: :unprocessable_entity #あとでフラッシュメッセージ実装する
+      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -59,7 +60,8 @@ class ItemPostsController < ApplicationController
     if @item_post.update(item_post_params)
       redirect_to item_post_path(@item_post), notice: '編集が成功しました！'
     else
-      render :edit, status: :unprocessable_entity #あとでフラッシュメッセージ実装する
+      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      render :edit, status: :unprocessable_entity
     end
   end
 
