@@ -16,4 +16,6 @@ class User < ApplicationRecord
     resource.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを見ている
   end
 
+  mount_uploader :avatar, AvatarUploader
+
 end
