@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #post 'item_posts', to: 'item_posts#create' → item_posts_pathが生成
   resources :item_posts, only: %i[new index create show edit update destroy]
   resources :habit_posts, only: %i[index new create show edit update destroy]
+  resource :profile
   # Defines the root path route ("/")
   # root "posts#index"
 end

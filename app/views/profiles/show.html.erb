@@ -1,0 +1,53 @@
+<div class = "text-center my-8" >
+  <div>
+    <h1 class = "text-xl font-bold my-20">マイページ</h1>
+  </div>
+
+  <!-- プロフィール画像 -->
+  <div class="flex justify-center"> 
+    <%= image_tag "medication.png", alt: "プロフィール画像", class: "rounded-full w-16 h-16 object-cover shadow-lg border border-gray-200" %>
+  </div>
+  <div>
+    <h2 class = "font-bold pt-8"><%= current_user.name %></h2>
+  </div>
+
+  <div class="flex justify-center p-4"> 
+    <table>
+      <tr>
+        <th class="p-4 flex items-center space-x-4">
+          <p>メールアドレス</p>
+        </th>
+        <td><%= current_user.email %></td>
+      </tr>
+      
+      <tr>   
+        <th class="p-4 flex items-center space-x-4">
+          <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
+          <p>起床時間</p>
+        </th>
+        <td>test</td>
+      </tr>
+
+      <tr>
+        <th class="p-4 flex items-center space-x-4">
+          <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
+          <p>就寝時間</p>
+        </th>
+        <td>test</td>
+      </tr>
+
+      <tr>
+        <th class="p-4 flex items-center space-x-4">
+          <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
+          <p>睡眠時間</p>
+        </th>
+      </tr>
+    </table>
+
+  </div>
+  <%= link_to "編集","#" ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+</div>    
+    
+
+
+
