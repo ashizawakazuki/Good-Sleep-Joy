@@ -1,6 +1,6 @@
 <!-- 最後に①Railsと②DaisyUIを考慮する必要あり（繰り返しの多い構造をパーシャルを使用して整理する）-->
 <div class="w-full">
-  <%= image_tag "top.svg", class: "w-full h-auto"%>
+  <%= image_tag "top.svg", class: "w-full md:w-auto h-auto"%>
 </div>
 
 
@@ -21,31 +21,34 @@
       
       <!-- 左側: -->
       <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <div class="text-left mx-auto">
-          <strong class-"text-xl">アイテム共有機能</strong>
+        <div class="text-center mx-auto">
+          <strong class="font-bold text-xl mt-2">アイテム共有機能</strong>
+        </div>
+        <div class="text-left">
           <p class="text-sm mt-4">
           あなたの睡眠を支えるアイテムを他のユーザーとシェアしましょう！
           </p>
-          <div class="text-sm mt-4">
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>お気に入りの枕</p>
-            </div>
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>ぐっすり眠れるアイマスク</p>
-            </div>
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>耳栓やリラックスグッズ...など</p>
-            </div>
+        </div>
+        <div class="text-sm mt-4">
+          <div class="flex justify-start gap-4">
+            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+            <p>お気に入りの枕</p>
           </div>
-          <div class="flex justify-start gap-4 mt-4 text-sm">
-            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
-            <p>投稿にはログインが必要</p>
-            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
+          <div class="flex justify-start gap-4">
+            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+            <p>ぐっすり眠れるアイマスク</p>
+          </div>
+          <div class="flex justify-start gap-4">
+            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+            <p>耳栓やリラックスグッズ...など</p>
           </div>
         </div>
+        <div class="flex justify-center gap-4 mt-4 text-sm">
+          <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
+          <p>投稿にはログインが必要</p>
+          <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
+        </div>
+    
         
         <!-- ボタン -->
         <div class="flex flex-row flex-wrap justify-center gap-4 mt-4">
@@ -69,31 +72,31 @@
       
       <!-- 左側: -->
       <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <div class="text-left mx-auto">
-        <strong class-"text-xl">習慣共有機能</strong>
-        <p class="text-sm mt-4">
-        あなたの睡眠をサポートする習慣を投稿して、他のユーザーとシェアしましょう！
-        </p>
-        <div class="text-sm mt-4">
-          <div class="flex justify-start gap-4">
-            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-            <p>リラックスできる飲み物</p>
+        <div class="text-center md:text-left mx-auto">
+          <strong class="text-xl">習慣共有機能</strong>
+          <p class="text-sm mt-4">
+          あなたの睡眠をサポートする習慣を投稿して、他のユーザーとシェアしましょう！
+          </p>
+          <div class="text-sm mt-4">
+            <div class="flex justify-start gap-4">
+              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+              <p>リラックスできる飲み物</p>
+            </div>
+            <div class="flex justify-start gap-4">
+              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+              <p>ぐっすり眠るための工夫</p>
+            </div>
+            <div class="flex justify-start gap-4">
+              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
+              <p>翌朝を気持ちよく迎える準備...など</p>
+            </div> 
           </div>
-          <div class="flex justify-start gap-4">
-            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-            <p>ぐっすり眠るための工夫</p>
+          <div class="flex justify-center gap-4 mt-4 text-sm">
+            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
+            <p>投稿にはログインが必要</p>
+            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
           </div>
-          <div class="flex justify-start gap-4">
-            <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-            <p>翌朝を気持ちよく迎える準備...など</p>
-          </div> 
         </div>
-        <div class="flex justify-start gap-4 mt-4 text-sm">
-          <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
-          <p>投稿にはログインが必要</p>
-          <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
-        </div>
-      </div>
 
         <!-- ボタン -->
         <div class="flex flex-row flex-wrap justify-center gap-4 mt-4">
@@ -115,39 +118,40 @@
     <!-- 左右分割 -->
     <div class="flex flex-wrap w-full md:flex-nowrap gap-4">
       
-      <!-- 左側: -->
-      <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <div class="text-left mx-auto">
-          <strong class-"font-bold text-xl mt-2">3行ポジティブ日記機能</strong>
-          <p class="text-sm mt-4">
-          今日の小さな幸せを3行で記録し、ポジティブな気持ちで1日を終わりましょう!
-          </p>
-          <div class="text-sm mt-4">
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>あの人と話せた</p>
-            </div>
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>昼食がおいしかった</p>
-            </div>
-            <div class="flex justify-start gap-4">
-              <%= image_tag "check.png", alt: '起床時間のアイコン'%>
-              <p>虹を見た...など</p>
-            </div> 
-          </div>
-          <div class="flex justify-start gap-4 mt-4 text-sm">
-            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
-            <p>使うにはログインが必要</p>
-            <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン'%>
-          </div>
+    <!-- 左側: -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center">
+      <div class="text-center mx-auto">
+        <strong class="font-bold text-xl mt-2">3行ポジティブ日記機能</strong>
+      </div>
+      <div class="text-left">
+        <p class="text-sm mt-4">
+        今日の小さな幸せを3行で記録し、ポジティブな気持ちで1日を終わりましょう!
+        </p>
+      </div>
+      <div class="text-sm mt-4">
+        <div class="flex justify-start gap-4">
+          <%= image_tag "check.png", alt: '起床時間のアイコン' %>
+          <p>あの人と話せた</p>
         </div>
-
-        <!-- ボタン -->
-        <div class="flex flex-row flex-wrap justify-center gap-4 mt-4">
-          <%= link_to "使ってみる", "#", class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
+        <div class="flex justify-start gap-4">
+          <%= image_tag "check.png", alt: '起床時間のアイコン' %>
+          <p>昼食がおいしかった</p>
+        </div>
+        <div class="flex justify-start gap-4">
+          <%= image_tag "check.png", alt: '起床時間のアイコン' %>
+          <p>虹を見た...など</p>
         </div>
       </div>
+      <div class="flex justify-center gap-4 mt-4 text-sm">
+        <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン' %>
+        <p>使うにはログインが必要</p>
+        <%= image_tag "exclamation.png", alt: 'エクスクラメーションマークのアイコン' %>
+      </div>
+      <!-- ボタン -->
+      <div class="flex flex-row flex-wrap justify-center gap-4 mt-4">
+        <%= link_to "使ってみる", "#", class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600" %>
+      </div>
+    </div>
 
       <!-- 右側（スペース） -->
       <div class="w-full md:w-1/2">
