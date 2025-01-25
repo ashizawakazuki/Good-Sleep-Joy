@@ -4,7 +4,7 @@
 <%# よって新規投稿画面と同じでも、あらかじめ既存のデータが入っている %>
 
 <!--「max-w-lg」でフォームの最大横幅をlgに、「mx-auto」で中央に寄せる -->
-<div class="max-w-lg mx-auto">
+<div class="max-w-lg mx-auto p-4">
   <h1 class="text-xl font-bold my-20 text-center">アイテム投稿編集画面</h1>
   <%= form_with model: @item_post do |f| %> <!-- |f|はフォームとモデルをつなげる役割 -->
 
@@ -34,7 +34,7 @@
     
     <!--ここで投稿が失敗したとき、選択した画像が表示されるようにする-->
     <% if @item_post.item_post_image_url.present? %>
-      <%= image_tag @item_post.item_post_image_url, class: "w-72 h-48 object-cover rounded-lg shadow-md alt: Item post image" %>
+      <%= image_tag @item_post.item_post_image_url, class: "w-72 h-72 object-cover rounded-lg shadow-md alt: Item post image" %>
     <% end %>  
     
     <!-- ボタンを中央揃え -->

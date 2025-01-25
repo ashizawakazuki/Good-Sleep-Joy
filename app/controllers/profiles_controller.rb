@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   #Deviseを導入したために使えるようになったメソッドで、ユーザーがログインしているかを判別し、未ログイン時には、自動的にログインページにリダイレクトさせる
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:show, :edit, :update]
   #set_habit_postでアクションの前に、「投稿が削除されておらず存在するかどうか、また、アクセス権限があるか（人の投稿でないか）」を確認している
-  before_action :set_user, only: [:edit, :update]  
+  before_action :set_user, only: [:show, :edit, :update]  
   
   def show; end
 
@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:avatar_cache, :name, :email, :wake_up_time, :bed_time, :sleep_time)
+    params.require(:user).permit(:avatar, :avatar_cache, :name, :email, :wake_up_time, :bed_time, :sleep_time)
   end
 end
   

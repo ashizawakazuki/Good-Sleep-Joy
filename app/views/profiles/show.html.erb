@@ -4,11 +4,12 @@
   </div>
 
   <!-- プロフィール画像 -->
-  <div class="flex justify-center"> 
-    <%= image_tag "medication.png", alt: "プロフィール画像", class: "rounded-full w-16 h-16 object-cover shadow-lg border border-gray-200" %>
+  <div class="flex justify-center">
+    <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-48 h-48 object-cover shadow-lg border border-gray-200" %>
   </div>
-  <div>
-    <h2 class = "font-bold pt-8"><%= current_user.name %></h2>
+  
+  <div class="mt-4">
+    <h2 class = "font-bold"><%= current_user.name %></h2>
   </div>
 
   <div class="flex justify-center p-4"> 
@@ -25,7 +26,7 @@
           <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
           <p>起床時間</p>
         </th>
-        <td>test</td>
+        <td><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
       </tr>
 
       <tr>
@@ -33,7 +34,7 @@
           <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
           <p>就寝時間</p>
         </th>
-        <td>test</td>
+        <td><%= current_user.bed_time&.strftime('%H:%M') %></td>
       </tr>
 
       <tr>
@@ -41,11 +42,12 @@
           <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
           <p>睡眠時間</p>
         </th>
+        <td><p>※本リリース時実装（自動入力）</p></td>
       </tr>
     </table>
 
   </div>
-  <%= link_to "編集","#" ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+  <%= link_to "編集", edit_profile_path ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
 </div>    
     
 
