@@ -22,7 +22,7 @@
     <!-- 投稿者情報 -->
     <p class="text-sm text-gray-400">投稿者: <%= @habit_post.user.name %></p>
 
-    <!-- 投稿日時 -->
+    <!-- 投稿日時 --><!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
     <p class="text-sm text-gray-400 mt-2">投稿日: <%= @habit_post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
   
     <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
