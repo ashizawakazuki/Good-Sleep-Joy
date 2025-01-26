@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_26_075259) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_26_110217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,17 +20,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_26_075259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_diaries_on_user_id"
-  end
-
-  create_table "diary_events", force: :cascade do |t|
     t.text "content", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.bigint "diary_id", null: false
-    t.index ["diary_id"], name: "index_diary_events_on_diary_id"
-    t.index ["user_id"], name: "index_diary_events_on_user_id"
+    t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
   create_table "habit_posts", force: :cascade do |t|
@@ -71,8 +62,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_26_075259) do
   end
 
   add_foreign_key "diaries", "users"
-  add_foreign_key "diary_events", "diaries"
-  add_foreign_key "diary_events", "users"
   add_foreign_key "habit_posts", "users"
   add_foreign_key "item_posts", "users"
 end
