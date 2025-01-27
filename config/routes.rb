@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :item_posts, only: %i[new index create show edit update destroy]
   resources :habit_posts, only: %i[index new create show edit update destroy]
   resource :profile, only: %i[show edit update]
+  resources :diaries, only: %i[index new create]
   # Defines the root path route ("/")
   # root "posts#index"
 end

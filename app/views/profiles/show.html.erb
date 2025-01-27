@@ -26,6 +26,7 @@
           <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
           <p>起床時間</p>
         </th>
+        <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
         <td><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
       </tr>
 
@@ -34,6 +35,7 @@
           <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
           <p>就寝時間</p>
         </th>
+        <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
         <td><%= current_user.bed_time&.strftime('%H:%M') %></td>
       </tr>
 
