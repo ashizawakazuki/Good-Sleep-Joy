@@ -16,27 +16,27 @@
         <tr class="flex flex-col items-center">   
           <th class="px-2 flex items-center space-x-4">
             <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
-            <p class="text-sm sm:text-lg">起床時間</p>
+            <p class="text-xs sm:text-lg">起床時間</p>
           </th>
           <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
-          <td class="text-sm sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
+          <td class="text-xs sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
         </tr>
 
         <tr class="flex flex-col items-center">
           <th class="px-2 flex items-center space-x-4">
             <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
-            <p class="text-sm sm:text-lg">就寝時間</p>
+            <p class="text-xs sm:text-lg">就寝時間</p>
           </th>
           <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
-          <td class="text-sm sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
+          <td class="text-xs sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
         </tr>
 
         <tr class="flex flex-col items-center">
           <th class="px-2 flex items-center space-x-4">
             <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
-            <p class="text-sm sm:text-lg">睡眠時間</p>
+            <p class="text-xs sm:text-lg">睡眠時間</p>
           </th>
-          <td class="text-sm sm:text-lg font-bold"><p>※本リリース時実装</p></td>
+          <td class="text-xs sm:text-lg font-bold"><p>※本リリース時実装</p></td>
         </tr>
       </table>
     </div>
@@ -51,8 +51,8 @@
     <% if @diaries.present? %> 
       <table class="table-auto mx-auto">
         <tr>
-          <th class="px-8 py-8">date</th>
-          <th class="px-8 py-8">タイトル</th>
+          <th class="px-4 py-4">date</th>
+          <th class="px-4 py-4">タイトル</th>
         </tr>
         <% @diaries.each do |diary| %>
           <tr class="odd:bg-white even:bg-gray-100">
