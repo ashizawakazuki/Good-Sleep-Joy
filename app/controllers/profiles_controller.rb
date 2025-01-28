@@ -4,7 +4,10 @@ class ProfilesController < ApplicationController
   #set_habit_postでアクションの前に、「投稿が削除されておらず存在するかどうか、また、アクセス権限があるか（人の投稿でないか）」を確認している
   before_action :set_user, only: [:show, :edit, :update]  
   
-  def show; end
+  def show
+    #新しい日記投稿が一番上に来るように並び替えをしていしている
+    @diaries = @user.diaries.order(created_at: :desc)
+  end
 
   def edit; end
 
