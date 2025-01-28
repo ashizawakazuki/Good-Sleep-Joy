@@ -1,4 +1,7 @@
 class DiariesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+    #後ほど復活させる
+#   before_action :set_diary_post, only: [:update, :destroy]
   def index
 
   end
@@ -23,4 +26,11 @@ private
     params.require(:diary).permit(:date, :title, :content)
   end
 
+  #後ほど復活させる
+#   def set_diary_post
+#     @diary = current_user.diaries.find_by(id: params[:id])
+#     unless @diary
+#       redirect_to profile_path, alert: "投稿が見つからない、もしくはアクセス権限がありません。"
+#     end
+#   end
 end
