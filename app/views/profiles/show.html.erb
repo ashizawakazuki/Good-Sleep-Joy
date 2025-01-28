@@ -49,7 +49,36 @@
     </table>
 
   </div>
-  <%= link_to "編集", edit_profile_path ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+  <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+
+  <div class="flex justify-center border-b-2 my-8 pb-2 mb-5">
+    <h2 class="text-center text-xl font-bold">投稿した日記</h2>
+  </div>
+  <div class = "my-8">
+    <% if @diaries.present? %> 
+      <table class = "flex justify-center">
+        <tr>
+          <th></th>
+          <th>date</th>
+          <th>タイトル</th>
+          <th></th>
+        </tr>
+        <% @diaries.each do |diary| %>
+          <tr>
+            <td><%= image_tag "carender.png", alt: '起床時間のアイコン'%></rd>
+            <td><%= diary.date.strftime("%y/%m/%d") %></td>
+            <td  class="px-8"><%= link_to diary.title,'#',class: "text-blue-500 underline" %></td>
+            <td>削除と編集を書く</td>
+          </tr>
+        <% end %>
+      </table>
+      <div class ="my-8">
+        <%= link_to "日記を書く", new_diary_path ,class: "bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+      </div>
+    <% else %>
+      <p class="text-center">投稿がありません</p>
+    <% end %>
+  </div>
 </div>    
     
 
