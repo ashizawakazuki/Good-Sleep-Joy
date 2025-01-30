@@ -51,12 +51,12 @@
     <% if @diaries.present? %> 
       <table class="table-auto mx-auto">
         <tr>
-          <th class="px-4 py-4">date</th>
-          <th class="px-4 py-4">タイトル</th>
+          <th>日付</th>
+          <th>タイトル</th>
         </tr>
         <% @diaries.each do |diary| %>
           <tr class="odd:bg-white even:bg-gray-100">
-            <td class="px-6 flex justify-center"><%= image_tag "carender.png", alt: '起床時間のアイコン'%><%= diary.date.strftime("%y/%m/%d") %></td>
+            <td class="px-6"><%= diary.date.strftime("%y/%m/%d") %></td>
             <td class="px-6"><%= link_to diary.title,'#',class: "text-blue-500 underline" %></td>
           </tr>
         <% end %>
