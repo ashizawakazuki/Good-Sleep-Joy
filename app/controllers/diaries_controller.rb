@@ -2,9 +2,6 @@ class DiariesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
     #後ほど復活させる
 #   before_action :set_diary_post, only: [:update, :destroy]
-  def index
-
-  end
 
   def new
     @diary = Diary.new
@@ -17,8 +14,27 @@ class DiariesController < ApplicationController
     else
       flash.now[:alert] = '作成に失敗しました。入力内容を確認してください'
       render :new, status: :unprocessable_entity
+    end
   end
-end
+
+  def show
+    @diary = Diary.find(params[:id])
+  end
+
+  def edit
+    @diary = current_user.diaries.find(params[:id])
+  end
+
+  def update
+    @diary = current_user.diaries.find(params[:id])
+    if @diary.update(diary_params)
+      redirect_to diary_path(@diary), notice: '編集が成功しました!'
+    else
+      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
 
 private
 
