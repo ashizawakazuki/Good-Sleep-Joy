@@ -51,7 +51,7 @@ class ItemPostsController < ApplicationController
   def edit; end
 
 
-  #set_habit_postで投稿データを先に取得している
+  #set_item_postで投稿データを先に取得している
   #①「@item_post = current_user.item_posts.find(params[:id])」で、更新対象のデータをまず持ってくる
   #②createアクション同様、フォームで更新した内容がparamsで送られてくる（ストロングパラメータであるitem_post_paramsで絞り込み）
   #③updateメソッドで、フォームからきた新しいデータに、用意した更新対象の@item_postを更新する
