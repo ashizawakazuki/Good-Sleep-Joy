@@ -20,7 +20,7 @@
   </div>
   <div class="flex justify-center gap-4">
     <%= link_to '編集', edit_diary_path, class: 'text-blue-500 hover:underline' %>
-    <%= link_to '削除', "#", data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
+    <%= link_to '削除', diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
     <%= link_to '戻る', profile_path, class: 'text-blue-500 hover:underline' %>
   </div>
 </div>
