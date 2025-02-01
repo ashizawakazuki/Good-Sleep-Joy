@@ -1,7 +1,6 @@
 class DiariesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
-    #後ほど復活させる
-#   before_action :set_diary_post, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
+  before_action :set_diary_post, only: [:show, :edit, :update, :destroy]
 
   def new
     @diary = Diary.new
@@ -17,16 +16,11 @@ class DiariesController < ApplicationController
     end
   end
 
-  def show
-    @diary = Diary.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @diary = current_user.diaries.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @diary = current_user.diaries.find(params[:id])
     if @diary.update(diary_params)
       redirect_to diary_path(@diary), notice: '編集が成功しました!'
     else
@@ -35,6 +29,10 @@ class DiariesController < ApplicationController
     end
   end
 
+  def destroy
+    @diary.destroy!
+    redirect_to profile_path, notice: '削除が成功しました！'
+  end
 
 private
 
@@ -42,11 +40,10 @@ private
     params.require(:diary).permit(:date, :title, :content)
   end
 
-  #後ほど復活させる
-#   def set_diary_post
-#     @diary = current_user.diaries.find_by(id: params[:id])
-#     unless @diary
-#       redirect_to profile_path, alert: "投稿が見つからない、もしくはアクセス権限がありません。"
-#     end
-#   end
+  def set_diary_post
+    @diary = current_user.diaries.find_by(id: params[:id])
+    unless @diary
+      redirect_to profile_path, alert: "投稿が見つからない、もしくはアクセス権限がありません。"
+    end
+  end
 end
