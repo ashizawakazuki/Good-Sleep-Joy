@@ -5,7 +5,8 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]  
   
   def show
-    #新しい日記投稿が一番上に来るように並び替えをしていしている
+    # このアクションの前に現在ログインしているユーザーのidを持ってきている
+    # 新しい日記投稿が一番上に来るように並び替えをしていしている
     @diaries = @user.diaries.order(created_at: :desc)
   end
 

@@ -59,7 +59,10 @@
         <% @diaries.each do |diary| %>
           <tr class="odd:bg-white even:bg-gray-100">
             <td class="px-6"><%= diary.date.strftime("%y/%m/%d") %></td>
-            <td class="px-6"><%= link_to diary.title,'#',class: "text-blue-500 underline" %></td>
+
+            <!--resources :diaries, only: [:show]によって、diary_path(diary) は 自動的に diary.id を利用して "/diaries/:id" というURLを生成します。 -->
+            <!-- diary_path(diary.id) と書かなくても、Rails は diary オブジェクトから id を自動的に抽出する  -->
+            <td class="px-6"><%= link_to diary.title, diary_path(diary) ,class: "text-blue-500 underline" %></td>
           </tr>
         <% end %>
       </table>
