@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_26_110217) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_08_004055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_26_110217) do
     t.datetime "updated_at", null: false
     t.string "image"
     t.index ["user_id"], name: "index_habit_posts_on_user_id"
+  end
+
+  create_table "item_likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_post_id"], name: "index_item_likes_on_item_post_id"
+    t.index ["user_id"], name: "index_item_likes_on_user_id"
   end
 
   create_table "item_posts", force: :cascade do |t|
@@ -63,5 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_26_110217) do
 
   add_foreign_key "diaries", "users"
   add_foreign_key "habit_posts", "users"
+  add_foreign_key "item_likes", "item_posts"
+  add_foreign_key "item_likes", "users"
   add_foreign_key "item_posts", "users"
 end

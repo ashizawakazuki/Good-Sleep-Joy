@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :item_posts, dependent: :destroy #ユーザーが削除された時、関連するモデル（item_post）のレコード削除される
   has_many :habit_posts, dependent: :destroy
   has_many :diaries, dependent: :destroy
+  has_many :item_likes, dependent: :destroy
+  has_many :liked_item_posts, through: :item_likes, source: :item_post #ここがわからん
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
@@ -17,6 +19,19 @@ class User < ApplicationRecord
   def own?(resource)
     resource.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを見ている
   end
+
+  def item_like(item_post)
+    liked_item_posts << item_post
+  end
+
+  def item_unlike(item_post)
+    liked_item_posts.destroy(item_post)
+  end
+
+  def item_liked?(item_post)
+    liked_item_posts.include?(item_post)
+  end
+
 
   mount_uploader :avatar, AvatarUploader
 
