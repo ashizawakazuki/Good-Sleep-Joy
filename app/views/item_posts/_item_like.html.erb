@@ -1,0 +1,5 @@
+<div class= "fixed bottom-4 right-4 flex flex-row gap-x-4 ">
+  <%= link_to item_post_item_like_path(item_post), id: "like-button-for-item-post-#{item_post.id}", data: { turbo_method: :post } do %>
+    <%= image_tag "fullmoon.png", alt: '満月のアイコン', class: "filter brightness-0 invert sepia-100 hue-rotate-60"%><%= item_post.item_likes.count %>
+  <% end %>
+</div>

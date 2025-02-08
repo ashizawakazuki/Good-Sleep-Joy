@@ -36,7 +36,10 @@
         <div>
           <%= link_to '削除', item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
         </div>
-        <% end %>
+      <% end %>
     <% end %>
+  </div>
+  <div>
+    <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
 </div>

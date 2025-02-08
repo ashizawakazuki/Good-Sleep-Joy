@@ -4,7 +4,7 @@ class ItemPost < ApplicationRecord
   validates :body, presence: true, length: { maximum: 1000 } #空でない、最大1000文字
 
   belongs_to :user
-  has_many :item_like, dependent: :destroy
+  has_many :item_likes, dependent: :destroy
 
   # ItemPostImageUploaderは「画像管理の機能」(app/uplodersの中にファイルあり）、
   # item_post_imageはカラム名で「画像を置く場所」

@@ -1,0 +1,7 @@
+<% if current_user %>
+  <% if current_user.item_liked?(item_post) %>
+    <%= render 'item_unlike', { item_post: item_post } %>
+  <% else %>
+    <%= render 'item_like', { item_post: item_post } %>
+  <% end %>
+<% end %>
