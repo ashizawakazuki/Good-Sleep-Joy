@@ -1,3 +1,3 @@
-<%= link_to item_post_item_like_path(item_post), id: "unlike-button-for-item-post-#{item_post.id}", class: "text-xl text-yellow-400 absolute bottom-2 right-2", data: { turbo_method: :delete } do %>
+<%= link_to item_post_item_like_path(item_post), id: "unlike-button-for-item-post-#{item_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
   <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
 <% end %>
