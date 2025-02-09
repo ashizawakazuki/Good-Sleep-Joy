@@ -8,7 +8,7 @@ class ItemPostsController < ApplicationController
   #「_item_post.html.erb」の「item_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_item_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
   def index
-    @item_posts = ItemPost.includes(:user)
+    @item_posts = ItemPost.includes(:user).order(created_at: :desc)
   end
   #上記は全ての（複数の）データを格納するから複数形の@item_posts、下記は１つの投稿を格納するから単数系の@item_post
 
@@ -73,6 +73,12 @@ class ItemPostsController < ApplicationController
     redirect_to item_posts_path, notice: '削除が成功しました！'
   end
   
+  # ログインしているユーザーがいいねしている投稿全てを持ってきている
+  # liked_item_postsはUserモデルでhas_manyで定義したもので「ユーザーがいいねした投稿の一覧」（詳しくはUserモデル）
+  def item_likes
+    @item_like_posts = current_user.liked_item_posts.includes(:user).order(created_at: :desc)
+  end
+
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」
