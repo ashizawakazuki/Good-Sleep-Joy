@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   #get 'item_posts/new', to: 'item_posts#new' → item_posts_new_path(resourcesと異なるpath)が生成
   #post 'item_posts', to: 'item_posts#create' → item_posts_pathが生成
   resources :item_posts, only: %i[new index create show edit update destroy] do
+    collection do
+      get :item_likes
+    end
     resource :item_like, only: [:create, :destroy]
   end
   resources :habit_posts, only: %i[index new create show edit update destroy]

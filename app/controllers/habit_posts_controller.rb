@@ -8,7 +8,7 @@ class HabitPostsController < ApplicationController
   #「_habit_post.html.erb」の「habit_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_habit_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
   def index
-    @habit_posts = HabitPost.includes(:user)
+    @habit_posts = HabitPost.includes(:user).order(created_at: :desc)
   end
 
   def new

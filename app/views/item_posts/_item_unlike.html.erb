@@ -1,3 +1,10 @@
+<!--このファイルはすでにいいねされてる状態の時に表示するファイルだから、黄色にしている-->
+<!--item_post_item_like_path(item_post)でどのURLにリクエストを送るのかを決めている-->
+<!--これによって、/item_posts/:item_post_id/item_like を受けて、ItemLikesControllerのdestroyアクションが発動される-->
+<!--idは各投稿ごとに一意の名前をつけ、後にJavaScriptで操作するため？-->
+<!--turbo_methodは<a>タグをHTTPメソッドつきのリクエストに変換するためのオプション-->
+<!--data: { turbo_method: :delete }でDELETEメソッドを送るよう設定している（通常ではlink_toしか送れないから）-->
+
 <%= link_to item_post_item_like_path(item_post), id: "unlike-button-for-item-post-#{item_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
   <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
 <% end %>
