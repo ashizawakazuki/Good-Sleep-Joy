@@ -23,7 +23,7 @@
               <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
               <td class="text-xs sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
             <% else %>
-              <p class="text-xs sm:text-lg">未設定</P>
+              <td class="text-xs sm:text-lg">未設定</td>
             <% end %>
           </tr>
 
@@ -36,7 +36,7 @@
             <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
               <td class="text-xs sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
             <% else %>
-              <p class="text-xs sm:text-lg">未設定</P>
+              <td class="text-xs sm:text-lg">未設定</td>
             <% end %>
           </tr>
 
