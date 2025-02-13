@@ -10,8 +10,8 @@ class User < ApplicationRecord
   has_many :diaries, dependent: :destroy
   has_many :item_likes, dependent: :destroy
   # 下記では単なる関連付け（元々のアソシエーション設定）ではなく、liked_item_postsという新たなメソッドを作るために定義している
-  # through: :item_likes で中間テーブル経由でデータを持って来れる
-  # この一行で「ユーザーがいいねした投稿の一覧」を簡単に取得できるメソッド を作っている。
+  # through: :item_likes で中間テーブルを経由し、item_postのデータを持ってくる
+  # つまりこの一行で「ユーザーがいいねした投稿」の一覧を簡単に取得できるメソッド を作っている。
   has_many :liked_item_posts, through: :item_likes, source: :item_post
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
@@ -23,7 +23,7 @@ class User < ApplicationRecord
     resource.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを見ている
   end
 
-   #上記にも書いたように「liked_item_posts」は「ユーザーがいいねした投稿の一覧」を簡単に取得できるメソッド
+   #上記にも書いたように「liked_item_posts」は「ユーザーがいいねした投稿」の一覧を簡単に取得できるメソッド
   def item_like(item_post)
     liked_item_posts << item_post
   end
