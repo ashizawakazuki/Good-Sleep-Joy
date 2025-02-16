@@ -20,7 +20,10 @@ Rails.application.routes.draw do
     end #また、直感的にURLがわかりやすくなる
     resource :item_like, only: %i[create destroy] 
   end
-  resources :habit_posts, only: %i[index new create show edit update destroy]
+  resources :habit_posts, only: %i[index new create show edit update destroy] do
+    resources :habit_likes, only: %i[create destroy]
+  end
+
   resource :profile, only: %i[show edit update]
   resources :diaries, only: %i[new create show edit update destroy]
   # Defines the root path route ("/")

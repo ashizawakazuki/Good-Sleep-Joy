@@ -4,4 +4,5 @@ class HabitPost < ApplicationRecord
   validates :body, presence: true, length: { maximum: 1000 } #空でない、最大1000文字
 
   belongs_to :user
+  has_many :habit_likes, dependent: :destroy
 end
