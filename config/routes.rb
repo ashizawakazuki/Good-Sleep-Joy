@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     collection do
       get :habit_likes
     end
-  end
     resources :habit_likes, only: %i[create destroy]
   end
 
