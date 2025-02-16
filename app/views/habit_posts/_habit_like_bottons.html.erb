@@ -1,0 +1,7 @@
+<% if current_user %>
+  <% if current_user.habit_liked?(habit_post) %>
+    <%= render 'habit_unlike', { habit_post: habit_post } %>
+  <% else %>
+    <%= render 'habit_like', { habit_post: habit_post } %>
+  <% end %>
+<% end %>

@@ -1,0 +1,4 @@
+<% habit_like = current_user.habit_likes.find_by(habit_post: habit_post) %>
+<%= link_to habit_post_habit_like_path(habit_post, habit_like), method: :delete, id: "unlike-button-for-habit-post-#{habit_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
+  <i class="fa-solid fa-moon"></i><%= habit_post.habit_likes.count %>
+<% end %>

@@ -14,6 +14,7 @@ class User < ApplicationRecord
   # つまりこの一行で「ユーザーがいいねした投稿」の一覧を簡単に取得できるメソッド を作っている。
   has_many :liked_item_posts, through: :item_likes, source: :item_post
   has_many :habit_likes, dependent: :destroy
+  has_many :liked_habit_posts, through: :habit_likes, source: :habit_post
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
@@ -37,6 +38,17 @@ class User < ApplicationRecord
     liked_item_posts.include?(item_post)
   end
 
+  def habit_like(habit_post)
+    liked_habit_posts << habit_post
+  end
+
+  def habit_unlike(habit_post)
+    liked_habit_posts.destroy(habit_post)
+  end
+
+  def habit_liked?(habit_post)
+    liked_habit_posts.include?(habit_post)
+  end
 
   mount_uploader :avatar, AvatarUploader
 
