@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :habit_posts, only: %i[index new create show edit update destroy] do
     collection do
       get :habit_likes
+    end
   end
     resources :habit_likes, only: %i[create destroy]
   end
