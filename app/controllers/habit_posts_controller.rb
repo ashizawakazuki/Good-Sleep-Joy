@@ -56,6 +56,10 @@ class HabitPostsController < ApplicationController
     redirect_to habit_posts_path, notice: '削除が成功しました！'
   end
 
+  def habit_likes
+    @habit_like_posts = current_user.liked_habit_posts.includes(:user).order(created_at: :desc)
+  end
+  
   private
 
   def habit_post_params
