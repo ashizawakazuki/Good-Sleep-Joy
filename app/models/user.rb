@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # through: :item_likes で中間テーブルを経由し、item_postのデータを持ってくる
   # つまりこの一行で「ユーザーがいいねした投稿」の一覧を簡単に取得できるメソッド を作っている。
   has_many :liked_item_posts, through: :item_likes, source: :item_post
+  has_many :habit_likes, dependent: :destroy
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
