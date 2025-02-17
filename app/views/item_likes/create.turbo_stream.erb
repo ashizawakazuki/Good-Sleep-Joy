@@ -1,3 +1,5 @@
+<!-- _item_like.html.erb にある下記のidを探してきて来て、ブロック内の（render~）HTMLに置き換える-->
 <%= turbo_stream.replace "like-button-for-item-post-#{@item_post.id}" do %>
+  <!-- いいねしてない状態の見た目になる-->
   <%= render 'item_posts/item_unlike', item_post: @item_post %>
 <% end %>
