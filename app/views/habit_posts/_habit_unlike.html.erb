@@ -1,4 +1,10 @@
-<% habit_like = current_user.habit_likes.find_by(habit_post: habit_post) %>
-<%= link_to habit_post_habit_like_path(habit_post, habit_like), method: :delete, id: "unlike-button-for-habit-post-#{habit_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
+<!-- 現在ログインしているユーザーがいいねしている習慣投稿の、左側の「habit_post_id」カラムが、右側の「habit_post.id」（以下のような流れ）をhabit_likeに代入している-->
+<!-- habit_postは「index.html.erb」→「_habit_post.html.erb」→「_habit_like_bottons_html.erb」→「_habit_unlike.html.erb」（イマココ）ときている-->
+<% habit_like = current_user.habit_likes.find_by(habit_post_id: habit_post.id) %>
+
+<!-- ネストされたルーティングで「/habit_posts/:habit_post_id/habit_likes/:id」というURLを作っている-->
+<!-- 下記の(habit_post.id, habit_like)で、上記URLの「:habit_post_id」と「:id」のidを指定している-->
+
+<%= link_to habit_post_habit_like_path(habit_post.id, habit_like), method: :delete, id: "unlike-button-for-habit-post-#{habit_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
   <i class="fa-solid fa-moon"></i><%= habit_post.habit_likes.count %>
 <% end %>
