@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :liked_item_posts, through: :item_likes, source: :item_post
   has_many :habit_likes, dependent: :destroy
   has_many :liked_habit_posts, through: :habit_likes, source: :habit_post
+  has_many :item_comments, dependent: :destroy
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
@@ -22,7 +23,7 @@ class User < ApplicationRecord
  #idはRailsが用意しているもので、現在ログインしているユーザー（current_user）を指す（本当はself.idらしいが、現時点ではよくわかってない）
  #アプリのどこでも使えるが、実際にはコントローラとビューで使う（ルーティングとかでは使われない）
   def own?(resource)
-    resource.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを見ている
+    resource&.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを見ている
   end
 
    #上記にも書いたように「liked_item_posts」は「ユーザーがいいねした投稿」の一覧を簡単に取得できるメソッド
