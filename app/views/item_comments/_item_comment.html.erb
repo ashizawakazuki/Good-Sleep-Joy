@@ -1,0 +1,12 @@
+<div class="border-b-2 p-2">
+  <tr>
+    <td><strong><%= item_comment.user.name %></strong></td>
+    <td><%= item_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+  </tr>
+  <tr>
+    <td><%= item_comment.body %></td>
+    <% if current_user.own?(item_comment) %>
+      <td><%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
+    <% end %>
+  </tr>
+</div>

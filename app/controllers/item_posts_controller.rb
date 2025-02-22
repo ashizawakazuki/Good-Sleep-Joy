@@ -43,6 +43,8 @@ class ItemPostsController < ApplicationController
   #@item_postにIDが30の投稿が格納されてshowファイルへ
   def show 
     @item_post = ItemPost.find(params[:id])
+    @item_comment = ItemComment.new
+    @item_comments = @item_post.item_comments.includes(:user).order(created_at: :desc)
   end
   
   #set_habit_postで投稿データを先に取得している

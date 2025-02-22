@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :item_likes #collectionでRESTfulな設計を崩さず、item_postsに新しいアクション(item_likes)を加えることができ、item_posts全体に対するアクションとして意味付けできる
     end #また、直感的にURLがわかりやすくなる
     resources :item_likes, only: %i[create destroy] 
+    resources :item_comments, only: %i[create destroy], shallow: true
   end
   resources :habit_posts, only: %i[index new create show edit update destroy] do
     collection do
