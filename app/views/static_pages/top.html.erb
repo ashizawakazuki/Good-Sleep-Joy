@@ -1,17 +1,18 @@
-<div class="hero h-screen bg-cover bg-center overflow-visible"
-     style="background-image: url('<%= asset_path('top.svg') %>'); background-attachment: fixed;">
-  <div class="hero-overlay bg-black bg-opacity-50">
-    <div class="hero-content text-white text-center flex-col">
-      <h1 class="mb-12 text-3xl md:text-4xl lg:text-5xl font-bold">自分を深く知る5分間</h1>
-      <div class="max-w-sm md:max-w-2xl">
-        <p class="py-4 md:text-base">
-          <!-- アプリ説明文 -->
-          があああああ
-        </p>
-      </div>
-    </div>
+<section class="hero relative bg-cover bg-center h-screen flex flex-col justify-center items-center text-white" 
+         style="background-image: url(<%= asset_path('top.svg') %>);">
+  <!-- 背景のオーバーレイ（暗めの透明フィルター） -->
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  
+  <!-- メインコンテンツ（テキスト・ボタン） -->
+  <div class="relative z-10 text-center">
+    <h1 class="text-5xl font-bold mb-4 leading-tight">
+      <span class="text-blue-400">Good-Sleep-Joy</span> で快適な眠りを
+    </h1>
+    <p class="text-lg mb-6 max-w-2xl mx-auto leading-relaxed">
+      毎日の睡眠を記録して、より良い睡眠習慣を手に入れよう。
+    </p>
   </div>
-</div>
+</section>
 
 
 
