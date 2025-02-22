@@ -13,7 +13,7 @@
     <!-- 日記 -->
     <h2 class="text-3xl font-bold text-gray-800 mb-4">内容</h2>
     <% if @diary.content.present? %>
-      <p class="text-xl text-gray-800 mb-8"><%= @diary.content %></p>
+      <p class="text-xl text-gray-800 mb-8"><%= simple_format(@diary.content) %></p>
     <% else %>
       <p class="mb-8">まだ投稿がありません</p>
     <% end %>
