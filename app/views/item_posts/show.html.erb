@@ -49,9 +49,7 @@
   <%= render 'item_comments/form', item_comment: @item_comment, item_post: @item_post %>
   <div class="pt-4">
     <% if @item_comments.present? %>
-      <table class="table-auto mx-auto">
-        <%= render @item_comments %>
-      </table>
+      <%= render @item_comments %>
     <% end %>
   </div>
 </div>
