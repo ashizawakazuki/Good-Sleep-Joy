@@ -1,12 +1,45 @@
+<% if item_comment.user == current_user %>
+  <div class="chat chat-end">
+<% else %>
+  <div class="chat chat-start">
+<% end %>
+  <div class = "chat-image avatar">
+    <div class="w-8 h-8 rounded-full shadow-lg border border-gray-200">
+      <% if item_comment.user.avatar? %>
+        <%= image_tag item_comment.user.avatar.url %>
+      <% else %>
+        <%= image_tag 'default.jpg' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="chat-header">
+    <%= item_comment.user.name %>
+    <%= item_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+  </div>
+
+
+  <div class="chat-bubble">
+    <%= simple_format(item_comment.body) %>
+  </div>
+
+  <div class="chat-footer">
+    <% if current_user.own?(item_comment) %>
+      <td class="mx-4"><%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
+    <% end %>
+  </div>
+
+
+
 <div class="border-b-2 p-2">
   <tr>
     <td><strong><%= item_comment.user.name %></strong></td>
     <td><%= item_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+    <% if current_user.own?(item_comment) %>
+      <td class="mx-4"><%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
+    <% end %>
   </tr>
   <tr>
     <td><%= item_comment.body %></td>
-    <% if current_user.own?(item_comment) %>
-      <td><%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-    <% end %>
   </tr>
 </div>
