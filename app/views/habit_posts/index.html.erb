@@ -4,7 +4,7 @@
   <h1 class="text-3xl font-bold mb-6 ">習慣投稿一覧</h1>
   <div class="mb-6">
     <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
-    <%= link_to '投稿する', new_habit_post_path, class:"bg-blue-500 text-white rounded-lg px-6 py-2 hover:bg-blue-600"%>
+    <%= link_to '投稿する', new_habit_post_path, class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl" %>
   </div>
 
   <!-- 投稿がある場合、「grid」を使用して、sm(640px)以上は2列(カラム)、lg(1024px)以上は3列(カラム)、それ以外(幅が狭い時)は1列(カラム) -->
