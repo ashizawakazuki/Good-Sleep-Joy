@@ -9,37 +9,37 @@
       <div class="w-72 h-48 bg-gray-200"></div>
     <% end %>
   </div>
-  <%= link_to item_post.title, item_post_path(item_post), class: 'text-2xl font-bold text-gray-800 hover:underline bg-sky-300 shadow-xl' %>
+  <%= link_to item_post.title, item_post_path(item_post), class: 'text-2xl font-bold text-gray-800 hover:underline hover:bg-sky-300' %>
 
   <p class="text-sm text-gray-500 mt-2"><%= item_post.body.truncate(100) %></p>
-  <div class="mt-4">
-    <%# 「(item_post)」が必要な理由 %>
-    <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
-    <%# indexファイルで render @item_posts %>
-    <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
-    <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
-    <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>
-    
-        
+  <div class="absolute bottom-4 left-4 flex gap-2">
+    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full shadow-lg border border-gray-200" %>
+    <p class="text-lg text-gray-800 mt-4"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
     <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
     <!-- Userモデルで定義した「own?」を使用し、(item_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
     <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
     <% if current_user.own?(item_post) %> 
       <div>
-        <%= link_to '編集', edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' %>
+        <%= link_to edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' do %>
+          <i class="fa-solid fa-pencil"></i>
+        <% end %>
       </div>
-    <!-- 後に確認 -->
+        <!-- 後に確認 -->
     <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
       <div>
-        <%= link_to '削除', item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-      </div>
-    <% end %>
+      <%# 「(item_post)」が必要な理由 %>
+      <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
+      <%# indexファイルで render @item_posts %>
+      <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
+      <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
+      <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>  
+      <%= link_to item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
   </div>
-  <div class="absolute bottom-4 left-4 flex gap-2">
-    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full shadow-lg border border-gray-200" %>
-    <p class="text-lg text-gray-800 mt-4"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
-  </div>
-  <div class="absolute bottom-4 light-4">
+  <div class="absolute bottom-4 right-4">
     <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
 </div>
