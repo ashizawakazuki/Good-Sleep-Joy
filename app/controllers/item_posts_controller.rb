@@ -41,10 +41,13 @@ class ItemPostsController < ApplicationController
   #Railsの世界に来たparamsを、以下のshowコントローラでparams[:id]と書いて、データベースからレコードを持ってくる
   #params[:id] = 30　と考えてよい
   #@item_postにIDが30の投稿が格納されてshowファイルへ
+
+  #@ItemCommentモデルの空のインスタンスを用意して、
+  #「詳細画面を開いている投稿（@item_post)に紐づくコメントを、ユーザー情報を含みつつ、最新の投稿が下に来るように並び替え、@item_commentsに入れる」
   def show 
     @item_post = ItemPost.find(params[:id])
     @item_comment = ItemComment.new
-    @item_comments = @item_post.item_comments.includes(:user).order(created_at: :desc)
+    @item_comments = @item_post.item_comments.includes(:user).order(created_at: :asc)
   end
   
   #set_habit_postで投稿データを先に取得している

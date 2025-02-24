@@ -1,4 +1,9 @@
+<!--daisy UIによるchatを使用。これによりコメントをチャットのような見た目にできる-->
+<!--Rubyの三項演算子の形により、ログインしているユーザーの場合は、左(chat-end)、他のユーザーの場合は右(chat-start)-->
+
 <div class="chat <%= item_comment.user == current_user ? 'chat-end' : 'chat-start' %>">
+  
+  <!--プロフィールの写真について-->
   <div class="chat-image avatar">
     <div class="w-8 h-8 rounded-full shadow-lg border border-gray-200">
       <% if item_comment.user.avatar? %>
@@ -9,22 +14,23 @@
     </div>
   </div>
 
-  <div>
-    <div class="chat-header">
-      <div class="text-xs opacity-50">
-        <%= item_comment.user.name %>
-        <%= item_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
-      </div>
+  <!--メッセージの上の部分について（ユーザー名と投稿時間）-->
+  <div class="chat-header">
+    <div class="text-xs opacity-50">
+    <%= item_comment.user.name + ':' %> 
+    <%= item_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
     </div>
+  </div>
 
-    <div class="chat-bubble max-w-md break-words">
-      <%= simple_format(item_comment.body) %>
-    </div>
+  <!--メッセージ本体について-->
+  <div class="chat-bubble max-w-md break-words">
+    <%= simple_format(item_comment.body) %>
+  </div>
 
-    <div class="chat-footer">
-      <% if current_user.own?(item_comment) %>
-        <%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline text-xs mt-1 block' %>
-      <% end %>
-    </div>
+  <!--メッセージの下の部分について（削除ボタン）-->
+  <div class="chat-footer">
+    <% if current_user.own?(item_comment) %>
+      <%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline text-xs mt-1 block' %>
+    <% end %>
   </div>
 </div>
