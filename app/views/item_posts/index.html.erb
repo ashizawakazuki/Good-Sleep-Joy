@@ -37,7 +37,7 @@
     <%# render @item_posts %>
     <%# 
        以下の条件を満たす場合に省略可能：
-       1. パーシャルが同じディレクトリ内にある。
+       1. パーシャルが、views/item_postsのディレクトリ内にある。（インスタンス変数（この場合 item_posts）に基づき、views/インスタンス変数名/ を探す）
        2. パーシャルのファイル名が、item_posts の単数形である (_item_post.html.erb)。
        3. パーシャル内で使用する変数が item_posts の単数形である (item_post)。
     %>
