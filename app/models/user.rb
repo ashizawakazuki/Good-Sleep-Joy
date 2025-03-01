@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :habit_likes, dependent: :destroy
   has_many :liked_habit_posts, through: :habit_likes, source: :habit_post
   has_many :item_comments, dependent: :destroy
+  has_many :habit_comments, dependent: :destroy
 
  #これは独自のメソッドを定義。Userモデルに書いているので、Userインスタンス（userテーブルから取り出したデータが入っているインスタンス）に対して使えるメソッド
  #resourceは引数であり、ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される

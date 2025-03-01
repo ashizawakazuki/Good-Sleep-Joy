@@ -5,4 +5,6 @@ class HabitPost < ApplicationRecord
 
   belongs_to :user
   has_many :habit_likes, dependent: :destroy
+  has_many :habit_comments, dependent: :destroy
+
 end
