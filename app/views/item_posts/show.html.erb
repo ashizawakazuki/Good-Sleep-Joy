@@ -13,9 +13,6 @@
         <%= image_tag @item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
         <p class="text-md text-gray-800"><%= @item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
       </div>
-      <div class= "absolute top-4 right-4">
-        <p class="text-md text-gray-800"><%= @item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></p>
-      </div>
     </div>
     <h1 class="text-xl font-bold my-20 text-center">アイテム投稿詳細画面</h1>
 
@@ -35,7 +32,14 @@
       <!-- 投稿本文 -->
       <p class="text-lg text-gray-600 mb-6"><%= @item_post.body %></p>
     </div>
+    <%= render 'item_comments/form', item_comment: @item_comment, item_post: @item_post %>
+    <div class="pt-4">
+      <% if @item_comments.present? %>
   
+      <!-- viwes/item_comments の中のパーシャル(_item_comment.html.erb）を探す-->
+        <%= render @item_comments %>
+      <% end %>
+    </div>
     <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
     <% if current_user.own?(@item_post) %> 
       <div class="flex justify-start my-4 flex-row gap-4">
@@ -54,13 +58,5 @@
         <% end %>
       </div>
     <% end %>
-    <%= render 'item_comments/form', item_comment: @item_comment, item_post: @item_post %>
-    <div class="pt-4">
-      <% if @item_comments.present? %>
-  
-      <!-- viwes/item_comments の中のパーシャル(_item_comment.html.erb）を探す-->
-        <%= render @item_comments %>
-      <% end %>
-    </div>
   </div>
 </div>
