@@ -1,52 +1,60 @@
 <!-- 要確認(1箇所) -->
 <!-- showコントローラからきたインスタンス変数@item_postには、findで取り出したそれぞれの投稿のレコードが入ってる --> 
 <!-- max-w-lgで最大値（512pxを指定）、mx-autoで中央揃え --> 
-<div class="max-w-lg mx-auto p-4">
-  <div class="p-4 my-4 border rounded-lg shadow">
-    <h1 class="text-xl font-bold my-20 text-center">アイテム投稿詳細画面</h1>
+<div class="max-w-lg mx-auto">
+  <div class="relative p-4 my-4 border rounded-lg shadow">
+  <div class= "absolute top-4 left-4 flex flex-row gap-4">
+    <%= image_tag @item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+    <p class="text-md text-gray-800"><%= @item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+  </div>
+  <div class= "absolute top-4 right-4">
+    <p class="text-md text-gray-800"><%= @item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
+  </div>
+  <h1 class="text-xl font-bold my-20 text-center">アイテム投稿詳細画面</h1>
 
-    <!--「flex-col」で縦方向に要素を並べて、gapで要素間の隙間を6にしている-->
-    <!-- 画像 -->
-    <div class ="flex flex-col gap-6">
-      <% if @item_post.item_post_image_url.present? %>
-        <%= image_tag @item_post.item_post_image.url %>
-      <% end %>
-    </div>
+  <!--「flex-col」で縦方向に要素を並べて、gapで要素間の隙間を6にしている-->
+  <!-- 画像 -->
+  <div class ="flex flex-col gap-6">
+    <% if @item_post.item_post_image_url.present? %>
+      <%= image_tag @item_post.item_post_image.url %>
+    <% end %>
+  </div>
   
-    <!-- 文章 -->
-    <div class="mb-20 text-center"> 
-      <!-- 投稿タイトル -->
-      <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @item_post.title %></h1>
+  <!-- 文章 -->
+  <div class="mb-10 text-center"> 
+    <!-- 投稿タイトル -->
+    <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @item_post.title %></h1>
 
-      <!-- 投稿本文 -->
-      <p class="text-lg text-gray-600 mb-6"><%= @item_post.body %></p>
-
-      <!-- 投稿者情報 -->
-      <p class="text-sm text-gray-400">投稿者: <%= @item_post.user.name %></p>
-
-      <!-- 投稿日時 --><!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
-      <p class="text-sm text-gray-400 mt-2">投稿日: <%= @item_post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+    <!-- 投稿本文 -->
+    <p class="text-lg text-gray-600 mb-6"><%= @item_post.body %></p>
+  </div>
   
-      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
-      <% if current_user.own?(@item_post) %> 
-        <!-- 投稿編集 -->
-        <div class="mt-6">
-          <%= link_to '編集', edit_item_post_path, class: 'text-blue-500 hover:underline' %>
-        </div>
+  <!-- 投稿一覧へ -->
+  <div class="absolute bottom-4 left-4">
+    <%= link_to item_posts_path, class: "text-yellow-600 hover:text-blue-900 font-bold" do %>
+      <i class="fa-solid fa-chevron-left"></i> 戻る
+    <% end %> 
+  </div>
+  
+  <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
+  <% if current_user.own?(@item_post) %> 
+    <div class="absolute bottom-4 light-4 flex flex-row gap-4">
+      <!-- 投稿編集 -->
+      <div>
+        <%= link_to edit_item_post_path, class: 'text-blue-500 hover:underline' do %>
+          <i class="fa-solid fa-pencil align-middle"></i>
+        <% end %>
+      </div>
 
-        <!-- 削除（後に確認） -->
-        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-        <div class="mt-6">
-          <%= link_to '削除', item_post_path(@item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-        </div>
-      <% end %>
-
-      <!-- 投稿一覧へ -->
-      <div class="mt-6">
-        <%= link_to '投稿一覧へ', item_posts_path, class: "text-yellow-600 hover:text-blue-900 font-bold" %>
+      <!-- 削除（後に確認） -->
+      <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
+      <div>
+        <%= link_to item_post_path(@item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' do %>
+          <i class="fa-solid fa-trash align-middle"></i>
+        <% end %>
       </div>
     </div>
-  </div>
+  <% end %>
   <%= render 'item_comments/form', item_comment: @item_comment, item_post: @item_post %>
   <div class="pt-4">
     <% if @item_comments.present? %>
