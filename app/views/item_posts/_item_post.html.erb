@@ -3,13 +3,13 @@
 <div class=" relative p-4 border rounded-lg shadow hover:shadow-lg">
   <div class= "absolute top-4 left-4 flex flex-row gap-4">
     <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
-    <p class="text-lg text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+    <p class="text-md text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
   </div>
   <div class= "absolute top-4 right-4">
-    <p class="text-lg text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
+    <p class="text-md text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
   </div>
   <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
-  <div class="flex justify-center"><!-- 投稿を横方向の中央に集める-->
+  <div class="flex justify-center mt-4"><!-- 投稿を横方向の中央に集める-->
     <% if item_post.item_post_image_url.present? %>
       <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
     <% else %>
