@@ -10,7 +10,7 @@
   </div>
 
   <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
-  <div class="flex justify-center mt-8"><!-- 投稿を横方向の中央に集める-->
+  <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
     <% if item_post.item_post_image_url.present? %>
       <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
     <% else %>
