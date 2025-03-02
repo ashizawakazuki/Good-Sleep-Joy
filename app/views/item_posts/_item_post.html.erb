@@ -1,6 +1,13 @@
 <!-- 「後に確認（一箇所）」以外確認済み-->
 <!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
 <div class=" relative p-4 border rounded-lg shadow hover:shadow-lg">
+  <div class= "absolute top-4 left-4">
+    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+    <p class="text-lg text-gray-800 mt-4"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+  </div>
+  <div class= "absolute top-4 right-4">
+    <p class="text-xl text-gray-800 mb-8"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
+  </div>
   <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
   <div class="flex justify-center"><!-- 投稿を横方向の中央に集める-->
     <% if item_post.item_post_image_url.present? %>
@@ -13,8 +20,6 @@
 
   <p class="text-sm text-gray-500 m-8 p-8"><%= item_post.body.truncate(100) %></p>
   <div class="absolute bottom-4 left-4 flex items-center gap-2">
-    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
-    <p class="text-lg text-gray-800 mt-4"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
     <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
     <!-- Userモデルで定義した「own?」を使用し、(item_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
     <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
