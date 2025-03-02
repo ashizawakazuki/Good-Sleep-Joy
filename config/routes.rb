@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get :habit_likes
     end
     resources :habit_likes, only: %i[create destroy]
+    resources :habit_comments, only: %i[create destroy], shallow: true
   end
 
   resource :profile, only: %i[show edit update]

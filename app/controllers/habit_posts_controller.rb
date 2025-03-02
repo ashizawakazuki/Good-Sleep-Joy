@@ -27,6 +27,8 @@ class HabitPostsController < ApplicationController
 
   def show
     @habit_post = HabitPost.find(params[:id])
+    @habit_comment = HabitComment.new
+    @habit_comments = @habit_post.habit_comments.includes(:user).order(created_at: :asc)
   end
 
   #set_habit_postで投稿データを先に取得している

@@ -6,6 +6,7 @@ class ItemPost < ApplicationRecord
   belongs_to :user
   has_many :item_likes, dependent: :destroy
   has_many :item_comments, dependent: :destroy
+  
 
   # ItemPostImageUploaderは「画像管理の機能」(app/uplodersの中にファイルあり）、
   # item_post_imageはカラム名で「画像を置く場所」

@@ -46,4 +46,12 @@
       </div>
     </div>
   </div>
+  <%= render 'habit_comments/form', habit_comment: @habit_comment, habit_post: @habit_post %>
+  <div class="pt-4">
+    <% if @habit_comments.present? %>
+  
+    <!-- viwes/habit_comments の中のパーシャル(_habit_comment.html.erb）を探す-->
+      <%= render @habit_comments %>
+    <% end %>
+  </div>
 </div>
