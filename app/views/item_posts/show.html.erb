@@ -9,15 +9,14 @@
       <% end %>
       <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
       <% if current_user.own?(@item_post) %> 
-        <div class="flex justify-start my-4 flex-row gap-4">
-          <!-- 投稿編集 -->
-          <%= link_to edit_item_post_path, class: 'text-blue-500 hover:underline' do %>
-            <i class="fa-solid fa-pencil align-middle"></i>
-          <% end %>
+        <!-- 投稿編集 -->
+        <%= link_to edit_item_post_path do %>
+          <i class="fa-solid fa-pencil align-middle"></i>
+        <% end %>
 
         <!-- 削除（後に確認） -->
         <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-        <%= link_to item_post_path(@item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' do %>
+        <%= link_to item_post_path(@item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
           <i class="fa-solid fa-trash align-middle"></i>
         <% end %>
       <% end %>
