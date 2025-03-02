@@ -2,17 +2,17 @@
 <!-- showコントローラからきたインスタンス変数@item_postには、findで取り出したそれぞれの投稿のレコードが入ってる --> 
 <!-- max-w-lgで最大値（512pxを指定）、mx-autoで中央揃え --> 
 <div class="max-w-lg mx-auto">
+  <div class= "absolute top-4 left-4">
+    <%= link_to item_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
+      <i class="fa-solid fa-chevron-left"></i> 戻る
+    <% end %>
+  </div>
   <div class="relative p-4 my-4 border rounded-lg shadow">
-    <div class= "absolute top-4 left-4">
-      <%= link_to item_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
-        <i class="fa-solid fa-chevron-left"></i> 戻る
-      <% end %>
-    </div>
-    <div class= "absolute top-10 left-4 flex flex-row gap-4">
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
       <%= image_tag @item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
       <p class="text-md text-gray-800"><%= @item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
     </div>
-    <div class= "absolute top-10 right-4">
+    <div class= "absolute top-4 right-4">
       <p class="text-md text-gray-800"><%= @item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
     </div>
     <h1 class="text-xl font-bold my-20 text-center">アイテム投稿詳細画面</h1>
