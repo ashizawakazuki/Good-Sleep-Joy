@@ -26,7 +26,7 @@
     <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
     <% if current_user && current_user.own?(item_post) %>  
       <div>
-        <%= link_to edit_item_post_path(item_post), class: 'text-blue-500 hover:underline' do %>
+        <%= link_to edit_item_post_path(item_post) do %>
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
       </div>
@@ -39,7 +39,7 @@
       <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
       <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
       <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>  
-        <%= link_to item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' do %>
+        <%= link_to item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
           <i class="fa-solid fa-trash align-middle"></i>
         <% end %>
       </div>
