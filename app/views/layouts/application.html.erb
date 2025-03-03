@@ -13,6 +13,7 @@
   <body class= "flex flex-col min-h-screen">
     <%= render 'shared/header' %>
     <%= render 'shared/flash_message' %>
+    <!-- flex-grow:main のコンテンツが少ない場合でも、フッターが自然にページの一番下に配置される  -->
     <div class="flex-grow">
       <%= yield %>
     </div>
