@@ -1,43 +1,49 @@
 <!-- 「後に確認（一箇所）」以外確認済み-->
 <!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
-<div class="p-4 border rounded-lg shadow hover:shadow-lg">
+<div class="relative p-4 border rounded-lg shadow hover:shadow-lg">
+  <div class= "absolute top-4 left-4 flex flex-row gap-4">
+    <%= image_tag habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+    <p class="text-md text-gray-800"><%= habit_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+  </div>
+  <div class= "absolute top-4 right-4">
+    <p class="text-md text-gray-800"><%= habit_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
+  </div>
+
   <!-- 選択した画像がある場合には表示 -->
-  <div class="flex justify-center"><!-- 投稿を横方向の中央に集める-->
+  <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
     <% if habit_post.image.present? %>
       <%= image_tag habit_post.image, class: "w-72 h-48 object-cover", alt: "Habit post image"%><!-- object-coverで余白を埋める-->
     <% else %>
       <div class="w-72 h-48 bg-gray-200"></div>
     <% end %>
   </div>
-  <p class="text-xl font-semibold text-gray-800"><%= habit_post.title %></p>
-  <p class="text-sm text-gray-500 mt-8"><%= habit_post.body.truncate(100) %></p>
-  <p class="text-sm text-gray-400 mt-4">投稿者: <%= habit_post.user.name %></p>
-  <div class="mt-4">
-    <%# 「(habit_post)」が必要な理由 %>
-    <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、habit_post を引数として渡す必要がある。 %>
-    <%# indexファイルで render @habit_posts %>
-    <%# を使うと、@habit_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
-    <%# パーシャル内では、単数形の名前（例: habit_post）でデータが扱えるようになる。%>
-    <%# そのため、「habit_post_path(habit_post)」の「(habit_post)」は、渡されたそれぞれの投稿を参照している。%>
-    <% if user_signed_in? %>
+  <%= link_to habit_post.title, habit_post_path(habit_post), class: 'text-2xl font-bold text-gray-800 hover:underline hover:bg-sky-100' %>
+
+  <p class="text-sm text-gray-500 m-8"><%= habit_post.body.truncate(100) %></p>
+  <div class="absolute bottom-4 left-4 flex items-center gap-4">
+    <!-- @habit_postとしなくていい理由は、indexからrenderでローカル変数habit_postをこのファイルに渡しているから定義されている -->
+    <!-- Userモデルで定義した「own?」を使用し、(habit_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
+    <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
+    <% if current_user && current_user.own?(habit_post) %>  
       <div>
-        <%= link_to '詳細を見る', habit_post_path(habit_post), class: 'text-blue-500 hover:underline' %>
+        <%= link_to edit_habit_post_path(habit_post) do %>
+          <i class="fa-solid fa-pencil align-middle"></i>
+        <% end %>
       </div>
-        
-      <!-- @habit_postとしなくていい理由は、indexからrenderでローカル変数habit_postをこのファイルに渡しているから定義されている -->
-      <!-- Userモデルで定義した「own?」を使用し、(habit_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
-      <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
-      <% if current_user.own?(habit_post) %> 
-        <div>
-          <%= link_to '編集', edit_habit_post_path(habit_post), class: 'text-blue-500 hover:underline' %>
-        </div>
-        <!-- 後に確認 -->
-        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-        <div>
-          <%= link_to '削除', habit_post_path(habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-        </div>
-      <% end %>
+      <div>
+      <%# 「(habit_post)」が必要な理由 %>
+      <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、habit_post を引数として渡す必要がある。 %>
+      <%# indexファイルで render @habit_posts %>
+      <%# を使うと、@habit_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
+      <%# パーシャル内では、単数形の名前（例: habit_post）でデータが扱えるようになる。%>
+      <%# そのため、「habit_post_path(habit_post)」の「(habit_post)」は、渡されたそれぞれの投稿を参照している。%>
+        <%= link_to habit_post_path(habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+          <i class="fa-solid fa-trash align-middle"></i>
+        <% end %>
+      </div>
     <% end %>
   </div>
-  <%= render 'habit_like_bottons', {habit_post: habit_post} %>
+  <div class="absolute bottom-4 right-4">
+    <%= render 'habit_like_bottons', {habit_post: habit_post} %>
+  </div>
 </div>
