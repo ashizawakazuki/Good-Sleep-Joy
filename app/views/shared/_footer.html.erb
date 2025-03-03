@@ -1,16 +1,16 @@
 <!-- 復習済み -->
 <!--「w-full」で要素の幅を画面100%、「text-center」でフッター内のテキストを中央揃え、-->
 <!--「p-4」上下左右に16pxの余白を加えてゆとりを持たせる、「fixed」で要素を固定配置、「bottom-0」で最下部に-->
-<footer class="bg-sky-100 w-screen text-center p-4 text-sm">
+<footer class="fixed bottom-0 bg-sky-100 w-screen p-4 text-sm text-center">
 
   <!--Tailwind によるスタイリングで,要素間の間隔を設定 -->
-  <nav class="space-x-16 ">
+  <nav class="space-x-8">
 
     <!-- 「hover」でカーソルを合わせた時に適用されるスタイルを指定する機能 -->
     <!-- text-blue-900で青色に、「link-hover」で下線が引かれる -->
     <%= link_to "利用規約", "#", class: "hover:text-blue-900 link-hover" %>           
     <%= link_to "プライバシーポリシー", "#" , class: "hover:text-blue-900 link-hover" %>
-    <%= link_to "お問い合わせ先", "#", class: "hover:text-blue-900 link-hover" %>
+    <%= link_to "問い合わせ", "#", class: "hover:text-blue-900 link-hover" %>
   </nav>
 
     <!-- <aside>では本文ではない補足情報を囲むタグ -->
