@@ -1,7 +1,29 @@
 <!-- 要確認(1箇所) -->
 <!-- showコントローラからきたインスタンス変数@habit_postには、findで取り出したそれぞれの投稿のレコードが入ってる --> 
 <div class="max-w-lg mx-auto p-4">
-  <div class="p-4 my-4 border rounded-lg shadow">
+  <div class="relative p-4 my-4 border rounded-lg shadow">
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
+      <%= link_to item_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
+        <i class="fa-solid fa-chevron-left"></i> 戻る
+      <% end %>
+      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
+      <% if current_user.own?(@habit_post) %> 
+        <!-- 投稿編集 -->
+        <%= link_to edit_habit_post_path do %>
+          <i class="fa-solid fa-pencil align-middle"></i>
+        <% end %>
+
+        <!-- 削除（後に確認） -->
+        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
+        <%= link_to habit_post_path(@habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+          <i class="fa-solid fa-trash align-middle"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class= "absolute top-4 right-4 flex flex-row gap-4">
+      <%= image_tag @habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+      <p class="text-md text-gray-800"><%= @habit_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+    </div>
     <h1 class="text-xl font-bold my-20 text-center">習慣投稿詳細画面</h1> 
 
     <!--「flex-col」で縦方向に要素を並べて、gapで要素間の隙間を6にしている-->
@@ -19,39 +41,14 @@
 
       <!-- 投稿本文 -->
       <p class="text-lg text-gray-600 mb-6"><%= @habit_post.body %></p>
-
-      <!-- 投稿者情報 -->
-      <p class="text-sm text-gray-400">投稿者: <%= @habit_post.user.name %></p>
-
-      <!-- 投稿日時 --><!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
-      <p class="text-sm text-gray-400 mt-2">投稿日: <%= @habit_post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-  
-      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
-      <% if current_user.own?(@habit_post) %> <!-- 確認 -->
-        <!-- 投稿編集 -->
-        <div class="mt-6">
-          <%= link_to '編集', edit_habit_post_path, class: 'text-blue-500 hover:underline' %>
-        </div>
-
-      <!-- 削除（後に確認） -->
-      <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-        <div class="mt-6">
-          <%= link_to '削除', habit_post_path(@habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-        </div>
-      <% end %>
-
-      <!-- 戻るリンク -->
-      <div class="mt-6">
-        <%= link_to '投稿一覧へ', habit_posts_path, class: "text-yellow-600 hover:text-blue-900 font-bold" %>
-      </div>
     </div>
-  </div>
-  <%= render 'habit_comments/form', habit_comment: @habit_comment, habit_post: @habit_post %>
-  <div class="pt-4">
-    <% if @habit_comments.present? %>
+    <%= render 'habit_comments/form', habit_comment: @habit_comment, habit_post: @habit_post %>
+    <div class="pt-4">
+      <% if @habit_comments.present? %>
   
-    <!-- viwes/habit_comments の中のパーシャル(_habit_comment.html.erb）を探す-->
-      <%= render @habit_comments %>
-    <% end %>
+      <!-- viwes/habit_comments の中のパーシャル(_habit_comment.html.erb）を探す-->
+        <%= render @habit_comments %>
+      <% end %>
+    </div>
   </div>
 </div>
