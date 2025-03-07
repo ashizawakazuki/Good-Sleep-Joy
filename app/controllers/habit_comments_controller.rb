@@ -8,7 +8,7 @@ class HabitCommentsController < ApplicationController
       if @habit_comment.save
         redirect_to habit_post_path(@habit_post), notice: 'コメントしました！'
       else
-        redirect_to habit_post_path(@habit_post), alert: '投稿が失敗しました。'
+        redirect_to habit_post_path(@habit_post), alert: 'コメントが失敗しました。'
       end
     end
   
