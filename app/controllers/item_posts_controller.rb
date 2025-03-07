@@ -29,7 +29,7 @@ class ItemPostsController < ApplicationController
   def create #createアクションには新しい投稿をDBに保存する処理を記述する
     @item_post = current_user.item_posts.build(item_post_params)
     if @item_post.save
-      redirect_to item_posts_path, notice: '投稿が成功しました。'
+      redirect_to item_posts_path, notice: '投稿が成功しました！'
     else
       flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
       render :new, status: :unprocessable_entity
