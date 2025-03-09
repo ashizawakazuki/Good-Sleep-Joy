@@ -1,8 +1,8 @@
 #ルーティングとは「どのURLにアクセスすると、どのコントローラのどのアクションが実行されるか決めるもの」
 Rails.application.routes.draw do
   get 'habit_posts/index'
-  # 新規登録失敗時、フラッシュメッセージを表示させるために「controllers: { registrations: 'registrations' }」を追加
-  devise_for :users, controllers: { registrations: 'registrations' }
+  # 「devise_for」でログイン・登録に関するルートを1行で追加、その後ろで「Users::RegistrationsControllerを使用する」と宣言している
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
