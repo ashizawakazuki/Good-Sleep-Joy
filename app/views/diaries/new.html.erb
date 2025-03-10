@@ -5,6 +5,8 @@
   （３つ以上書いても大丈夫です）</p>
   <%= form_with model: @diary do |f| %>
 
+    <%= render 'shared/error_message', object: f.object %>
+    
     <div class="flex flex-col mb-6"> <!-- 以下、form_withで使えるようになったもの -->
       <!-- 「:date」でモデルのカラム名を指定(ここではItemPostモデルのtitleカラム) -->
       <%= f.label :date, "日付", class: "text-lg font-medium text-gray-700 mb-2" %>  
