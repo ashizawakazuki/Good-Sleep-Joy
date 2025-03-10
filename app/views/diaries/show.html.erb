@@ -1,26 +1,37 @@
-<div class="max-w-lg mx-auto p-4 my-4 border rounded-lg shadow">
-  <h1 class="text-xl font-bold my-20 text-center">３行ポジティブ日記<br>詳細画面</h1>
+<div class="max-w-lg mx-auto p-4">
+  <div class = "relative p-4 my-4 border rounded-lg shadow">
+    <h1 class="text-xl font-bold my-20 text-center">３行ポジティブ日記<br>詳細画面</h1>
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
+      <%= link_to profile_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
+        <i class="fa-solid fa-chevron-left"></i> 戻る
+      <% end %>
+    
+      <%= link_to edit_diary_path do %>
+        <i class="fa-solid fa-pencil align-middle"></i>
+      <% end %>
 
-  <div class="mb-20 text-center"> 
-    <!-- 日付 -->
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">日付</h2>
-    <p class="text-xl text-gray-800 mb-8"><%= @diary.date.strftime("%y/%m/%d") %></h1>
+      <!-- 削除（後に確認） -->
+      <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
+      <%= link_to diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+        <i class="fa-solid fa-trash align-middle"></i>
+      <% end %>
+    </div>
+    <div class="mb-20 text-center"> 
+      <!-- 日付 -->
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">日付</h2>
+      <p class="text-xl text-gray-800 mb-8"><%= @diary.date.strftime("%y/%m/%d") %></h1>
 
-    <!-- タイトル -->
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">タイトル</h2>
-    <p class="text-xl text-gray-800 mb-8"><%= @diary.title %></p>
+      <!-- タイトル -->
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">タイトル</h2>
+      <p class="text-xl text-gray-800 mb-8"><%= @diary.title %></p>
 
-    <!-- 日記 -->
-    <h2 class="text-3xl font-bold text-gray-800 mb-4">内容</h2>
-    <% if @diary.content.present? %>
-      <p class="text-xl text-gray-800 mb-8"><%= simple_format(@diary.content) %></p>
-    <% else %>
-      <p class="mb-8">まだ投稿がありません</p>
-    <% end %>
-  </div>
-  <div class="flex justify-center gap-4">
-    <%= link_to '編集', edit_diary_path, class: 'text-blue-500 hover:underline' %>
-    <%= link_to '削除', diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline' %>
-    <%= link_to '戻る', profile_path, class: 'text-blue-500 hover:underline' %>
+      <!-- 日記 -->
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">内容</h2>
+      <% if @diary.content.present? %>
+        <p class="text-xl text-gray-800 mb-8"><%= simple_format(@diary.content) %></p>
+      <% else %>
+        <p class="mb-8">まだ投稿がありません</p>
+      <% end %>
+    </div>
   </div>
 </div>
