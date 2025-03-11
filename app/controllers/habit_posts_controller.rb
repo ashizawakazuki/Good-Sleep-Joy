@@ -65,7 +65,7 @@ class HabitPostsController < ApplicationController
   private
 
   def habit_post_params
-    params.require(:habit_post).permit(:title, :body, :image)
+    params.require(:habit_post).permit(:title, :body, :habit_post_image)
   end
 
   #投稿が消されるなどして存在しない場合、または現在ログインしているユーザーではない場合、メッセージが表示され一覧画面に遷移される
