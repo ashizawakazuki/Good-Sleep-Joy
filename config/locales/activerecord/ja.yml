@@ -1,0 +1,19 @@
+ja:
+  activerecord: #モデルに関する翻訳を意味している
+    attributes: #カラムに関する翻訳を意味している
+      user: #モデル名
+        name: '名前' #カラム名
+        email: 'メールアドレス'
+      item_post:
+        title: 'アイテム名'
+        body: '本文'
+      habit_post:
+        title: '習慣'
+        body: '本文'
+      diary:
+        date: '日付'
+        title: 'タイトル'
+        
+      
+      
+        
