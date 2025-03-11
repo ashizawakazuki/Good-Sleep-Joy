@@ -29,8 +29,8 @@
     <!--「flex-col」で縦方向に要素を並べて、gapで要素間の隙間を6にしている-->
     <!-- 画像 -->
     <div class ="flex flex-col gap-6">
-      <% if @habit_post.image.present? %>
-        <%= image_tag @habit_post.image, alt: "Habit post image" %>
+      <% if @habit_post.habit_post_image.present? %>
+        <%= image_tag @habit_post.habit_post_image, alt: "Habit post image" %>
       <% end %>
     </div>
 
