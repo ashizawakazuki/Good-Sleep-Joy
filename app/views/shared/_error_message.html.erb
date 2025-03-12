@@ -1,6 +1,11 @@
+<!-- objectにユーザーが入力したフォームのデータが入っていて、バリデーションエラーがあるかどうかをany?で確認している -->
+<!-- エラーがある場合はこのパーシャルが表示される -->
+
 <% if object.errors.any? %>
   <div class = "mb-4 p-4 bg-red-100">
     <ul>
+      <!-- エラーの内容を順番にerrorに入れて、一つずつ表示している-->
+      <!-- object.errorsはActiveModel::Errorsといい配列ではないが、配列のような特別なオブジェクト-->
       <% object.errors.each do |error| %>
        <li><%= error.full_message %></li>
       <% end %>
