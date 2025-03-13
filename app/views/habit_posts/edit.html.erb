@@ -40,7 +40,7 @@
           <div class="relative">
 
             <!-- ラジオボタン （ここから、ボタンまで（特にidの部分）がわかってない（ここだけ1箇所）-->
-            <%= f.radio_button :ihabit_post_image, image[:file], id: "habit_post_image_#{image[:file]}", class: "hidden peer" %>
+            <%= f.radio_button :habit_post_image, image[:file], id: "habit_post_image_#{image[:file]}", class: "hidden peer" %>
             <!-- ラジオボタンのラベルとして画像を表示 -->
             <%= label_tag "habit_post_image_#{image[:file]}", class: "block border-2 border-gray-300 rounded-lg overflow-hidden peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-300 text-center" do %>
               <%= image_tag image[:file], class: "w-full h-auto mb-2" %>
