@@ -10,10 +10,17 @@ ja:
       habit_post:
         title: '習慣'
         body: '本文'
+        habit_post_image: '画像'
       diary:
         date: '日付'
         title: 'タイトル'
-        
+    errors:
+      models:
+        habit_post:
+          attributes:
+            habit_post_image:
+              blank: "を選択してください" #blankはエラーメッセージ（入力してください）の部分を変更するキー
+  
       
       
         
