@@ -1,12 +1,12 @@
 <div class="max-w-lg mx-auto p-4">
-  <div class = "p-4 my-4 border rounded-lg shadow">
+  <div class = "relative p-4 my-4 border rounded-lg shadow">
     <h1 class="text-xl font-bold my-20 text-center">３行ポジティブ日記<br>詳細画面</h1>
-    <div class= "flex items-center gap-8 mt-4">
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
       <%= link_to profile_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
         <i class="fa-solid fa-chevron-left"></i> 戻る
       <% end %>
     
-      <%= link_to edit_diary_path do %>
+      <%= link_to edit_diary_path, data: { turbo: false } do %>
         <i class="fa-solid fa-pencil align-middle"></i>
       <% end %>
 
