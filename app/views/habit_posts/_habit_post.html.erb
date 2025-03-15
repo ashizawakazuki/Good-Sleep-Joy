@@ -26,7 +26,7 @@
     <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
     <% if current_user && current_user.own?(habit_post) %>  
       <div>
-        <%= link_to edit_habit_post_path(habit_post) do %>
+        <%= link_to edit_habit_post_path(habit_post), data: { turbo: false } do %>
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
       </div>

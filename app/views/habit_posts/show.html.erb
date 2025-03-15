@@ -9,7 +9,7 @@
       <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
       <% if current_user.own?(@habit_post) %> 
         <!-- 投稿編集 -->
-        <%= link_to edit_habit_post_path do %>
+        <%= link_to edit_habit_post_path, data: { turbo: false } do %>
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
 
