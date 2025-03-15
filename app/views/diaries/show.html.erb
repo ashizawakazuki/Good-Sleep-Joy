@@ -12,7 +12,7 @@
 
       <!-- 削除（後に確認） -->
       <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-      <%= link_to diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+      <%= link_to diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？', turbo: false } do %>
         <i class="fa-solid fa-trash align-middle"></i>
       <% end %>
     </div>
