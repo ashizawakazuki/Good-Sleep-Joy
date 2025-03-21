@@ -49,6 +49,7 @@
       <%= render @item_posts %>
 
     </div>
+    <%= paginate @item_posts, window: 2, outer_window: 1 %>
   <% else %>
     <p class="text-gray-500 text-center">投稿がまだありません。</p>
   <% end %>

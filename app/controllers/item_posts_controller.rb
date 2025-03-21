@@ -8,7 +8,7 @@ class ItemPostsController < ApplicationController
   #「_item_post.html.erb」の「item_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_item_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
   def index
-    @item_posts = ItemPost.includes(:user).order(created_at: :desc)
+    @item_posts = ItemPost.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
   #上記は全ての（複数の）データを格納するから複数形の@item_posts、下記は１つの投稿を格納するから単数系の@item_post
 
