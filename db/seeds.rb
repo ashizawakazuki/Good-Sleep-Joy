@@ -22,7 +22,7 @@ User.delete_all
     )
   
     # 各ユーザーにランダムなアイテム投稿を3件作成
-    3.times do
+    20.times do
       user.item_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
         body: Faker::Lorem.paragraph(sentence_count: 5)
@@ -30,7 +30,7 @@ User.delete_all
     end
 
     # 各ユーザーにランダムな習慣投稿を3件作成
-    3.times do
+    20.times do
       user.habit_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
         body: Faker::Lorem.paragraph(sentence_count: 5)
