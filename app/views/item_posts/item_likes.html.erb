@@ -4,6 +4,8 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <%= render @item_like_posts %>
     </div>
+    <!-- kaminariを導入して使えるようになったメソッド（ページ切り替えリンクを作成する） -->
+    <%= paginate @item_like_posts %>
   <% else %>
     <p class="text-gray-500 text-center">いいねした投稿はありません</p>
   <% end %>
