@@ -1,5 +1,5 @@
 <!-- _habit_unlike.html.erb にある下記のidを探してきて来て、ブロック内の（render~）HTMLに置き換える-->
 <%= turbo_stream.replace "unlike-button-for-habit-post-#{@habit_post.id}" do %>
-  <!-- いいねした状態の見た目になる-->
+  <!-- いいねしてない状態（グレー）の見た目のパーシャルを持ってきている-->
   <%= render 'habit_posts/habit_like', habit_post: @habit_post %>
 <% end %>
