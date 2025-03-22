@@ -49,7 +49,9 @@
       <%= render @item_posts %>
 
     </div>
-    <%= paginate @item_posts, window: 2, outer_window: 1 %>
+
+    <!-- kaminariを導入して使えるようになったメソッド（ページ切り替えリンクを作成する） -->
+    <%= paginate @item_posts %>
   <% else %>
     <p class="text-gray-500 text-center">投稿がまだありません。</p>
   <% end %>

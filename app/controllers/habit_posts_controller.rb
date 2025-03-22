@@ -7,8 +7,9 @@ class HabitPostsController < ApplicationController
   #N+1問題が発生しないように、最初にHabitPost（投稿）とUser（ユーザー）のデータを、includesで@habit_postsに入れておく
   #「_habit_post.html.erb」の「habit_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_habit_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
+  #「page(params[:page])で、ページネーションで分けているページを受け取り、per(20)で1ページに表示する件数を指定している。
   def index
-    @habit_posts = HabitPost.includes(:user).order(created_at: :desc)
+    @habit_posts = HabitPost.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def new
@@ -59,7 +60,7 @@ class HabitPostsController < ApplicationController
   end
 
   def habit_likes
-    @habit_like_posts = current_user.liked_habit_posts.includes(:user).order(created_at: :desc)
+    @habit_like_posts = current_user.liked_habit_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
   
   private

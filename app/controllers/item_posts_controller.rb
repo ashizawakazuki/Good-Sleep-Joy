@@ -7,6 +7,7 @@ class ItemPostsController < ApplicationController
   #N+1問題が発生しないように、最初にItemPost（投稿）とUser（ユーザー）のデータを、includesで@item_postsに入れておく
   #「_item_post.html.erb」の「item_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_item_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
+  #「page(params[:page])で、ページネーションで分けているページを受け取り、per(20)で1ページに表示する件数を指定している。
   def index
     @item_posts = ItemPost.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
@@ -81,7 +82,7 @@ class ItemPostsController < ApplicationController
   # ログインしているユーザーがいいねしている投稿全てを持ってきている
   # liked_item_postsはUserモデルでhas_manyで定義したもので「ユーザーがいいねした投稿」の一覧を持ってくる（詳しくはUserモデル）
   def item_likes
-    @item_like_posts = current_user.liked_item_posts.includes(:user).order(created_at: :desc)
+    @item_like_posts = current_user.liked_item_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
 
   private
