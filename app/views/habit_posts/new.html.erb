@@ -1,5 +1,6 @@
 <!--要確認(1箇所) -->
 <!--「max-w-lg」でフォームの最大横幅をlgに、「mx-auto」で中央に寄せる -->
+<% content_for(:title, '習慣投稿画面') %>
 <div class="max-w-lg mx-auto p-4">
   <h1 class="text-xl font-bold my-20 text-center">習慣投稿フォーム</h1>
   <%= form_with model: @habit_post do |f| %> <!-- |f|はフォームとモデルをつなげる役割 -->
