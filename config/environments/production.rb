@@ -87,9 +87,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Rails.application.configure do
-    config.hosts << 'good-sleep-joy.com'
-  end
+  # 独自ドメインを取得し、下記のドメインでアクセスできるよう設定（wwwがついても可）
+  config.hosts << 'good-sleep-joy.com'
+  config.hosts << "www.good-sleep-joy.com"
+
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
