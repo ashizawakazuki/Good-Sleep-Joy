@@ -89,7 +89,7 @@ Rails.application.configure do
 
 
   config.hosts << 'good-sleep-joy.com'
-  config.hosts << "www.example.com"
+  config.hosts << "www.good-sleep-joy.com"
 
 
   # Enable DNS rebinding protection and other `Host` header attacks.
