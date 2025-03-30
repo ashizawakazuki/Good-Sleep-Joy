@@ -8,8 +8,12 @@ class ItemPostsController < ApplicationController
   #「_item_post.html.erb」の「item_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_item_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
   #「page(params[:page])で、ページネーションで分けているページを受け取り、per(20)で1ページに表示する件数を指定している。
+  # ItemPostモデルの中から、画面から送られてきた検索ワードを使って探し、それを@qに入れてオブジェクトにしておく
+  # @qが空の場合は、全件取得で、普通の一覧画面を表示する。@qがある場合は、その検索文字を含むものをresultで表示する。
+  # (distinct: true)はransackに存在するメソッドで、１つの投稿に同じ検索ワードが含まれていても、複数回表示を防ぎ、１つだけ表示する。
   def index
-    @item_posts = ItemPost.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @q = ItemPost.ransack(params[:q])
+    @item_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
   #上記は全ての（複数の）データを格納するから複数形の@item_posts、下記は１つの投稿を格納するから単数系の@item_post
 

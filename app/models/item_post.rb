@@ -6,7 +6,16 @@ class ItemPost < ApplicationRecord
   belongs_to :user
   has_many :item_likes, dependent: :destroy
   has_many :item_comments, dependent: :destroy
+
+  # どのカラムを検索対象にして許可するかを設定している
+  def self.ransackable_attributes(auth_object = nil)
+    ["title","body"]
+  end
   
+  # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定している（今回はなし
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 
   # ItemPostImageUploaderは「画像管理の機能」(app/uplodersの中にファイルあり）、
   # item_post_imageはカラム名で「画像を置く場所」
