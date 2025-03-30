@@ -8,4 +8,13 @@ class HabitPost < ApplicationRecord
   has_many :habit_likes, dependent: :destroy
   has_many :habit_comments, dependent: :destroy
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["title","body"]
+  end
+  
+  # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定している（今回はなし
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
 end

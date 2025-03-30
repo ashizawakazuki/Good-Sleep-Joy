@@ -3,7 +3,11 @@
 <% content_for(:title, 'アイテム投稿一覧') %>
 <div class="container mx-auto my-8 text-center p-4">
   <h1 class="text-3xl font-bold mb-6 ">アイテム投稿一覧</h1>
-  <div class="mb-6">
+  <!-- パーシャル先では「@q」をq、「item_posts_path」をurlとして使う -->
+  <div class = "flex justify-center my-12">
+    <%= render 'shared/search_form', q: @q, url: item_posts_path %>
+  </div>
+  <div class="my-6">
     <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
     <%= link_to '投稿する', new_item_post_path, class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl" %>
   </div>
