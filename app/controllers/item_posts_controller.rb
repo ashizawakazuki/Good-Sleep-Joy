@@ -87,7 +87,8 @@ class ItemPostsController < ApplicationController
   # ログインしているユーザーがいいねしている投稿全てを持ってきている
   # liked_item_postsはUserモデルでhas_manyで定義したもので「ユーザーがいいねした投稿」の一覧を持ってくる（詳しくはUserモデル）
   def item_likes
-    @item_like_posts = current_user.liked_item_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @q = current_user.liked_item_posts.ransack(params[:q])
+    @item_like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
 
   private

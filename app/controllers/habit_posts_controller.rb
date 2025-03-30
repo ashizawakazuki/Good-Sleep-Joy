@@ -65,7 +65,8 @@ class HabitPostsController < ApplicationController
   end
 
   def habit_likes
-    @habit_like_posts = current_user.liked_habit_posts.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @q = current_user.liked_habit_posts.ransack(params[:q])
+    @habit_like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
   
   private

@@ -1,6 +1,9 @@
 <% content_for(:title, 'アイテム投稿いいね一覧') %>
 <div class="container mx-auto my-8 text-center p-4">
   <h1 class="text-3xl font-bold mb-6 ">いいねした投稿</h1>
+  <div class = "flex justify-center my-12">
+    <%= render 'shared/search_form', q: @q, url: item_likes_item_posts_path %>
+  </div>
   <% if @item_like_posts.present? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <%= render @item_like_posts %>
