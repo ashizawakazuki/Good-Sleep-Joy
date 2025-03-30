@@ -8,8 +8,13 @@ class HabitPostsController < ApplicationController
   #「_habit_post.html.erb」の「habit_post.user.name」等で余計なクエリ（DBへの問い合わせ）を発行しないようにしている
   #ここでallを使ってしまうと、都度「_habit_post.html.erb」で余計なクエリが「index.html.erb」のループの回数分発行されてしまう
   #「page(params[:page])で、ページネーションで分けているページを受け取り、per(20)で1ページに表示する件数を指定している。
+  # HabitPostモデルを対象として、画面から送られてきた検索ワードを使って探し、その検索準備を@qに入れてオブジェクトにしておく
+  # →（後でノーションにメモる）このモデルに対して、検索条件をセットしておく準備（まだ検索はしてなく、resultで検索実行）
+  # @qが空の場合は、全件取得で、普通の一覧画面を表示する。@qがある場合は、その検索文字を含むものをresultで検索して表示する。
+  # (distinct: true)はransackに存在するメソッドで、１つの投稿に同じ検索ワードが含まれていても、複数回表示を防ぎ、１つだけ表示する。
   def index
-    @habit_posts = HabitPost.includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @q = HabitPost.ransack(params[:q])
+    @habit_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def new
