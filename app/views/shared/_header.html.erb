@@ -1,5 +1,5 @@
 <!-- 復習済み -->
-<header class="bg-sky-100 p-4 lg:p-8 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
+<header class="bg-sky-100 p-2 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
   <!-- 「justify-between」で子要素を横方向の中央揃え、「items-center」で子要素を縦方向の中央揃えにする（それ以降は大きさに応じて変更している） --> 
   <nav class="container mx-auto flex justify-between items-center md:px-14 lg:px-24">
     <div class ='btn btn-ghost text-base md:text-2xl lg:text-3xl font-bold'>
@@ -52,9 +52,14 @@
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: "text-gray-700 hover:bg-sky-100" %>
               </li>
+              <li class ="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-book"></i>
+                <%= link_to '日記を書く', new_diary_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
             </ul>
           </div>
         </div>
+
       <% else %>
         <div class="btn btn-ghost btn-lg">
           <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
