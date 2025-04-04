@@ -1,5 +1,5 @@
 <!-- 復習済み -->
-<header class="bg-sky-100 p-4 lg:p-8 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
+<header class="bg-sky-100 p-2 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
   <!-- 「justify-between」で子要素を横方向の中央揃え、「items-center」で子要素を縦方向の中央揃えにする（それ以降は大きさに応じて変更している） --> 
   <nav class="container mx-auto flex justify-between items-center md:px-14 lg:px-24">
     <div class ='btn btn-ghost text-base md:text-2xl lg:text-3xl font-bold'>
@@ -9,32 +9,65 @@
     <div class="flex flex-row space-x-2">
       <% if user_signed_in? %>
         <!-- btn クラスの影響でアイコンと文字が横並びになってしまう可能性があるため、外側に移動させている--> 
-        <div class="btn btn-ghost">
-          <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' } %>
+        <div class="dropdown dropdown-hover dropdown-bottom">
+          <div class="btn btn-ghost btn-lg">
+            <p class = "text-xs md:text-lg lg:text-xl">投稿一覧</p>
+            <ul class="dropdown-content absolute bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+              <li >
+                <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+              <li>
+                <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="btn btn-ghost">
-          <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
-            <i class="fa-solid fa-user"></i>
-            <%= link_to 'マイページ', profile_path %>
+
+        <div class="dropdown dropdown-hover dropdown-bottom">
+          <div class="btn btn-ghost btn-lg">
+            <p class = "text-xs md:text-lg lg:text-xl">投稿する</p>
+            <ul class="dropdown-content absolute bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+              <li >
+                <%= link_to 'アイテム投稿', new_item_post_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+              <li>
+                <%= link_to '習慣投稿', new_habit_post_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="btn btn-ghost">
-          <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
-            <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-8 h-8 rounded-full shadow-lg border border-gray-200" %>
-            <%= current_user.decorate.user_name %>
+
+        <div class="dropdown dropdown-hover dropdown-bottom">
+          <div class="btn btn-ghost btn-lg">
+            <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
+              <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-8 h-8 rounded-full shadow-lg border border-gray-200" %>
+              <%= current_user.decorate.user_name %>
+            </div>
+            <ul class="dropdown-content absolute bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+              <li class ="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-user"></i>
+                <%= link_to 'マイページ', profile_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+              <li class ="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+              <li class ="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-book"></i>
+                <%= link_to '日記を書く', new_diary_path, class: "text-gray-700 hover:bg-sky-100" %>
+              </li>
+            </ul>
           </div>
         </div>
+
       <% else %>
-        <div class="btn btn-ghost">
+        <div class="btn btn-ghost btn-lg">
           <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
             <i class="fa-solid fa-user"></i>
             <%= link_to '新規登録', new_user_registration_path %>
           </div>
         </div>
-        <div class="btn btn-ghost">
+        <div class="btn btn-ghost btn-lg">
           <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl">  
             <i class="fa-solid fa-right-to-bracket"></i>
             <%= link_to 'ログイン',  new_user_session_path %>
