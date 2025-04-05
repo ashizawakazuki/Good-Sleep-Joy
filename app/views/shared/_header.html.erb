@@ -7,7 +7,7 @@
     </div>
 
     <!-- md(768px)以上の時は表示される -->
-    <div class="flex flex-row space-x-2 hidden md:block">
+    <div class="flex flex-row space-x-1 hidden md:block">
       <% if user_signed_in? %>
         <!-- daisyUIを使用しdropdownでdropdown_hoberでホバー時にdropdown-bottom（下）に表示。dropdown-contentで表示される内容を決めている--> 
         <div class="dropdown dropdown-hover dropdown-bottom">
@@ -78,42 +78,62 @@
     </div>
 
     <!-- md(768px)以上の時はこのハンバーガーメニューがhidden（隠れる）する -->
-    <!-- ただし今現在はハンバーガーを押しても何も表示されない（例えばスマホサイズだと何もできない） -->
-    <div class="md:hidden" >
+    <div class="md:hidden px-4 text-lg" >
       <i id="hamburger" class="fa-solid fa-bars"></i>
       <i id="xmark" class="fa-solid fa-xmark hidden"></i>
     </div>
 
     <!-- デフォルトで非表示、ハンバーガーメニュー表示時にクリックすると表示される -->
-    <ul id = "humburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-user"></i>
-        <%= link_to 'マイページ', profile_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-book"></i>
-        <%= link_to '日記を書く', new_diary_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-pen-to-square"></i>
-        <%= link_to 'アイテム投稿', new_item_post_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-pen-to-square"></i>
-        <%= link_to '習慣投稿', new_habit_post_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-list"></i>
-        <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-list"></i>
-        <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
-      </li>
-      <li class ="flex flex-row gap-2 items-center">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: "text-gray-700 hover:bg-sky-100" %>
-      </li>
-    </ul>
+    <% if user_signed_in? %>
+      <ul id = "humburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-user"></i>
+          <%= link_to 'マイページ', profile_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-book"></i>
+          <%= link_to '日記を書く', new_diary_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <%= link_to 'アイテム投稿', new_item_post_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-pen-to-square"></i>
+          <%= link_to '習慣投稿', new_habit_post_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-list"></i>
+          <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-list"></i>
+          <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: "text-gray-700 hover:bg-sky-100" %>
+        </li>
+      </ul>
+      <% else %>
+        <ul id = "humburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-user"></i>
+          <%= link_to '新規登録', new_user_registration_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <%= link_to 'ログイン', new_user_session_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-list"></i>
+          <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-list"></i>
+          <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+      </ul>
+    <% end %>
   </nav>
 </header>
