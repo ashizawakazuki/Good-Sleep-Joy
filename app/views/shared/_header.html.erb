@@ -14,7 +14,7 @@
           <div class="btn btn-ghost btn-lg">
             <p class = "md:text-base lg:text-xl">投稿一覧</p>
             <ul class="dropdown-content z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
-              <li >
+              <li>
                 <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
               <li>
@@ -78,14 +78,15 @@
     </div>
 
     <!-- md(768px)以上の時はこのハンバーガーメニューがhidden（隠れる）する -->
+    <!-- バツマークはhiddenであらかじめ非表示にしてある -->
     <div class="md:hidden px-4 text-lg" >
       <i id="hamburger" class="fa-solid fa-bars"></i>
       <i id="xmark" class="fa-solid fa-xmark hidden"></i>
     </div>
 
-    <!-- デフォルトで非表示、ハンバーガーメニュー表示時にクリックすると表示される -->
+    <!-- デフォルトで非表示、ハンバーガーメニュー表示時にクリックすると表示される(absolute right-0 top-fullrelativeで指定した親の右下に表示する) -->
     <% if user_signed_in? %>
-      <ul id = "humburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+      <ul id = "hamburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-user"></i>
           <%= link_to 'マイページ', profile_path, class: "text-gray-700 hover:bg-gray-300" %>
@@ -116,7 +117,7 @@
         </li>
       </ul>
       <% else %>
-        <ul id = "humburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+        <ul id = "hamburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-user"></i>
           <%= link_to '新規登録', new_user_registration_path, class: "text-gray-700 hover:bg-gray-300" %>
