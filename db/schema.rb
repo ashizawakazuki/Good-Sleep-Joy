@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_07_040516) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_07_075005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_07_040516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "habit_post_image"
+    t.bigint "habit_tag_id"
+    t.index ["habit_tag_id"], name: "index_habit_posts_on_habit_tag_id"
     t.index ["user_id"], name: "index_habit_posts_on_user_id"
+  end
+
+  create_table "habit_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "item_comments", force: :cascade do |t|
@@ -112,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_07_040516) do
   add_foreign_key "habit_comments", "users"
   add_foreign_key "habit_likes", "habit_posts"
   add_foreign_key "habit_likes", "users"
+  add_foreign_key "habit_posts", "habit_tags"
   add_foreign_key "habit_posts", "users"
   add_foreign_key "item_comments", "item_posts"
   add_foreign_key "item_comments", "users"

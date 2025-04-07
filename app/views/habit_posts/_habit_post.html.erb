@@ -43,6 +43,14 @@
       </div>
     <% end %>
   </div>
+
+  <!--「absolute bottom-4 left-1/2」で要素の開始位置を半分へ、「transform -translate-x-1/2」で要素の幅の半分だけ左へずらす-->
+  <!-- 結果、要素の中央が全体の中央にくる -->
+  <% if habit_post.habit_tag.present? %>
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 ">
+      <p class = "bg-white text-sm border border-black rounded-[10px] px-2"><%= habit_post.habit_tag.name %></p>
+    </div>
+  <% end %>
   <div class="absolute bottom-4 right-4">
     <%= render 'habit_like_bottons', {habit_post: habit_post} %>
   </div>

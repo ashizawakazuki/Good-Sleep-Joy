@@ -27,7 +27,7 @@ class HabitPostsController < ApplicationController
       redirect_to habit_posts_path, notice: '投稿が成功しました！'
     else
       flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -72,7 +72,7 @@ class HabitPostsController < ApplicationController
   private
 
   def habit_post_params
-    params.require(:habit_post).permit(:title, :body, :habit_post_image)
+    params.require(:habit_post).permit(:title, :body, :habit_post_image, :habit_tag_id)
   end
 
   #投稿が消されるなどして存在しない場合、または現在ログインしているユーザーではない場合、メッセージが表示され一覧画面に遷移される
