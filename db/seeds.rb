@@ -9,9 +9,9 @@
 #   end
 
 # 既存のデータを削除
-ItemPost.delete_all
-User.delete_all
-
+# ItemPost.delete_all
+# User.delete_all
+ItemTag.delete_all
 # ユーザーを10人作成
 10.times do
     user = User.create!(
@@ -38,3 +38,15 @@ User.delete_all
       end
 
   end
+
+ItemTag.create!(
+  [
+    {name: '寝具'},
+    {name: '香りもの'},
+    {name: 'リラックスグッズ'},
+    {name: 'ガジェット'},
+    {name: 'サプリメント'},
+    {name: '照明'},
+    {name: 'その他'},
+  ]
+)

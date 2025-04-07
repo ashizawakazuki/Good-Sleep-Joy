@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_11_120249) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_07_040516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,7 +79,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_120249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item_post_image"
+    t.bigint "item_tag_id"
+    t.index ["item_tag_id"], name: "index_item_posts_on_item_tag_id"
     t.index ["user_id"], name: "index_item_posts_on_user_id"
+  end
+
+  create_table "item_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,5 +117,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_120249) do
   add_foreign_key "item_comments", "users"
   add_foreign_key "item_likes", "item_posts"
   add_foreign_key "item_likes", "users"
+  add_foreign_key "item_posts", "item_tags"
   add_foreign_key "item_posts", "users"
 end

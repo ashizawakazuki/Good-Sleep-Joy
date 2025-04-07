@@ -1,6 +1,6 @@
 <!-- 「後に確認（一箇所）」以外確認済み-->
 <!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
-<div class="relative p-4 border rounded-lg shadow hover:shadow-lg">
+<div class="relative bg-gray-50 p-4 border rounded-lg shadow hover:shadow-lg">
   <div class= "absolute top-4 left-4 flex flex-row gap-4">
     <%= image_tag habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
     <p class="text-md text-gray-800"><%= habit_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
@@ -20,7 +20,7 @@
   <%= link_to habit_post.title, habit_post_path(habit_post), class: 'text-2xl font-bold text-gray-800 hover:underline hover:bg-sky-100' %>
 
   <p class="text-sm text-gray-500 m-8"><%= habit_post.body.truncate(100) %></p>
-  <div class="absolute bottom-4 left-4 flex items-center gap-8">
+  <div class="absolute bottom-5 left-4 flex items-center gap-7">
     <!-- @habit_postとしなくていい理由は、indexからrenderでローカル変数habit_postをこのファイルに渡しているから定義されている -->
     <!-- Userモデルで定義した「own?」を使用し、(habit_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
     <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
