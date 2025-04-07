@@ -5,6 +5,7 @@ class HabitPost < ApplicationRecord
   validates :habit_post_image, presence: true, if: -> { Rails.env.production? } # 本番環境のみ画像は必須に設定（開発環境ではダミーデータは画像を必須にする必要ないため）
 
   belongs_to :user
+  belongs_to :habit_tag
   has_many :habit_likes, dependent: :destroy
   has_many :habit_comments, dependent: :destroy
 

@@ -11,7 +11,7 @@
 # 既存のデータを削除
 ItemPost.delete_all
 User.delete_all
-
+ItemTag.delete_all
 # ユーザーを10人作成
 10.times do
     user = User.create!(
@@ -21,7 +21,7 @@ User.delete_all
       password_confirmation: "password"
     )
   
-    # 各ユーザーにランダムなアイテム投稿を3件作成
+#     # 各ユーザーにランダムなアイテム投稿を3件作成
     20.times do
       user.item_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
@@ -38,3 +38,27 @@ User.delete_all
       end
 
   end
+# item_tagsテーブルにあらかじめ選択肢を入れておく
+ItemTag.create!(
+  [
+    {name: '寝具'},
+    {name: '香りもの'},
+    {name: 'リラックスグッズ'},
+    {name: 'ガジェット'},
+    {name: 'サプリメント'},
+    {name: '照明'},
+    {name: 'その他'},
+  ]
+)
+
+# habit_tagsテーブルにあらかじめ選択肢を入れておく
+HabitTag.create!(
+  [
+    {name: 'リラックス'},
+    {name: '食事・飲み物'},
+    {name: '軽めの運動'},
+    {name: '心の整理'},
+    {name: '呼吸・瞑想'},
+    {name: 'その他'},
+  ]
+)
