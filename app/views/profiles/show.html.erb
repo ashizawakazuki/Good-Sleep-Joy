@@ -46,7 +46,23 @@
               <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
               <p class="text-xs sm:text-lg">睡眠時間</p>
             </th>
-            <td class="text-xs sm:text-lg font-bold"><p>※本リリース時実装</p></td>
+
+            <% if current_user.wake_up_time.present? && current_user.bed_time.present? %>
+              <% wake_up_time = current_user.wake_up_time.hour * 60 + current_user.wake_up_time.min %> 
+              <% bed_time = current_user.bed_time.hour * 60 + current_user.bed_time.min %>
+              <!-- 上記の二行でTimesオブジェクトの時間の箇所を「.hour」、分の箇所を「.min」で抽出し、時間は分に揃えて足している  -->
+              <!-- 以下で分に揃えた前提で場合分け。timesオブジェクトではないため('%H:%M') は使えないため、最後formatメソッドを使って、表示方法を起床時間等と揃える  -->
+              <% if wake_up_time < bed_time %>
+                <% sleep_min = (24 * 60 - bed_time) + wake_up_time %>
+              <% else %>
+                <% sleep_min = wake_up_time - bed_time %>
+              <% end %>
+              <% sleep_hour = sleep_min / 60 %>
+              <% sleep_min = sleep_min % 60 %>
+              <td class="text-xs sm:text-lg font-bold"><%= format('%02d:%02d',sleep_hour, sleep_min) %></td>
+            <% else %>
+              <td class="text-xs sm:text-lg">未設定</td>
+            <% end %>
           </tr>
         </table>
       </div>
