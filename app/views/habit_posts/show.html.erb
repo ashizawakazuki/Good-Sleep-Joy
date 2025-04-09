@@ -5,7 +5,7 @@
   <div class="relative p-4 my-4 border rounded-lg shadow">
     <div class= "absolute top-4 left-4 flex flex-row gap-8">
       <%= link_to habit_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
-        <i class="fa-solid fa-chevron-left"></i> 戻る
+        <i class="fa-solid fa-chevron-left"></i> <span>戻る</span>
       <% end %>
       <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
       <% if current_user.own?(@habit_post) %> 
