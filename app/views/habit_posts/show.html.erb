@@ -7,19 +7,6 @@
       <%= link_to habit_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
         <i class="fa-solid fa-chevron-left"></i> <span>戻る</span>
       <% end %>
-      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
-      <% if current_user.own?(@habit_post) %> 
-        <!-- 投稿編集 -->
-        <%= link_to edit_habit_post_path, data: { turbo: false } do %>
-          <i class="fa-solid fa-pencil align-middle"></i>
-        <% end %>
-
-        <!-- 削除（後に確認） -->
-        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
-        <%= link_to habit_post_path(@habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
-          <i class="fa-solid fa-trash align-middle"></i>
-        <% end %>
-      <% end %>
     </div>
     <div class= "absolute top-4 right-4 flex flex-row gap-4">
       <%= image_tag @habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
@@ -43,6 +30,36 @@
       <!-- 投稿本文 -->
       <p class="text-lg text-gray-600 mb-6"><%= @habit_post.body %></p>
     </div>
+
+    <div class = "flex flex-row gap-7" >
+      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
+      <% if current_user.own?(@habit_post) %> 
+        <!-- 投稿編集 -->
+        <%= link_to edit_habit_post_path, data: { turbo: false } do %>
+          <i class="fa-solid fa-pencil align-middle"></i>
+        <% end %>
+
+        <!-- 削除（後に確認） -->
+        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
+        <%= link_to habit_post_path(@habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
+          <i class="fa-solid fa-trash align-middle"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- Xへのシェア -->
+    <div class = "absolute bottom-5 right-16">
+      <%= link_to "https://twitter.com/share?url=#{habit_post_url(@habit_post)}&text=私の就寝前の習慣を紹介します！%0a%0a#{@habit_post.title}", target: "_blank"  do %>
+        <%= image_tag("x-logo.png",alt:"Xでシェア", class:"w-5 h-5 hover:opacity-50") %>
+      <% end %>
+    </div>
+
+    <div class="absolute bottom-4 right-4">
+      <%= render 'habit_like_bottons', {habit_post: @habit_post} %>
+    </div>
+  </div>
+
+    <!-- コメント欄 -->
     <%= render 'habit_comments/form', habit_comment: @habit_comment, habit_post: @habit_post %>
     <div class="pt-4">
       <% if @habit_comments.present? %>
