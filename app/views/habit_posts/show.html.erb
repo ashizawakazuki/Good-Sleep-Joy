@@ -3,7 +3,7 @@
 <% content_for(:title, '習慣投稿詳細画面') %>
 <div class="max-w-lg mx-auto p-4">
   <div class="relative p-4 my-4 border rounded-lg shadow">
-    <div class= "absolute top-4 left-4 flex flex-row gap-8">
+    <div class= "absolute top-4 left-4">
       <%= link_to habit_posts_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
         <i class="fa-solid fa-chevron-left"></i> <span>戻る</span>
       <% end %>
@@ -49,7 +49,7 @@
 
     <!-- Xへのシェア -->
     <div class = "absolute bottom-5 right-16">
-      <%= link_to "https://twitter.com/share?url=#{habit_post_url(@habit_post)}&text=私の就寝前の習慣を紹介します！%0a%0a#{@habit_post.title}", target: "_blank"  do %>
+    <%= link_to "https://twitter.com/share?url=#{CGI.escape(habit_post_url(@habit_post))}&text=【私の睡眠アイテムを紹介します！】%0a#{CGI.escape(@habit_post.title)}%0a#{CGI.escape(@habit_post.body)}&hashtags=GoodSleepJoy", target: "_blank", rel: "noopener noreferrer", title: "Xでシェアする" do %>
         <%= image_tag("x-logo.png",alt:"Xでシェア", class:"w-5 h-5 hover:opacity-50") %>
       <% end %>
     </div>

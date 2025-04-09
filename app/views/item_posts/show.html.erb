@@ -51,7 +51,7 @@
 
     <!-- Xへのシェア -->
     <div class = "absolute bottom-5 right-16">
-      <%= link_to "https://twitter.com/share?url=#{item_post_url(@item_post)}&text=私の睡眠アイテムを紹介します！%0a%0a#{@item_post.title}", target: "_blank"  do %>
+    <%= link_to "https://twitter.com/share?url=#{CGI.escape(item_post_url(@item_post))}&text=【私の睡眠アイテムを紹介します！】%0a#{CGI.escape(@item_post.title)}%0a#{CGI.escape(@item_post.body)}&hashtags=GoodSleepJoy", target: "_blank", rel: "noopener noreferrer", title: "Xでシェアする" do %>
         <%= image_tag("x-logo.png",alt:"Xでシェア", class:"w-5 h-5 hover:opacity-50") %>
       <% end %>
     </div>
