@@ -24,12 +24,12 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: "https://good-sleep-joy.com/",
-        image: "https://good-sleep-joy.com/assets/ogp-074a5399428fc21d28053882383bdcd9a16ce9474e7560ea0f7f245e97148b.png",
+        image: asset_url('ogp.png'),# 配置するパスやファイル名によって変更する
         local: 'ja-JP',
       },
       twitter: {
         card: 'summary_large_image', # Twitterで表示する場合は大きいカードに変更
-        image: image_url('ogp.png'),# 配置するパスやファイル名によって変更
+        image: asset_url('ogp.png'),# 配置するパスやファイル名によって変更
       }
     }
   end
