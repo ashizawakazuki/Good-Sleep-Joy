@@ -8,39 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-#開発環境のみ実行する
-if Rails.env.development?
-  # 既存のデータを削除
-  ItemPost.delete_all
-  User.delete_all
-  ItemTag.delete_all
-  # ユーザーを10人作成
-  10.times do
-    user = User.create!(
-      name: Faker::Name.name,
-      email: Faker::Internet.unique.email,
-      password: "password",  # 同じパスワードを使用
-      password_confirmation: "password"
-    )
-  
-    # 各ユーザーにランダムなアイテム投稿を3件作成
-    20.times do
-      user.item_posts.create!(
-        title: Faker::Lorem.sentence(word_count: 3),
-        body: Faker::Lorem.paragraph(sentence_count: 5)
-      )
-    end
-
-    # 各ユーザーにランダムな習慣投稿を3件作成
-    20.times do
-      user.habit_posts.create!(
-        title: Faker::Lorem.sentence(word_count: 3),
-        body: Faker::Lorem.paragraph(sentence_count: 5)
-      )
-    end
-  end
-end
-
 # 本番環境・開発環境問わず：タグの初期データを入れる
 # item_tagsテーブルにあらかじめ選択肢を入れておく
 item_tags = [
@@ -70,3 +37,40 @@ habit_tags = [
 habit_tags.each do |tag|
   HabitTag.find_or_create_by!(name: tag[:name])
 end
+
+#開発環境のみ実行する
+if Rails.env.development?
+  # 既存のデータを削除
+  ItemPost.delete_all
+  HabitPost.delete_all
+  User.delete_all
+  
+  # ユーザーを10人作成
+  10.times do
+    user = User.create!(
+      name: Faker::Name.name,
+      email: Faker::Internet.unique.email,
+      password: "password",  # 同じパスワードを使用
+      password_confirmation: "password"
+    )
+  
+    # 各ユーザーにランダムなアイテム投稿を3件作成
+    20.times do
+      user.item_posts.create!(
+        title: Faker::Lorem.sentence(word_count: 3),
+        body: Faker::Lorem.paragraph(sentence_count: 5),
+        item_tag: ItemTag.all.sample,
+      )
+    end
+
+    # 各ユーザーにランダムな習慣投稿を3件作成
+    20.times do
+      user.habit_posts.create!(
+        title: Faker::Lorem.sentence(word_count: 3),
+        body: Faker::Lorem.paragraph(sentence_count: 5),
+        habit_tag: HabitTag.all.sample,
+      )
+    end
+  end
+end
+
