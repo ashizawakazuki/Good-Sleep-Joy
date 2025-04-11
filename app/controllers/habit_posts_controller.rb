@@ -1,6 +1,6 @@
 class HabitPostsController < ApplicationController
   #Deviseを導入したために使えるようになったメソッドで、ユーザーがログインしているかを判別し、未ログイン時には、自動的にログインページにリダイレクトさせる
-  before_action :authenticate_user!, only: [:new, :create, :edit, :show, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   #set_habit_postで[:edit, :update, :destroy]アクションの前に、「投稿が削除されておらず存在するかどうか、また、アクセス権限があるか（人の投稿でないか）」を確認している
   before_action :set_habit_post, only: [:edit, :update, :destroy]
 
