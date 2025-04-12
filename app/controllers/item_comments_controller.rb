@@ -1,4 +1,5 @@
 class ItemCommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   # _form.html.erbで指定したURL(item_post_item_comments_path)、でリクエストを行いcreateアクションが動き出す
   def create
