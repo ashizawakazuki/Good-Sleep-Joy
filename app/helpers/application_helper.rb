@@ -20,12 +20,12 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: "https://good-sleep-joy.com/",
-        image: image_url('ogp.png'),# 配置するパスやファイル名によって変更する
+        image: "#{request.base_url}/ogp.png",# 配置するパスやファイル名によって変更する
         local: 'ja-JP',
       },
       twitter: {
         card: 'summary_large_image',
-        image: image_url('ogp.png'),# 配置するパスやファイル名によって変更
+        image: "#{request.base_url}/ogp.png",# 配置するパスやファイル名によって変更
       }
     }
   end
