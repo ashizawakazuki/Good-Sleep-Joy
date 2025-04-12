@@ -29,7 +29,7 @@
 
   <!--メッセージの下の部分について（削除ボタン）-->
   <div class="chat-footer">
-    <% if current_user.own?(item_comment) %>
+    <% if current_user&.own?(item_comment) %>
       <%= link_to '削除', item_comment_path(item_comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'text-blue-500 hover:underline text-xs mt-1 block' %>
     <% end %>
   </div>
