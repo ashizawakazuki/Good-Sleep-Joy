@@ -91,6 +91,10 @@ class ItemPostsController < ApplicationController
     @item_like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
 
+  def ranking
+    @item_post_ranking = ItemPost.find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
+  end
+
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」

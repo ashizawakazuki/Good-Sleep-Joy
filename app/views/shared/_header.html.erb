@@ -20,6 +20,16 @@
               <li>
                 <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
+              <li>
+                <%= link_to ranking_item_posts_path do %>
+                  <p class ="text-gray-700 hover:bg-gray-300" >人気の投稿 <br> (アイテム)</p>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to ranking_habit_posts_path do %>
+                  <p class ="text-gray-700 hover:bg-gray-300" >人気の投稿 <br> (習慣)</p>
+                <% end %>
+              </li>
             </ul>
           </div>
         </div>
@@ -110,6 +120,14 @@
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-list"></i>
           <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-crown"></i>
+          <%= link_to '人気の投稿(アイテム)', ranking_item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+        </li>
+        <li class ="flex flex-row gap-2 items-center">
+          <i class="fa-solid fa-crown"></i>
+          <%= link_to '人気の投稿(習慣)', ranking_habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
         </li>
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-right-from-bracket"></i>
