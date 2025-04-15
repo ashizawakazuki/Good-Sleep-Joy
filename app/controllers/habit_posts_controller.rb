@@ -69,6 +69,10 @@ class HabitPostsController < ApplicationController
     @habit_like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
   end
   
+  def ranking
+    @habit_post_ranking = HabitPost.find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
+  end
+
   private
 
   def habit_post_params
