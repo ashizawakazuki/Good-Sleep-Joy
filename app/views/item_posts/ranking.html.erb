@@ -1,45 +1,45 @@
 <% content_for(:title, '人気のアイテム投稿') %>
 <div class="container mx-auto my-8 text-center p-4">
-  <h1 class="text-3xl font-bold mb-6 ">人気のアイテム投稿（上位5件）</h1>
+  <h1 class="text-3xl font-bold mb-6 ">人気のアイテム投稿 <br>（上位5件）</h1>
   <table class="table-auto mx-auto text-center my-16">
-    <tr class = "text-sm md:text-base lg:text-xl">
-      <th class = "px-4 py-2 border-b border-black/80">順位</th>
-      <th class = "px-4 py-2 border-b border-black/80" >タイトル</th>
-      <th class = "px-4 py-2 border-b border-black/80">ユーザー</th>
-      <th class = "px-4 py-2 border-b border-black/80">いいね数</th>
+    <tr class = "text-xs md:text-base lg:text-xl">
+      <th class = "px-4 py-2 border-b border-black/80 whitespace-nowrap">順位</th>
+      <th class = "px-4 py-2 border-b border-black/80 whitespace-nowrap" >タイトル</th>
+      <th class = "px-4 py-2 border-b border-black/80 whitespace-nowrap">ユーザー</th>
+      <th class = "px-4 py-2 border-b border-black/80 whitespace-nowrap">いいね数</th>
     </tr>
 
     <% i = 0 %>
     <% @item_post_ranking.each do |rank| %>
       <% i += 1 %>
       <% if i == 1 %>
-        <tr class = "text-sm md:text-base lg:text-xl bg-gray-100">
-          <td class = "flex flex-row items-center justify-center gap-2 py-2"><%= image_tag "gold.png", alt: '金の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
+        <tr class = "text-xs md:text-base lg:text-xl bg-gray-100">
+          <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "gold.png", alt: '金の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <!-- item_post_pathに、引数として投稿のオブジェクト(rank)を渡すことで、いいねされている1つの投稿の詳細を表示することができる -->
-          <td class = "py-2"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
-          <td class = "py-2"><%= rank.user.name %></td>
-          <td class = "py-2"><%= rank.item_likes.count %></td>
+          <td class = "py-4"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
+          <td class = "py-4"><%= rank.user.name %></td>
+          <td class = "py-4"><%= rank.item_likes.count %></td>
         </tr>
       <% elsif i == 2 %>
-        <tr class = "text-sm md:text-base lg:text-xl bg-white">
-          <td class = "flex flex-row items-center justify-center gap-2 py-2"><%= image_tag "silver.png", alt: '銀の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
-          <td class = "py-2"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
-          <td class = "py-2"><%= rank.user.name %></td>
-          <td class = "py-2"><%= rank.item_likes.count %></td>
+        <tr class = "text-xs md:text-base lg:text-xl bg-white">
+          <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "silver.png", alt: '銀の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
+          <td class = "py-4 "><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
+          <td class = "py-4"><%= rank.user.name %></td>
+          <td class = "py-4"><%= rank.item_likes.count %></td>
         </tr>
       <% elsif i == 3 %>
-        <tr class = "text-sm md:text-base lg:text-xl bg-gray-100">
-          <td class = "flex flex-row items-center justify-center gap-2 py-2"><%= image_tag "bronze.png", alt: '銅の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
-          <td class = "py-2"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
-          <td class = "py-2"><%= rank.user.name %></td>
-          <td class = "py-2"><%= rank.item_likes.count %></td>
+        <tr class = "text-xs md:text-base lg:text-xl bg-gray-100">
+          <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "bronze.png", alt: '銅の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
+          <td class = "py-4"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
+          <td class = "py-4"><%= rank.user.name %></td>
+          <td class = "py-4"><%= rank.item_likes.count %></td>
         </tr>
       <% else %>
-        <tr class = "text-sm md:text-base lg:text-xl odd:bg-white even:bg-gray-100">
-          <td class = "flex flex-row items-center justify-center gap-2 py-2"><%= "#{i}" %></td>
-          <td class = "py-2"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
-          <td class = "py-2"><%= rank.user.name %></td>
-          <td class = "py-2"><%= rank.item_likes.count %></td>
+        <tr class = "text-xs md:text-base lg:text-xl odd:bg-white even:bg-gray-100">
+          <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= "#{i}" %></td>
+          <td class = "py-4"><%= link_to rank.title, item_post_path(rank), class: 'font-bold text-gray-800 hover:underline hover:bg-sky-100'%></td>
+          <td class = "py-4"><%= rank.user.name %></td>
+          <td class = "py-4"><%= rank.item_likes.count %></td>
         </tr>
       <% end %>
     <% end %>
