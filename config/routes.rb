@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
-  # プライバシーポリシー画面の作成
+  # プライバシーポリシー
   get "privacy_policy", to: "static_pages#privacy_policy"
+  #利用規約
+  get "terms", to: "static_pages#terms"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
