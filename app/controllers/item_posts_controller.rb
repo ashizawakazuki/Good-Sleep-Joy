@@ -95,6 +95,10 @@ class ItemPostsController < ApplicationController
     @item_post_ranking = ItemPost.find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
   end
 
+  def search
+    @item_posts = ItemPost.where("title like ?", "%#{params[:q]}%")
+    render partial: "search"
+  end
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」
