@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :item_likes, only: %i[create destroy] 
     resources :item_comments, only: %i[create destroy], shallow: true
   end
+
   resources :habit_posts, only: %i[index new create show edit update destroy] do
     collection do
       get :habit_likes

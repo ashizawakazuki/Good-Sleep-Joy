@@ -99,6 +99,7 @@ class ItemPostsController < ApplicationController
     @item_posts = ItemPost.where("title like ?", "%#{params[:q]}%")
     render partial: "search"
   end
+
   private
 
   #ストロングパラメータは「データの保存や更新を許可するパラメータを指定して、セキュリティを強化する仕組み」
