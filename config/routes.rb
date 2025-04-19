@@ -25,15 +25,22 @@ Rails.application.routes.draw do
     collection do
       get :ranking
     end
+    collection do
+      get :search
+    end
     resources :item_likes, only: %i[create destroy] 
     resources :item_comments, only: %i[create destroy], shallow: true
   end
+
   resources :habit_posts, only: %i[index new create show edit update destroy] do
     collection do
       get :habit_likes
     end
     collection do
       get :ranking
+    end
+    collection do
+      get :search
     end
     resources :habit_likes, only: %i[create destroy]
     resources :habit_comments, only: %i[create destroy], shallow: true

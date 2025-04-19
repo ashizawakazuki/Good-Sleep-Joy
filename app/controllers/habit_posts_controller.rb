@@ -73,6 +73,11 @@ class HabitPostsController < ApplicationController
     @habit_post_ranking = HabitPost.find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
   end
 
+  def search
+    @habit_posts = HabitPost.where("title like ?", "%#{params[:q]}%").limit(5)
+    render partial: "search"
+  end
+
   private
 
   def habit_post_params
