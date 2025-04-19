@@ -5,7 +5,7 @@
   <h1 class="text-3xl font-bold mb-6 ">アイテム投稿一覧</h1>
   <!-- パーシャル先では「@q」をq、「item_posts_path」をurlとして使う -->
   <div class = "flex justify-center my-12">
-    <%= render 'shared/search_form', q: @q, url: item_posts_path %>
+    <%= render 'search_form', q: @q, url: item_posts_path %>
   </div>
   <div class="my-6">
     <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
