@@ -8,7 +8,7 @@
       <div class="max-w-xl flex flex-row items-center space-x-2">
         <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 rounded-lg p-2 border border-gray-300", placeholder: 'アイテム名、本文を検索' %>
         <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
-        <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-full md:text-sm" data-autocomplete-target="results"></ul>
+        <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
         <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
       </div>
     </div>
