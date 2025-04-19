@@ -96,7 +96,7 @@ class ItemPostsController < ApplicationController
   end
 
   def search
-    @item_posts = ItemPost.where("title like ?", "%#{params[:q]}%")
+    @item_posts = ItemPost.where("title like ?", "%#{params[:q]}%").limit(5)
     render partial: "search"
   end
 

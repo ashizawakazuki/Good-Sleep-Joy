@@ -74,7 +74,7 @@ class HabitPostsController < ApplicationController
   end
 
   def search
-    @habit_posts = HabitPost.where("title like ?", "%#{params[:q]}%")
+    @habit_posts = HabitPost.where("title like ?", "%#{params[:q]}%").limit(5)
     render partial: "search"
   end
 
