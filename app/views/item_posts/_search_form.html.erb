@@ -7,17 +7,25 @@
 
     <!-- data-controller="autocomplete":ここをオートコンプリートの対象にするという合図 -->
     <div data-controller="autocomplete" data-autocomplete-url-value="/item_posts/search" role="combobox">
-      <div class="max-w-xl flex flex-row items-center space-x-2">
+      <div class="max-w-xl flex flex-col md:flex-row items-center md:items-end justify-center space-x-2 ">
+        <div class="flex flex-col relative my-2">
+          <!-- data-autocomplete-url-value="/item_posts/search":入力されるたびに送信されるリクエスト先を指定 -->
+          <%= f.label :search_fiel, "アイテム名・本文", class: "text-lg font-medium text-gray-700" %>
+          <!-- data: { autocomplete_target: 'input' },:このフォームに文字が入力されたらオートコンプリートを開始して！ とstimulusに伝えている-->
+          <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300", placeholder: 'キーワードを入力' %><!-- data: { autocomplete_target: 'input' },:このフォームに文字が入力されたらオートコンプリートを開始して！ とstimulusに伝えている-->
+          <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
+          <!-- data-autocomplete-target="results": レスポンスで帰ってきた<li>タグを表示している-->
+          <ul class="list-group absolute  top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
+        </div>
 
-        <!-- data-autocomplete-url-value="/item_posts/search":入力されるたびに送信されるリクエスト先を指定 -->
-        <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 rounded-lg p-2 border border-gray-300", placeholder: 'アイテム名、本文を検索' %>
-        
-        <!-- data: { autocomplete_target: 'input' },:このフォームに文字が入力されたらオートコンプリートを開始して！ とstimulusに伝えている-->
-        <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
+        <div class="flex flex-col my-2">
+          <%= f.label :select, "カテゴリー", class: "text-lg font-medium text-gray-700" %> 
+          <%= f.select :item_tag_id_eq, ItemTag.all.map { |tag| [tag.name, tag.id] }, { include_blank: "未選択" }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300" %>
+        </div>
 
-        <!-- data-autocomplete-target="results": レスポンスで帰ってきた<li>タグを表示している-->
-        <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
-        <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
+        <div class="my-2">
+          <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
+        </div>
       </div>
     </div>
   <% end %>

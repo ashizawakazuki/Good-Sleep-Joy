@@ -10,7 +10,7 @@ class ItemPost < ApplicationRecord
 
   # どのカラムを検索対象にして許可するかを設定している
   def self.ransackable_attributes(auth_object = nil)
-    ["title","body"]
+    ["title","body","item_tag_id"]
   end
   
   # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定している（今回はなし
