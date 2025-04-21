@@ -95,6 +95,7 @@ class ItemPostsController < ApplicationController
     @item_post_ranking = ItemPost.find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
   end
 
+  # item_postsテーブルのtitleカラムの中から、paramsで受け取った値に一致するものをwhereで探している
   def search
     @item_posts = ItemPost.where("title like ?", "%#{params[:q]}%").limit(5)
     render partial: "search"
