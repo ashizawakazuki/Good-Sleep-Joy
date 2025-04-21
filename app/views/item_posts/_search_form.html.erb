@@ -2,12 +2,20 @@
 <!-- qはコントローラで作った検索の条件（ワード）が入ったオブジェクト -->
 <!-- urlは検索後に遷移するurl先（item_postコントローラのindexアクション）を指定 -->
 <!-- title_or_body_contはRansackで使えるようになったもので、「タイトル or 本文 に「◯◯」が含まれる投稿を探す」と言う意味で内部でSQLが作られ実行される -->
-<div class = "relative max-w-sm p-4">
+<div class = "relative max-w-sm">
   <%= search_form_for q, url: url do |f| %>
+
+    <!-- data-controller="autocomplete":ここをオートコンプリートの対象にするという合図 -->
     <div data-controller="autocomplete" data-autocomplete-url-value="/item_posts/search" role="combobox">
       <div class="max-w-xl flex flex-row items-center space-x-2">
+
+        <!-- data-autocomplete-url-value="/item_posts/search":入力されるたびに送信されるリクエスト先を指定 -->
         <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 rounded-lg p-2 border border-gray-300", placeholder: 'アイテム名、本文を検索' %>
+        
+        <!-- data: { autocomplete_target: 'input' },:このフォームに文字が入力されたらオートコンプリートを開始して！ とstimulusに伝えている-->
         <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
+
+        <!-- data-autocomplete-target="results": レスポンスで帰ってきた<li>タグを表示している-->
         <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
         <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
       </div>

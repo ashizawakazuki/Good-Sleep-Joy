@@ -1,5 +1,8 @@
+<!-- data-autocomplete-value=〜で、オートコンプリート時、サーバーに送るものをIDとして決めている-->
+<!-- data-autocomplete-label= 〜で、オートコンプリート時、ユーザーに表示するものをtitleとして決めている-->
+
 <% @item_posts.each do |item_post| %>
-  <li class="w-60 flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-sky-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-blue-200 dark:hover:text-gray-300" role="option" data-autocomplete-value="<%= item_post.id %>" data-autocomplete-label="<%= item_post.title %>">
+  <li class="w-60 flex items-center gap-x-3.5 py-2 px-2 rounded-md text-sm text-gray-800 hover:bg-sky-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-blue-200 dark:hover:text-gray-300" role="option" data-autocomplete-value="<%= item_post.id %>" data-autocomplete-label="<%= item_post.title %>">
     <%= item_post.title %>
   </li>
 <% end %>
