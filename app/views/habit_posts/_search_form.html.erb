@@ -14,8 +14,9 @@
           <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
         </div>
 
+        <!-- |tag| [tag.name, tag.id] で、tag.nameで表示するもの、tag.idはサーバーに送るもの-->
         <div class="flex flex-col my-2">
-          <%= f.label :select, "カテゴリー", class: "text-lg font-medium text-gray-700" %> 
+          <%= f.label :habit_tag_id_eq, "カテゴリー", class: "text-lg font-medium text-gray-700" %> 
           <%= f.select :habit_tag_id_eq, HabitTag.all.map { |tag| [tag.name, tag.id] }, { include_blank: "未選択" }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300" %>
         </div>
 
