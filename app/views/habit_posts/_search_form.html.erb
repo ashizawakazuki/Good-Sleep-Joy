@@ -4,12 +4,25 @@
 <!-- title_or_body_contはRansackで使えるようになったもので、「タイトル or 本文 に「◯◯」が含まれる投稿を探す」と言う意味で内部でSQLが作られ実行される -->
 <div class = "relative max-w-sm">
   <%= search_form_for q, url: url do |f| %>
+
     <div data-controller="autocomplete" data-autocomplete-url-value="/habit_posts/search" role="combobox">
-      <div class="max-w-xl flex flex-row items-center space-x-2">
-        <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 rounded-lg p-2 border border-gray-300", placeholder: 'アイテム名、本文を検索' %>
-        <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
-        <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
-        <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
+      <div class="max-w-xl flex flex-col md:flex-row items-center md:items-end justify-center space-x-2">
+        <div class="flex flex-col relative my-2">
+          <%= f.label :search_fiel, "習慣・本文", class: "text-lg font-medium text-gray-700" %>
+          <%= f.search_field :title_or_body_cont, data: { autocomplete_target: 'input' }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300", placeholder: 'キーワードを入力' %>
+          <%= f.hidden_field :title, data: { autocomplete_target: 'hidden' } %>
+          <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
+        </div>
+
+        <!-- |tag| [tag.name, tag.id] で、tag.nameで表示するもの、tag.idはサーバーに送るもの-->
+        <div class="flex flex-col my-2">
+          <%= f.label :habit_tag_id_eq, "カテゴリー", class: "text-lg font-medium text-gray-700" %> 
+          <%= f.select :habit_tag_id_eq, HabitTag.all.map { |tag| [tag.name, tag.id] }, { include_blank: "未選択" }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300" %>
+        </div>
+
+        <div class="my-2">
+          <%= f.submit '検索', class: "bg-gray-300 rounded-lg px-6 py-2 hover:bg-gray-500 shadow-xl" %>
+        </div>
       </div>
     </div>
   <% end %>
