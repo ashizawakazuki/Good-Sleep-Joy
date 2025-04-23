@@ -2,7 +2,12 @@
 Rails.application.routes.draw do
   get 'habit_posts/index'
   # 「devise_for」でログイン・登録に関するルートを1行で追加、その後ろで「Users::RegistrationsControllerを使用する」と宣言している
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  # 「passwards: 'users/passwords'」でパスワードリセット機能を実装
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    passwards: 'users/passwords' 
+  }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
   # プライバシーポリシー

@@ -91,6 +91,19 @@ Rails.application.configure do
   config.hosts << 'good-sleep-joy.com'
   config.hosts << "www.good-sleep-joy.com"
 
+  # パスワードリセット機能を実装。
+  config.action_mailer.default_url_options = { host: 'https://good-sleep-joy.com/' } 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'https://good-sleep-joy.com/',
+    user_name:            ENV['MAILER_SENDER'],
+    password:             ENV['MAILER_PASSWORD'],
+    authentication:       'plain',
+    enable_starttls_auto: true 
+  }
+
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
