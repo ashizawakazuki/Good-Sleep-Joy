@@ -90,6 +90,7 @@ Rails.application.configure do
   # 独自ドメインを取得し、下記のドメインでアクセスできるよう設定（wwwがついても可）
   config.hosts << 'good-sleep-joy.com'
   config.hosts << "www.good-sleep-joy.com"
+  config.hosts << 'good-sleep-joy.onrender.com'
 
   # パスワードリセット機能を実装。
   config.action_mailer.default_url_options = { host: 'https://good-sleep-joy.com/' } 
