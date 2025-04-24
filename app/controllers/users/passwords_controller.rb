@@ -7,9 +7,14 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # POST /resource/password
-  # def create
-  #   super
-  # end
+  # パスワード再設定時、メールアドレスに不備があればフラッシュメッセージを表示するために作成
+  def create
+    super do |resource|
+      if resource.errors.any? # もしエラーがあれば
+        flash[:alert] = I18n.t("devise.passwords.invalid") # カスタムメッセージを設定
+      end
+    end
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit

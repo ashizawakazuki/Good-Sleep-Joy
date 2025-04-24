@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # 「passwards: 'users/passwords'」でパスワードリセット機能を実装
   devise_for :users, controllers: { 
     registrations: 'users/registrations',
-    passwards: 'users/passwords' 
+    passwords: 'users/passwords' 
   }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
