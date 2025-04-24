@@ -22,9 +22,14 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # PUT /resource/password
-  # def update
-  #   super
-  # end
+  # パスワード再設定時、パスワードに不備があればフラッシュメッセージを表示するために作成
+  def update
+    super do |resource|
+      if resource.errors.any? # もしエラーがあれば
+        flash[:alert] = I18n.t("devise.passwords.password_invalid") # カスタムメッセージを設定
+      end
+    end
+  end
 
   # protected
 
