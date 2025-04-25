@@ -1,23 +1,25 @@
 <!-- 「後に確認（一箇所）」以外確認済み-->
 <!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
-<div class=" relative bg-gray-50 p-4 border rounded-lg shadow hover:shadow-lg">
-  <div class= "absolute top-4 left-4 flex flex-row gap-4">
-    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
-    <p class="text-md text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
-  </div>
-  <div class= "absolute top-4 right-4">
-    <p class="text-md text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
-  </div>
+<div class=" relative bg-gray-50 p-4 border rounded-lg shadow hover:border-gray-400 transition-300 cursor-pointer">
+  <%= link_to item_post_path(item_post) do %>
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
+      <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+      <p class="text-md text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+    </div>
+    <div class= "absolute top-4 right-4">
+      <p class="text-md text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
+    </div>
 
-  <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
-  <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
-    <% if item_post.item_post_image_url.present? %>
-      <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
-    <% else %>
-      <div class="w-72 h-48 bg-gray-200"></div>
-    <% end %>
-  </div>
-  <%= link_to item_post.title, item_post_path(item_post), class: 'text-2xl font-bold text-gray-800 hover:underline hover:bg-sky-100' %>
+    <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
+    <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
+      <% if item_post.item_post_image_url.present? %>
+        <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
+      <% else %>
+        <div class="w-72 h-48 bg-gray-200"></div>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to item_post.title, item_post_path(item_post), class: 'text-2xl font-bold text-gray-800 hover:bg-gray-300' %>
 
   <p class="text-sm text-gray-500 m-8"><%= item_post.body.truncate(100) %></p>
   <div class="absolute bottom-5 left-4 flex items-center gap-7">
