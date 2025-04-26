@@ -23,9 +23,11 @@
   <% end %>
 
   <div class="flex flex-col text-base my-4 text-center">
+      <%= button_to "Googleでログイン", user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+  </div>
+
+  <div class="flex flex-col text-base my-4 text-center">
     <p>アカウントを持っていない方はこちら</p>
     <%= link_to "新規登録", new_user_registration_path, class: "hover:underline text-sky-500" %>
   </div>
-
- 
 </div>
