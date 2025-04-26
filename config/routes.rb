@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get 'habit_posts/index'
   # 「devise_for」でログイン・登録に関するルートを1行で追加、その後ろで「Users::RegistrationsControllerを使用する」と宣言している
   # 「passwards: 'users/passwords'」でパスワードリセット機能を実装
+  # 「omniauth_callbacks: "users/omniauth_callbacks"」でGoogleログイン機能を実装
   devise_for :users, controllers: { 
     registrations: 'users/registrations',
-    passwords: 'users/passwords'
+    passwords: 'users/passwords',
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
