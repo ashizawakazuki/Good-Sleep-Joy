@@ -2,6 +2,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # deviseによるログイン等の機能をUserモデルに組み込んでいる
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
@@ -55,6 +56,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  # Googleログインしたユーザーをアプリに登録する(authにユーザー情報が入る)
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 
