@@ -53,11 +53,11 @@
       <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= habit_post.habit_tag.name %></p>
     </div>
   <% end %>
-  <div class="absolute bottom-4 right-12 text-lg">
+  <div class="absolute bottom-4 right-14 z-10">
+    <%= render 'habit_like_bottons', {habit_post: habit_post} %>
+  </div>
+  <div class="absolute bottom-4 right-3 text-lg">
     <i class="fa-regular fa-comment"></i>
     <%= habit_post.habit_comments.count %>
-  </div>
-  <div class="absolute bottom-4 right-3 z-10">
-    <%= render 'habit_like_bottons', {habit_post: habit_post} %>
   </div>
 </div>
