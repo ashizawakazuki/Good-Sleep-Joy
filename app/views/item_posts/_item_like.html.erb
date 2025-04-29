@@ -4,6 +4,6 @@
 <!--turbo_methodは<a>タグをHTTPメソッドつきのリクエストに変換するためのオプション-->
 <!--data: { turbo_method: :post }でPOSTメソッドを送るよう設定している（通常ではlink_toしか送れないから）-->
 
-<%= link_to item_post_item_likes_path(item_post.id), id: "like-button-for-item-post-#{item_post.id}", class: "text-xl", data: { turbo_method: :post } do %>
+<%= link_to item_post_item_likes_path(item_post.id), id: "like-button-for-item-post-#{item_post.id}", class: "text-lg", data: { turbo_method: :post } do %>
  <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
 <% end %>
