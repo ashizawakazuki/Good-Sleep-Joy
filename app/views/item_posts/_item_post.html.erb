@@ -52,11 +52,11 @@
       <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= item_post.item_tag.name %></p>
     </div>
   <% end %>
-  <div class="absolute bottom-4 right-12 text-lg">
+  <div class="absolute bottom-4 right-14 z-10">
+    <%= render 'item_like_bottons', {item_post: item_post} %>
+  </div>
+  <div class="absolute bottom-4 right-3 text-lg">
     <i class="fa-regular fa-comment"></i>
     <%= item_post.item_comments.count %>
-  </div>
-  <div class="absolute bottom-4 right-3 z-10">
-    <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
 </div>
