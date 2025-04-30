@@ -1,59 +1,64 @@
 <!-- 復習済み -->
 <header class="bg-sky-100 p-2 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
   <!-- 「justify-between」で子要素を横方向の中央揃え、「items-center」で子要素を縦方向の中央揃えにする（それ以降は大きさに応じて変更している） --> 
-  <nav class="relative container mx-auto flex justify-between items-center md:px-14 lg:px-24">
-    <div class ='btn btn-ghost text-base md:text-2xl lg:text-3xl font-bold'>
+  <nav class="relative container mx-auto flex justify-between items-center px-4">
+    <div class ='btn btn-ghost h-20 text-base md:text-2xl lg:text-3xl font-bold'>
       <%= link_to 'Good-Sleep-Joy', root_path %>
     </div>
 
     <!-- md(768px)以上の時は表示される -->
-    <div class="flex flex-row space-x-1 hidden md:block">
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <div class="hidden md:flex flex-row items-center">
         <!-- daisyUIを使用しdropdownでdropdown_hoberでホバー時にdropdown-bottom（下）に表示。dropdown-contentで表示される内容を決めている--> 
         <div class="dropdown dropdown-hover dropdown-bottom">
-          <div class="btn btn-ghost btn-lg">
-            <p class = "md:text-base lg:text-xl">投稿一覧</p>
+          <div class="btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-3 items-center">
+            <i class="fa-solid fa-crown"></i>
+            <p class = "md:text-sm lg:text-xl">人気投稿</p>
             <ul class="dropdown-content z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
               <li>
-                <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+                <%= link_to 'アイテム', ranking_item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
               <li>
-                <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
-              </li>
-              <li>
-                <%= link_to ranking_item_posts_path do %>
-                  <p class ="text-gray-700 hover:bg-gray-300" >人気の投稿 <br> (アイテム)</p>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to ranking_habit_posts_path do %>
-                  <p class ="text-gray-700 hover:bg-gray-300" >人気の投稿 <br> (習慣)</p>
-                <% end %>
+                <%= link_to '習慣', ranking_habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="dropdown dropdown-hover dropdown-bottom">
-          <div class="btn btn-ghost btn-lg">
-            <p class = "md:text-base lg:text-xl">投稿する</p>
+          <div class="btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-3 items-center">
+            <i class="fa-solid fa-list"></i>
+            <p class = "md:text-sm lg:text-xl">投稿一覧</p>
             <ul class="dropdown-content z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
-              <li >
-                <%= link_to 'アイテム投稿', new_item_post_path, class: "text-gray-700 hover:bg-gray-300" %>
+              <li>
+                <%= link_to 'アイテム', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
               <li>
-                <%= link_to '習慣投稿', new_habit_post_path, class: "text-gray-700 hover:bg-gray-300" %>
+                <%= link_to '習慣', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dropdown dropdown-hover dropdown-bottom">
+          <div class="btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-3 items-center">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p class = "md:text-sm lg:text-xl">投稿する</p>
+            <ul class="dropdown-content z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
+              <li >
+                <%= link_to 'アイテム', new_item_post_path, class: "text-gray-700 hover:bg-gray-300" %>
+              </li>
+              <li>
+                <%= link_to '習慣', new_habit_post_path, class: "text-gray-700 hover:bg-gray-300" %>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="dropdown dropdown-hover dropdown-bottom ">
-          <div class="btn btn-ghost btn-lg">
-            <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
-              <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-8 h-8 rounded-full shadow-lg border border-gray-200" %>
-              <%= current_user.decorate.user_name %>
-            </div>
+          <div class=" btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-1 items-center"> 
+            <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-7 h-7 rounded-full shadow-lg border border-gray-200" %>
+            <p class="md:text-sm lg:text-xl"><%= current_user.decorate.user_name %></p>
             <ul class="dropdown-content z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
               <li class ="flex flex-row gap-2 items-center">
                 <i class="fa-solid fa-user"></i>
@@ -70,29 +75,32 @@
             </ul>
           </div>
         </div>
-
-      <% else %>
-        <div class="btn btn-ghost btn-lg">
-          <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl"> 
-            <i class="fa-solid fa-user"></i>
-            <%= link_to '新規登録', new_user_registration_path %>
-          </div>
+      </div>
+    <% else %>
+    <div class="flex flex-row items-center">
+      <div class="btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-3 items-center">
+        <div class="flex flex-col gap-2 items-center text-xs md:text-sm lg:text-xl"> 
+          <i class="fa-solid fa-user"></i>
+          <%= link_to '新規登録', new_user_registration_path %>
         </div>
-        <div class="btn btn-ghost btn-lg">
-          <div class="flex flex-col gap-2 items-center text-xs md:text-lg lg:text-xl">  
-            <i class="fa-solid fa-right-to-bracket"></i>
-            <%= link_to 'ログイン',  new_user_session_path %>
-          </div>
+      </div>
+      <div class="btn btn-ghost btn-lg w-22 h-20 flex flex-col gap-3 items-center">
+        <div class="flex flex-col gap-2 items-center text-xs md:text-sm lg:text-xl">  
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <%= link_to 'ログイン',  new_user_session_path %>
         </div>
-      <% end %>
-    </div>
+      </div>
+      </div>
+    <% end %>
 
     <!-- md(768px)以上の時はこのハンバーガーメニューがhidden（隠れる）する -->
     <!-- バツマークはhiddenであらかじめ非表示にしてある -->
-    <div class="md:hidden px-4 text-lg" >
-      <i id="hamburger" class="fa-solid fa-bars"></i>
-      <i id="xmark" class="fa-solid fa-xmark hidden"></i>
-    </div>
+    <% if user_signed_in? %>
+      <div class="md:hidden px-4 text-lg" >
+        <i id="hamburger" class="fa-solid fa-bars"></i>
+        <i id="xmark" class="fa-solid fa-xmark hidden"></i>
+      </div>
+    <% end %>
 
     <!-- デフォルトで非表示、ハンバーガーメニュー表示時にクリックすると表示される(absolute right-0 top-fullrelativeで指定した親の右下に表示する) -->
     <% if user_signed_in? %>
@@ -123,34 +131,15 @@
         </li>
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-crown"></i>
-          <%= link_to '人気の投稿(アイテム)', ranking_item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+          <%= link_to '人気投稿(アイテム)', ranking_item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
         </li>
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-crown"></i>
-          <%= link_to '人気の投稿(習慣)', ranking_habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
+          <%= link_to '人気投稿(習慣)', ranking_habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
         </li>
         <li class ="flex flex-row gap-2 items-center">
           <i class="fa-solid fa-right-from-bracket"></i>
           <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'ログアウトしますか？' }, class: "text-gray-700 hover:bg-sky-100" %>
-        </li>
-      </ul>
-      <% else %>
-        <ul id = "hamburger-content" class="hidden absolute right-0 top-full z-20 bg-white border border-gray-300 p-4 shadow rounded-md space-y-4 text-sm">
-        <li class ="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-user"></i>
-          <%= link_to '新規登録', new_user_registration_path, class: "text-gray-700 hover:bg-gray-300" %>
-        </li>
-        <li class ="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-right-to-bracket"></i>
-          <%= link_to 'ログイン', new_user_session_path, class: "text-gray-700 hover:bg-gray-300" %>
-        </li>
-        <li class ="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-list"></i>
-          <%= link_to 'アイテム一覧', item_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
-        </li>
-        <li class ="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-list"></i>
-          <%= link_to '習慣一覧', habit_posts_path, class: "text-gray-700 hover:bg-gray-300" %>
         </li>
       </ul>
     <% end %>
