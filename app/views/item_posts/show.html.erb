@@ -49,6 +49,13 @@
       <% end %>
     </div>
 
+    <!-- タグ -->
+    <% if @item_post.item_tag.present? %>
+      <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 ">
+        <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= @item_post.item_tag.name %></p>
+      </div>
+    <% end %>
+
     <!-- Xへのシェア -->
     <!-- 「?url=」で表示するためのURLを設定、「&text=」でデフォルトで表示する本文を設定、&hashtags=でデフォルトで表示するハッシュタグを設定 -->
     <!-- 「target: "_blank"」で新しいタブで開く、「 rel: "noopener noreferrer"」でrel属性に、”noopener”と、” noreferrer”を設定（ノーション参考）, 「title:」でカーソル当てた時に表示する文字設定  -->
