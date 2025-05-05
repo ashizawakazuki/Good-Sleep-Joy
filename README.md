@@ -110,5 +110,5 @@ https://www.figma.com/design/BUc4G6KITT0L4Y69CnmWpn/Good-Sleep-Joy?node-id=0-1&n
 
 
 ■ ER図
-
-https://gyazo.com/10925432167dee121ee29612780e6bc5
+https://dbdiagram.io/d/Good-Sleep-Joy-6818365b1ca52373f56ee975
+![ER図](ER.png)
