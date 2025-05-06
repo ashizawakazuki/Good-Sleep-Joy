@@ -2,9 +2,9 @@
 <header class="bg-sky-100 p-2 h-auto w-full">     <!-- 背景を水色(100)、pでパディング（要素の内側）の全方向に4の余白 -->
   <!-- 「justify-between」で子要素を横方向の中央揃え、「items-center」で子要素を縦方向の中央揃えにする（それ以降は大きさに応じて変更している） --> 
   <nav class="relative container mx-auto flex justify-between items-center px-4">
-    <div class ='btn btn-ghost h-20 text-base md:text-2xl lg:text-3xl font-bold'>
-      <%= link_to 'Good-Sleep-Joy', root_path %>
-    </div>
+    <%= link_to root_path do %>
+      <%= image_tag "logo.svg", class: "w-40 md:w-56 lg:w-64 h-auto" %>
+    <% end %>
 
     <!-- md(768px)以上の時は表示される -->
     <% if user_signed_in? %>
