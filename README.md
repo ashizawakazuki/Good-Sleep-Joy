@@ -131,7 +131,7 @@
 | インフラ | Render・AmazonS3 |
 | API | Google OAuth2（OmniAuthを使用） |
 | バージョン管理 | Git・GitHub |
-| その他 | devise（認証）・CarrierWave（画像アップロード・<br>kaminari（ページネーション）・ransack（検索）|
+| その他 | devise（認証）・CarrierWave（画像アップロード・kaminari（ページネーション）・ransack（検索）|
 
 
 ## 画面遷移図
