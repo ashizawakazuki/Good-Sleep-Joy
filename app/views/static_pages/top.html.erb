@@ -1,25 +1,23 @@
 <!-- bg-cover:背景画像を要素いっぱいに広げる、bg-center:背景画像を中央に配置 h-screen:ビューポート（webサイトの表示領域）いっぱいの高さに設定-->
 <!-- flex flex-col:で縦並び justify-center:縦方向で中央揃え items-center:横方向で中央揃え-->
 
-<div class="bg-cover bg-center h-screen flex flex-col justify-center items-center text-white" 
+<div class="bg-cover bg-center py-20 flex flex-col justify-center items-center text-white" 
           style="background-image: url(<%= asset_path('top.svg') %>);">
   
   <!-- メインコンテンツ（テキスト・ボタン） -->
   <div class="z-10 text-center">
-    <h1 class="mb-6">
+    <div class="mb-6">
       <%= image_tag "good-sleep-joy.svg", alt:"Good-Sleep-Joy" %>
-    </h1>
-    <p class="text-sm sm:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
+    </div>
+    <p class="text-xs sm:text-sm md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
       人生の約3分の1は睡眠で占められています。
     </p>
-    <p class="text-sm sm:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-xs sm:text-sm md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
       質の高い睡眠を取ることで、その時間以外も充実できます。<br>
       人生の本番は『寝ること』と言っても過言ではありません。<br>
     </p>
-    <p class="text-sm sm:text-2xl max-w-2xl mx-auto leading-relaxed">
-      『Good-Sleep-Joy』は<br>
-    </p>
-    <p class="text-sm sm:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-xs sm:text-sm md:text-xl lg:text-2xl mb-6 max-w-2xl mx-auto leading-relaxed">
+      『Good Sleep Joy』は<br>
       ユーザー同士で睡眠に関する情報を共有し、<br>
       毎日ポジティブな気持ちで寝るための機能を備えています。<br>
     </p>
@@ -187,13 +185,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
