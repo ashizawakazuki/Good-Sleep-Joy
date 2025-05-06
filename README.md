@@ -1,7 +1,7 @@
 # Good Sleep Joy
 ### URL：[Good Sleep Joy](https://good-sleep-joy.com/)<br>
 
-[![アイテム投稿画面](Good-Sleep-Joy.png)]
+![アイテム投稿画面](Good-Sleep-Joy.png)
 ## 目次
 - [サービス概要](#サービス概要)
 - [このサービスへの思い・作りたい理由](#このサービスへの思い・作りたい理由)
