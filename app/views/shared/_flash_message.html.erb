@@ -1,6 +1,4 @@
 <% if notice %>
-  <!--Tailwind使用してフラッシュメッセージを編集（成功時はbg-green-100で緑、失敗時はデフォルトでグレー）-->
-  <!--Tailwind使用しなくても、デフォルトで緑で表示する方法あるか調べる-->
   <p class="notice bg-green-100 text-base md:text-xl h-16 flex items-center justify-center p-8 "><%= notice %></p>
 <% elsif alert %>
   <p class="alert bg-red-100 text-base md:text-xl h-16 flex items-center justify-center p-8 "><%= alert %></p>
