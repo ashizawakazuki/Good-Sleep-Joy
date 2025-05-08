@@ -1,5 +1,3 @@
-<!-- 「後に確認（一箇所）」以外確認済み-->
-<!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
 <div class=" relative bg-gray-50 p-4 border rounded-lg shadow hover:border-gray-400 transition-300 cursor-pointer">
   <%= link_to item_post_path(item_post) do %>
     <div class= "absolute top-4 left-4 flex flex-row gap-4">
@@ -32,29 +30,24 @@
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
       </div>
-        <!-- 後に確認 -->
-    <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
       <div>
-      <%# 「(item_post)」が必要な理由 %>
-      <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
-      <%# indexファイルで render @item_posts %>
-      <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
-      <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
-      <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>  
         <%= link_to item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
           <i class="fa-solid fa-trash align-middle"></i>
         <% end %>
       </div>
     <% end %>
   </div>
+
   <% if item_post.item_tag.present? %>
     <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 ">
       <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= item_post.item_tag.name %></p>
     </div>
   <% end %>
+
   <div class="absolute bottom-4 right-14 z-10">
     <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
+
   <div class="absolute bottom-4 right-3 text-lg">
     <i class="fa-regular fa-comment"></i>
     <%= item_post.item_comments.count %>
