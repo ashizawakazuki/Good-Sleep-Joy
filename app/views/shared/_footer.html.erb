@@ -1,20 +1,12 @@
-<!-- 復習済み -->
-<!--「w-full」で要素の幅を画面100%、「text-center」でフッター内のテキストを中央揃え、-->
-<!--「p-4」上下左右に16pxの余白を加えてゆとりを持たせる、「fixed」で要素を固定配置、「bottom-0」で最下部に-->
 <footer class="bg-sky-100 w-screen p-4 text-sm text-center">
 
-  <!--Tailwind によるスタイリングで,要素間の間隔を設定 -->
   <nav class="space-x-8">
-
-    <!-- 「hover」でカーソルを合わせた時に適用されるスタイルを指定する機能 -->
-    <!-- text-blue-900で青色に、「link-hover」で下線が引かれる -->
     <%= link_to "利用規約", terms_path, class: "hover:text-blue-900 link-hover" %>           
     <%= link_to "プライバシーポリシー", privacy_policy_path , class: "hover:text-blue-900 link-hover" %>
     <%= link_to "お問い合わせ", "https://docs.google.com/forms/d/e/1FAIpQLSf7xYOWDdqPE0yvPfbwO2zSPYPWLvKetGIMRvSMXCfSThBYoQ/viewform?usp=sf_link", class: "hover:text-blue-900 link-hover" %>
   </nav>
 
-    <!-- <aside>では本文ではない補足情報を囲むタグ -->
-    
+  <!-- <aside>では本文ではない補足情報を囲むタグ -->
   <aside>
     <p>© <%= Time.current.year %> Good Sleep Joy</p>
   </aside>
