@@ -10,9 +10,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     
-    <!-- 静的ogp実装時に記載（helperに書いたdefault_meta_tagsを持って来れる） -->
-    <%= display_meta_tags(default_meta_tags) %>
-
+    <!-- 動的OGPを表示 -->
+    <%= show_meta_tags %>
+  
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z13GST74K"></script>
     <script>
