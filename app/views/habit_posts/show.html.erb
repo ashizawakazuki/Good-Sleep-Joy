@@ -1,3 +1,4 @@
+<% assign_meta_tags title: @habit_post.title, image: @habit_post.habit_post_image.present? ? image_url(@habit_post.habit_post_image) : image_url('ogp.png') %>
 <% content_for(:title, '習慣投稿詳細画面') %>
 <div class="max-w-lg mx-auto p-4">
   <div class="relative p-4 my-4 border rounded-lg shadow">
@@ -45,7 +46,7 @@
     <!-- 「?url=」で表示するためのURLを設定、「&text=」でデフォルトで表示する本文を設定、&hashtags=でデフォルトで表示するハッシュタグを設定 -->
     <!-- 「target: "_blank"」で新しいタブで開く、「 rel: "noopener noreferrer"」でrel属性に、”noopener”と、” noreferrer”を設定（ノーション参考）, 「title:」でカーソル当てた時に表示する文字設定  -->
     <div class = "absolute bottom-5 right-5">
-    <%= link_to "https://twitter.com/share?url=#{CGI.escape(habit_post_url(@habit_post))}&text=【私の睡眠アイテムを紹介します！】%0a#{CGI.escape(@habit_post.title)}%0a#{CGI.escape(@habit_post.body)}&hashtags=GoodSleepJoy", target: "_blank", rel: "noopener noreferrer", title: "Xでシェアする" do %>
+    <%= link_to "https://twitter.com/share?url=#{CGI.escape(habit_post_url(@habit_post))}%0a&text=【私の就寝前の習慣を紹介します！】%0a#{CGI.escape(@habit_post.title)}%0a#{CGI.escape(@habit_post.body)}%0a&hashtags=GoodSleepJoy", target: "_blank", rel: "noopener noreferrer", title: "Xでシェアする" do %>
         <%= image_tag("x-logo.png",alt:"Xでシェア", class:"w-5 h-5 hover:opacity-50") %>
       <% end %>
     </div>
