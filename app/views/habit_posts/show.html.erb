@@ -1,5 +1,3 @@
-<!-- 要確認(1箇所) -->
-<!-- showコントローラからきたインスタンス変数@habit_postには、findで取り出したそれぞれの投稿のレコードが入ってる --> 
 <% content_for(:title, '習慣投稿詳細画面') %>
 <div class="max-w-lg mx-auto p-4">
   <div class="relative p-4 my-4 border rounded-lg shadow">
@@ -14,33 +12,22 @@
     </div>
     <h1 class="text-xl font-bold my-20 text-center">習慣投稿詳細画面</h1> 
 
-    <!--「flex-col」で縦方向に要素を並べて、gapで要素間の隙間を6にしている-->
-    <!-- 画像 -->
     <div class ="flex flex-col gap-6">
       <% if @habit_post.habit_post_image.present? %>
         <%= image_tag @habit_post.habit_post_image, alt: "Habit post image" %>
       <% end %>
     </div>
 
-    <!-- 文章 -->
     <div class="mb-20 text-center"> 
-      <!-- 投稿タイトル -->
       <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= @habit_post.title %></h1>
-
-      <!-- 投稿本文 -->
       <p class="text-lg text-gray-600 mb-6"><%= @habit_post.body %></p>
     </div>
 
     <div class = "flex flex-row gap-7" >
-      <!-- 現在ログインしているユーザーと投稿しているユーザーが等しい時、表示される -->
       <% if current_user&.own?(@habit_post) %> 
-        <!-- 投稿編集 -->
         <%= link_to edit_habit_post_path, data: { turbo: false } do %>
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
-
-        <!-- 削除（後に確認） -->
-        <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
         <%= link_to habit_post_path(@habit_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
           <i class="fa-solid fa-trash align-middle"></i>
         <% end %>
