@@ -9,7 +9,7 @@
     </div>
 
     <!-- 選択した画像がある場合には表示 -->
-    <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
+    <div class="flex justify-center mt-12">
       <% if habit_post.habit_post_image.present? %>
         <%= image_tag habit_post.habit_post_image, class: "w-72 h-48 object-cover", alt: "Habit post image"%><!-- object-coverで余白を埋める-->
       <% else %>
