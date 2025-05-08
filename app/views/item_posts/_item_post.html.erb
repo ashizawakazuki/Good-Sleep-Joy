@@ -9,7 +9,7 @@
     </div>
 
     <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
-    <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
+    <div class="flex justify-center mt-12">
       <% if item_post.item_post_image_url.present? %>
         <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
       <% else %>
@@ -21,9 +21,6 @@
 
   <p class="text-sm text-gray-500 m-8"><%= item_post.body.truncate(100) %></p>
   <div class="absolute bottom-5 left-4 flex items-center gap-6">
-    <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
-    <!-- Userモデルで定義した「own?」を使用し、(item_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
-    <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
     <% if current_user && current_user.own?(item_post) %>  
       <div>
         <%= link_to edit_item_post_path(item_post), data: { turbo: false } do %>
