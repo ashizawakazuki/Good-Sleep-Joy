@@ -5,7 +5,6 @@
     <%= render 'search_form', q: @q, url: habit_posts_path %>
   </div>
   <div class="my-6">
-    <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
     <%= link_to '投稿する', new_habit_post_path, class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl" %>
   </div>
 
