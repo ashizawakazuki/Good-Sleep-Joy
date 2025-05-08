@@ -8,20 +8,20 @@ class ItemPost < ApplicationRecord
   has_many :item_likes, dependent: :destroy
   has_many :item_comments, dependent: :destroy
 
-  # どのカラムを検索対象にして許可するかを設定している
+  # どのカラムを検索対象にして許可するかを設定
   def self.ransackable_attributes(auth_object = nil)
     ["title","body","item_tag_id"]
   end
   
-  # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定している（今回はなし
+  # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定
   def self.ransackable_associations(auth_object = nil)
     []
   end
 
-  # ItemPostImageUploaderは「画像管理の機能」(app/uplodersの中にファイルあり）、
+  # ItemPostImageUploaderは「画像管理の機能」(app/uplodersの中にファイルあり）
   # item_post_imageはカラム名で「画像を置く場所」
-  #ここでのマウントとは「CarrierWaveのアップロード機能をモデルのカラムに関連付け、カラムに特別な機能を付与する操作]
-  #下記を書くことで、CarrierWaveでアップロードされた画像のURLを取得することができるようになる
+  # ここでのマウントとは「CarrierWaveのアップロード機能をモデルのカラムに関連付け、カラムに特別な機能を付与する操作]
+  # CarrierWaveでアップロードされた画像のURLを取得することができるようになる
   mount_uploader :item_post_image, ItemPostImageUploader
 end
  
