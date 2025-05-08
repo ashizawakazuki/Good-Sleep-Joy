@@ -21,7 +21,6 @@
              <p class="text-xs sm:text-lg">起床時間</p>
             </th>
             <% if current_user.wake_up_time.present? %>
-              <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
               <td class="text-xs sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
             <% else %>
               <td class="text-xs sm:text-lg">未設定</td>
@@ -34,7 +33,6 @@
               <p class="text-xs sm:text-lg">就寝時間</p>
             </th>
             <% if current_user.bed_time.present? %>
-            <!-- strftime は、日時を好きな形式の文字列に変換するメソッド -->
               <td class="text-xs sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
             <% else %>
               <td class="text-xs sm:text-lg">未設定</td>
@@ -50,8 +48,6 @@
             <% if current_user.wake_up_time.present? && current_user.bed_time.present? %>
               <% wake_up_time = current_user.wake_up_time.hour * 60 + current_user.wake_up_time.min %> 
               <% bed_time = current_user.bed_time.hour * 60 + current_user.bed_time.min %>
-              <!-- 上記の二行でTimesオブジェクトの時間の箇所を「.hour」、分の箇所を「.min」で抽出し、時間は分に揃えて足している  -->
-              <!-- 以下で分に揃えた前提で場合分け。timesオブジェクトではないため('%H:%M') は使えないため、最後formatメソッドを使って、表示方法を起床時間等と揃える  -->
               <% if wake_up_time < bed_time %>
                 <% sleep_min = (24 * 60 - bed_time) + wake_up_time %>
               <% else %>
@@ -90,9 +86,6 @@
         <% @diaries.each do |diary| %>
           <tr class="odd:bg-white even:bg-gray-100">
             <td class="px-6"><%= diary.date.strftime("%y/%m/%d") %></td>
-
-            <!--resources :diaries, only: [:show]によって、diary_path(diary) は 自動的に diary.id を利用して "/diaries/:id" というURLを生成します。 -->
-            <!-- diary_path(diary.id) と書かなくても、Rails は diary オブジェクトから id を自動的に抽出する  -->
             <td class="px-6"><%= link_to diary.title, diary_path(diary) ,class: "text-blue-500 underline" %></td>
           </tr>
         <% end %>
