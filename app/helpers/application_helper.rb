@@ -10,8 +10,8 @@ module ApplicationHelper
   end
 
   def assign_meta_tags(options = {})
-    site = options[:site] || 'Good-Sleep-Joy'
-    title = options[:title] || 'Good-Sleep-Joy（睡眠サポートアプリ）'
+    site = options[:site] || 'Good Sleep Joy'
+    title = options[:title] || 'Good Sleep Joy（睡眠サポートアプリ）'
     description = options[:description] || '質の高い睡眠をとるためのアイテムや習慣を共有できます。'
     image = options[:image].presence || image_url('ogp.png') # デフォルト画像
 
