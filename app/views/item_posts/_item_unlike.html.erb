@@ -1,16 +1,4 @@
-<!--このファイルはすでにいいねされてる状態の時に表示するファイルだから、黄色にしている-->
-<!--item_post_item_like_path(item_post)でどのURLにリクエストを送るのかを決めている-->
-<!--これによって、/item_posts/:item_post_id/item_like/:id を受けて、ItemLikesControllerのdestroyアクションが発動される-->
-<!--idは各投稿ごとに一意の名前をつけ、後にJavaScriptで操作するため？-->
-<!--turbo_methodは<a>タグをHTTPメソッドつきのリクエストに変換するためのオプション-->
-<!--data: { turbo_method: :delete }でDELETEメソッドを送るよう設定している（通常ではlink_toしか送れないから）-->
-
-<!-- 現在ログインしているユーザーがいいねしている習慣投稿の、左側の「habit_post_id」カラムが、右側の「item_post.id」（以下のような流れ）をitem_likeに代入している-->
-<!-- item_postは「index.html.erb」→「_item_post.html.erb」→「_item_like_bottons_html.erb」→「_item_unlike.html.erb」（イマココ）ときている-->
 <% item_like = current_user.item_likes.find_by(item_post_id: item_post.id) %>
-
-<!-- ネストされたルーティングで「/item_posts/:item_post_id/item_likes/:id」というURLを作っている-->
-<!-- 下記の(item_post.id, item_like)で、上記URLの「:item_post_id」と「:id」のidを指定している-->
 
 <%= link_to item_post_item_like_path(item_post.id,item_like), id: "unlike-button-for-item-post-#{item_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
   <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
