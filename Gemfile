@@ -73,6 +73,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'omniauth-rails_csrf_protection'
 
+gem 'mini_magick'
+
 #dotenv-rails を 開発環境 と テスト環境 でのみ有効にする（本番環境では不要なので有効にしない（セキュリティ対策）。）
 gem 'dotenv-rails', groups: [:development, :test]
 
