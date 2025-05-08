@@ -1,7 +1,3 @@
-<!-- search_form_forは、Ransackで使えるようになったフォーム -->
-<!-- qはコントローラで作った検索の条件（ワード）が入ったオブジェクト -->
-<!-- urlは検索後に遷移するurl先（item_postコントローラのindexアクション）を指定 -->
-<!-- title_or_body_contはRansackで使えるようになったもので、「タイトル or 本文 に「◯◯」が含まれる投稿を探す」と言う意味で内部でSQLが作られ実行される -->
 <div class = "relative max-w-sm">
   <%= search_form_for q, url: url do |f| %>
 
@@ -14,7 +10,6 @@
           <ul class="list-group absolute top-full z-10 bg-base-200 hover:bg-base-300 w-60 md:text-sm" data-autocomplete-target="results"></ul>
         </div>
 
-        <!-- |tag| [tag.name, tag.id] で、tag.nameで表示するもの、tag.idはサーバーに送るもの-->
         <div class="flex flex-col my-2">
           <%= f.label :habit_tag_id_eq, "カテゴリー", class: "text-lg font-medium text-gray-700" %> 
           <%= f.select :habit_tag_id_eq, HabitTag.all.map { |tag| [tag.name, tag.id] }, { include_blank: "未選択" }, class: "w-80 md:w-60 rounded-lg p-2 border border-gray-300" %>

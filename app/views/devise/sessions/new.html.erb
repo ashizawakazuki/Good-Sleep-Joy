@@ -25,12 +25,11 @@
 
   <%= form_with url: user_session_path, method: :post, scope: :user do |f| %>
     
-    <div class="flex flex-col mb-6"> <!-- 以下、form_withで使えるようになったもの -->
+    <div class="flex flex-col mb-6">
       <%= f.label :email, "メールアドレス", class: "text-lg font-medium text-gray-700 mb-2" %>  
       <%= f.email_field :email, autofocus: true, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
     </div>
   
-    <!--「flex-col」でラベルとフォームを縦列に並べる（これを指定しないと横になる）-->
     <div class="flex flex-col mb-6">     
       <%= f.label :password, "パスワード", class: "my-10 text-lg font-medium text-gray-700 mb-2" %>  
       <%= f.password_field :password, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
@@ -39,7 +38,6 @@
 
 
     <div class="text-center my-20"> 
-      <!-- 送信ボタンのデザイン -->
       <%= f.submit "ログイン", class: "bg-sky-100 rounded-2xl px-6 py-2 hover:bg-sky-300 shadow-xl" %> 
     </div>
   <% end %>

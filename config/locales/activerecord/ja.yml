@@ -1,13 +1,13 @@
 ja:
-  activerecord: #モデルに関する翻訳を意味している
-    attributes: #カラムに関する翻訳を意味している
-      user: #モデル名
-        name: '名前' #カラム名
+  activerecord:
+    attributes:
+      user:
+        name: '名前'
         email: 'メールアドレス'
       item_post:
         title: 'アイテム名'
         body: '本文'
-        item_tag: "カテゴリー" # 関連先のモデルのカラムを使いたい時はモデルの名前を書く（item_tag_idではない）
+        item_tag: "カテゴリー"
       habit_post:
         title: '習慣'
         body: '本文'
@@ -21,7 +21,7 @@ ja:
         habit_post:
           attributes:
             habit_post_image:
-              blank: "を選択してください" #blankはエラーメッセージ（入力してください）の部分を変更するキー
+              blank: "を選択してください"
       
       
         

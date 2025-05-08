@@ -1,61 +1,18 @@
-<!-- 確認済み -->
-<!-- 「container」でそれぞれの投稿を中央揃え（これがないと投稿の幅が伸びる）、「mx-auto」で両サイドに余白を生み出す（こればないと左寄りになる） -->
 <% content_for(:title, 'アイテム投稿一覧') %>
 <div class="container mx-auto my-8 text-center p-4">
   <h1 class="text-3xl font-bold mb-6 ">アイテム投稿一覧</h1>
-  <!-- パーシャル先では「@q」をq、「item_posts_path」をurlとして使う -->
   <div class = "flex justify-center my-12">
     <%= render 'search_form', q: @q, url: item_posts_path %>
   </div>
   <div class="my-6">
-    <!-- コントローラの「before_action :authenticate_user!」で、未ログイン時はログイン画面遷移している -->
     <%= link_to '投稿する', new_item_post_path, class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl" %>
   </div>
 
-  <!-- 投稿がある場合、「grid」を使用して、sm(640px)以上は2列(カラム)、lg(1024px)以上は3列(カラム)、それ以外(幅が狭い時)は1列(カラム) -->
   <% if @item_posts.present? %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-    <%# ①collectionオプションを使わずに記述した場合 %>
-    <%# @item_posts.each do |item_post| %>
-      <%# render 'item_post', locals: { item_post: item_post } %>
-    <%# end %>
-    <%# 
-       locals: { item_post: item_post } の右側の item_post は、each文で指定した |item_post| のこと。
-       左側の item_post は、パーシャル（_item_post.html.erb）で使う変数名を指している。
-       つまり、@item_posts に含まれる複数のデータを一つずつ |item_post| に取り出し、
-       item_post としてパーシャルに渡し、パーシャル内では item_post として扱うことを意味する。
-    %>
-
-   <%# ↓ collectionオプションを使う場合 %>
-
-   <%# ②collectionオプションを使って記述した場合 %>
-   <%# render partial: 'item_post', collection: @item_posts %>
-   <%# 
-      collectionオプションを使うと、@item_posts の中にある複数のデータをまとめて処理できる。
-      「partial:」と明記する必要がある。
-    %>
-
-    <%# ↓ さらに省略する場合 %>
-
-    <%# ③collectionオプションを使った上で、さらに省略した場合 %>
-    <%# render @item_posts %>
-    <%# 
-       以下の条件を満たす場合に省略可能：
-       1. パーシャルが、views/item_postsのディレクトリ内にある。（インスタンス変数（この場合 item_posts）に基づき、views/インスタンス変数名/ を探す）
-       2. パーシャルのファイル名が、item_posts の単数形である (_item_post.html.erb)。
-       3. パーシャル内で使用する変数が item_posts の単数形である (item_post)。
-    %>
-   <%# 
-       一言で言うと、「@item_posts の中の複数の投稿データを1つずつ対応するパーシャルに渡して
-       データの数だけ表示する」という意味。
-    %>
-
       <%= render @item_posts %>
-
     </div>
 
-    <!-- kaminariを導入して使えるようになったメソッド（ページ切り替えリンクを作成する） -->
     <%= paginate @item_posts %>
   <% else %>
     <p class="text-gray-500 text-center">投稿がまだありません。</p>

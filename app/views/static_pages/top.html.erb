@@ -1,10 +1,6 @@
-<!-- bg-cover:背景画像を要素いっぱいに広げる、bg-center:背景画像を中央に配置 h-screen:ビューポート（webサイトの表示領域）いっぱいの高さに設定-->
-<!-- flex flex-col:で縦並び justify-center:縦方向で中央揃え items-center:横方向で中央揃え-->
-
 <div class="bg-cover bg-center py-20 flex flex-col justify-center items-center text-white" 
           style="background-image: url(<%= asset_path('top.svg') %>);">
   
-  <!-- メインコンテンツ（テキスト・ボタン） -->
   <div class="z-10 text-center">
     <div class="mb-6">
       <%= image_tag "good-sleep-joy.svg", alt:"Good-Sleep-Joy" %>
@@ -24,10 +20,6 @@
   </div>
 </div>
 
-
-
-
-<!-- w-5/6で要素の幅を5/6に設定、mx-autoで中央揃え、max-w-screen-xlで要素の幅が1280px以上になると固定される-->
 <div class="w-5/6 mx-auto max-w-screen-xl">
 <!-- 機能の説明 -->
   <div class="mt-16 flex flex-col justify-center items-center">
@@ -36,7 +28,6 @@
       <i class="fa-solid fa-angles-down"></i>
     </h2>
   </div>
-
 
   <div class="container mx-auto w-full text-black">
     <div class="border-4 rounded-lg p-4 my-16">

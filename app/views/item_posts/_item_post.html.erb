@@ -1,5 +1,3 @@
-<!-- 「後に確認（一箇所）」以外確認済み-->
-<!-- 「border」で境界線、「rounded-lg」で角を丸める、「shadow」で影をつける、「hover:」でカーソルが乗ったときの動きを書く。-->
 <div class=" relative bg-gray-50 p-4 border rounded-lg shadow hover:border-gray-400 transition-300 cursor-pointer">
   <%= link_to item_post_path(item_post) do %>
     <div class= "absolute top-4 left-4 flex flex-row gap-4">
@@ -11,7 +9,7 @@
     </div>
 
     <!-- 選択した画像がある場合には画像を表示、なければグレーの画像を表示 -->
-    <div class="flex justify-center mt-12"><!-- 投稿を横方向の中央に集める-->
+    <div class="flex justify-center mt-12">
       <% if item_post.item_post_image_url.present? %>
         <%= image_tag item_post.item_post_image_url, class: "w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
       <% else %>
@@ -23,38 +21,30 @@
 
   <p class="text-sm text-gray-500 m-8"><%= item_post.body.truncate(100) %></p>
   <div class="absolute bottom-5 left-4 flex items-center gap-6">
-    <!-- @item_postとしなくていい理由は、indexからrenderでローカル変数item_postをこのファイルに渡しているから定義されている -->
-    <!-- Userモデルで定義した「own?」を使用し、(item_post)で「own?メソッド」に引数を渡して、この投稿が現在ログインしているユーザーのものかどうかを見極めている -->
-    <!-- 一致すれば「true」でif文以降を表示し、「false」の場合は表示しない -->
     <% if current_user && current_user.own?(item_post) %>  
       <div>
         <%= link_to edit_item_post_path(item_post), data: { turbo: false } do %>
           <i class="fa-solid fa-pencil align-middle"></i>
         <% end %>
       </div>
-        <!-- 後に確認 -->
-    <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
       <div>
-      <%# 「(item_post)」が必要な理由 %>
-      <%# Railsが「どのアイテムの詳細ページのURLを生成するのか」を判断するために、item_post を引数として渡す必要がある。 %>
-      <%# indexファイルで render @item_posts %>
-      <%# を使うと、@item_posts（配列）の中のデータが1つずつパーシャル（このファイル）に渡される。%>
-      <%# パーシャル内では、単数形の名前（例: item_post）でデータが扱えるようになる。%>
-      <%# そのため、「item_post_path(item_post)」の「(item_post)」は、渡されたそれぞれの投稿を参照している。%>  
         <%= link_to item_post_path(item_post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
           <i class="fa-solid fa-trash align-middle"></i>
         <% end %>
       </div>
     <% end %>
   </div>
+
   <% if item_post.item_tag.present? %>
     <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 ">
       <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= item_post.item_tag.name %></p>
     </div>
   <% end %>
+
   <div class="absolute bottom-4 right-14 z-10">
     <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
+
   <div class="absolute bottom-4 right-3 text-lg">
     <i class="fa-regular fa-comment"></i>
     <%= item_post.item_comments.count %>

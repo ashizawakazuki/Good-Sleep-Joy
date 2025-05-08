@@ -1,5 +1,5 @@
 class UserDecorator < Draper::Decorator
-  delegate_all # Userモデルで定義したメソッド等、すべてのメソッドを引き継げるようにするためのもの
+  delegate_all
 
   def user_name
     "#{object.name}さん"

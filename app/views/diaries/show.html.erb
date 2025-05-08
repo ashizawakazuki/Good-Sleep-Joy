@@ -11,12 +11,11 @@
         <i class="fa-solid fa-pencil align-middle"></i>
       <% end %>
 
-      <!-- 削除（後に確認） -->
-      <%# data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } で削除をクリックした際にアラートメッセージを表示する%>
       <%= link_to diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
         <i class="fa-solid fa-trash align-middle"></i>
       <% end %>
     </div>
+
     <div class="mb-20 text-center"> 
       <!-- 日付 -->
       <h2 class="text-3xl font-bold text-gray-800 mb-4">日付</h2>

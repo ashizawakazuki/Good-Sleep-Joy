@@ -10,6 +10,5 @@ class HabitLikesController < ApplicationController
     habit_like = current_user.habit_likes.find_by(habit_post: @habit_post)
     habit_like.destroy if habit_like
     #ridirect_toを使わなくても_habit_unlike.html.erbのlink_toにturboの記述があるため、該当するxxxxx.turbo_stream.erbファイル（habit_unlikes/create）を探す
-
   end
 end
