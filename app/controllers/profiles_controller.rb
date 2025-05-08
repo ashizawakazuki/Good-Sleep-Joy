@@ -1,12 +1,8 @@
 class ProfilesController < ApplicationController
-  #Deviseを導入したために使えるようになったメソッドで、ユーザーがログインしているかを判別し、未ログイン時には、自動的にログインページにリダイレクトさせる
   before_action :authenticate_user!, only: [:show, :edit, :update]
-  #set_habit_postでアクションの前に、「投稿が削除されておらず存在するかどうか、また、アクセス権限があるか（人の投稿でないか）」を確認している
   before_action :set_user, only: [:show, :edit, :update]  
   
   def show
-    # このアクションの前に現在ログインしているユーザーのidを持ってきている
-    # 新しい日記投稿が一番上に来るように並び替えをしていしている
     @diaries = @user.diaries.order(created_at: :desc)
   end
 
@@ -21,7 +17,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  
   private
 
   def set_user
