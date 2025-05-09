@@ -69,38 +69,80 @@
     <div class="my-8">
       <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
     </div>
-    <div class="my-8">
-      <%= link_to "【アイテム】いいねした投稿", item_likes_item_posts_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
-    </div>
-    <div class="my-8">
-      <%= link_to "【習慣】いいねした投稿", habit_likes_habit_posts_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+  </div>
+  <div class="max-w-xl mx-auto border-b-2 mt-16">
+    <div class = "mx-8 flex justify-between ">
+
+    <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
+      <%= link_to '日記', profile_path, class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
+      <%= link_to item_likes_item_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
+        <p>【アイテム】<br>いいね</p>
+      <% end %>
+      <%= link_to habit_likes_habit_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
+        <p>【習慣】<br>いいね</p>
+      <% end %>
     </div>
   </div>
-  <div class="flex justify-center max-w-xl mx-auto border-b-2 mt-16 pb-2 mb-5">
-    <h2 class="text-center text-xl font-bold">投稿した日記</h2>
-  </div>
+  
   <div class = "overflow-x-auto max-w-xl mx-auto p-4 my-4">
-    <% if @diaries.present? %> 
-      <table class="table-auto w-full">
-        
+    
+    <!--"diaries"の時、日記一覧を表示  -->
+    <% if @active_tab == "diaries" %> 
+      <h2 class="text-xl font-bold mb-6 ">3行ポジティブ日記</h2>
+      <% if @diaries.present? %> 
+        <table class="table-auto w-full">
         <!-- 投稿した日記一覧 -->
         <!-- テーブルの行にURLを含ませているため、クリックすると詳細画面へ遷移-->
-        <% @diaries.each do |diary| %>
-          <tr class="even:bg-white odd:bg-gray-100 shadow transition-transform duration-300 hover:scale-105" 
-              data-url="<%= diary_path(diary) %>" 
-              onclick="location.href='<%= diary_path(diary) %>';">
-            <td class="p-6">
-              <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
-              <div><%= diary.date.strftime("%m/%d") %></div>
-            </td>
-            <td class="p-6">
-              <div class="text-lg"><%= diary.title %></div>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+          <% @diaries.each do |diary| %>
+            <tr class="even:bg-white odd:bg-gray-100 shadow transition-transform duration-300 hover:scale-105" 
+                data-url="<%= diary_path(diary) %>" 
+                onclick="location.href='<%= diary_path(diary) %>';">
+              <td class="p-6">
+                <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
+                <div><%= diary.date.strftime("%m/%d") %></div>
+              </td>
+              <td class="p-6">
+                <div class="text-lg"><%= diary.title %></div>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p class="text-center">投稿がありません</p>
+      <% end %>
+
+    <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
+    <% elsif @active_tab == "item_likes" %>
+      <h2 class="text-xl font-bold mb-6 ">【アイテム】<br>いいねした投稿一覧</h2>
+      <div class = "flex justify-center my-12">
+        <%= render 'item_posts/search_form', q: @q, url: item_likes_item_posts_path %>
+      </div>
+      <% if @item_like_posts.present? %>
+        <div class="grid grid-cols-1 gap-6">
+          <%= render @item_like_posts %>
+        </div>
+        <%= paginate @item_like_posts %>
+      <% else %>
+        <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+      <% end %>
+  
+    <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
+    <% elsif @active_tab == "habit_likes" %>
+      <h2 class="text-xl font-bold mb-6 ">【習慣】<br>いいねした投稿一覧</h2>
+      <div class = "flex justify-center my-12">
+        <%= render 'habit_posts/search_form', q: @q, url: habit_likes_habit_posts_path %>
+      </div>
+      <% if @habit_like_posts.present? %>
+        <div class="grid grid-cols-1 gap-6">
+          <%= render @habit_like_posts %>
+        </div>
+        <%= paginate @habit_like_posts %>
+      <% else %>
+        <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+      <% end %>
+      <%= paginate @habit_like_posts %>
     <% else %>
-      <p class="text-center">投稿がありません</p>
+      <p class="text-gray-500 text-center">いいねした投稿はありません</p>
     <% end %>
   </div>
 </div>    

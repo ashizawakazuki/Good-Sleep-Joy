@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   
   def show
     @diaries = @user.diaries.order(created_at: :desc)
+    @active_tab = "diaries"
   end
 
   def edit; end
