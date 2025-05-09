@@ -63,8 +63,11 @@
         </table>
       </div>
     </div>
+    <div class ="my-8">
+       <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+    </div>
     <div class="my-8">
-      <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+      <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
     </div>
     <div class="my-8">
       <%= link_to "【アイテム】いいねした投稿", item_likes_item_posts_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
@@ -88,10 +91,10 @@
               onclick="location.href='<%= diary_path(diary) %>';">
             <td class="p-6">
               <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
-              <div class="text-lg"><%= diary.date.strftime("%m/%d") %></div>
+              <div><%= diary.date.strftime("%m/%d") %></div>
             </td>
             <td class="p-6">
-              <div class="text-xl"><%= diary.title %></div>
+              <div class="text-lg"><%= diary.title %></div>
             </td>
           </tr>
         <% end %>
@@ -99,9 +102,6 @@
     <% else %>
       <p class="text-center">投稿がありません</p>
     <% end %>
-  </div>
-  <div class ="my-8">
-    <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-2xl px-6 py-2 hover:bg-sky-300 shadow-xl"%>
   </div>
 </div>    
 
