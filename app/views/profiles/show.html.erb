@@ -78,15 +78,21 @@
   </div>
   <div class = "overflow-x-auto max-w-xl mx-auto p-4 my-4">
     <% if @diaries.present? %> 
-      <table class="table-auto mx-auto">
-        <tr>
-          <th>日付</th>
-          <th>タイトル</th>
-        </tr>
+      <table class="table-auto w-full">
+        
+        <!-- 投稿した日記一覧 -->
+        <!-- テーブルの行にURLを含ませているため、クリックすると詳細画面へ遷移-->
         <% @diaries.each do |diary| %>
-          <tr class="odd:bg-white even:bg-gray-100">
-            <td class="px-6"><%= diary.date.strftime("%y/%m/%d") %></td>
-            <td class="px-6"><%= link_to diary.title, diary_path(diary) ,class: "text-blue-500 underline" %></td>
+          <tr class="even:bg-white odd:bg-gray-100 shadow transition-transform duration-300 hover:scale-105" 
+              data-url="<%= diary_path(diary) %>" 
+              onclick="location.href='<%= diary_path(diary) %>';">
+            <td class="p-6">
+              <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
+              <div class="text-lg"><%= diary.date.strftime("%m/%d") %></div>
+            </td>
+            <td class="p-6">
+              <div class="text-xl"><%= diary.title %></div>
+            </td>
           </tr>
         <% end %>
       </table>
