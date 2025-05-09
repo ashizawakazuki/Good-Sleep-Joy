@@ -63,8 +63,11 @@
         </table>
       </div>
     </div>
+    <div class ="my-8">
+       <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+    </div>
     <div class="my-8">
-      <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+      <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
     </div>
     <div class="my-8">
       <%= link_to "【アイテム】いいねした投稿", item_likes_item_posts_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
@@ -78,24 +81,27 @@
   </div>
   <div class = "overflow-x-auto max-w-xl mx-auto p-4 my-4">
     <% if @diaries.present? %> 
-      <table class="table-auto mx-auto">
-        <tr>
-          <th>日付</th>
-          <th>タイトル</th>
-        </tr>
+      <table class="table-auto w-full">
+        
+        <!-- 投稿した日記一覧 -->
+        <!-- テーブルの行にURLを含ませているため、クリックすると詳細画面へ遷移-->
         <% @diaries.each do |diary| %>
-          <tr class="odd:bg-white even:bg-gray-100">
-            <td class="px-6"><%= diary.date.strftime("%y/%m/%d") %></td>
-            <td class="px-6"><%= link_to diary.title, diary_path(diary) ,class: "text-blue-500 underline" %></td>
+          <tr class="even:bg-white odd:bg-gray-100 shadow transition-transform duration-300 hover:scale-105" 
+              data-url="<%= diary_path(diary) %>" 
+              onclick="location.href='<%= diary_path(diary) %>';">
+            <td class="p-6">
+              <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
+              <div><%= diary.date.strftime("%m/%d") %></div>
+            </td>
+            <td class="p-6">
+              <div class="text-lg"><%= diary.title %></div>
+            </td>
           </tr>
         <% end %>
       </table>
     <% else %>
       <p class="text-center">投稿がありません</p>
     <% end %>
-  </div>
-  <div class ="my-8">
-    <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-2xl px-6 py-2 hover:bg-sky-300 shadow-xl"%>
   </div>
 </div>    
 
