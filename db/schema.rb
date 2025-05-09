@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_26_045857) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_09_202348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "diaries", force: :cascade do |t|
-    t.datetime "date"
+    t.datetime "date", null: false
     t.string "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.text "content", null: false
+    t.text "content"
     t.index ["user_id"], name: "index_diaries_on_user_id"
   end
 
   create_table "habit_comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "habit_post_id"
-    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "habit_post_id", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["habit_post_id"], name: "index_habit_comments_on_habit_post_id"
@@ -46,11 +46,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_26_045857) do
   create_table "habit_posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "habit_post_image"
-    t.bigint "habit_tag_id"
+    t.string "habit_post_image", null: false
+    t.bigint "habit_tag_id", null: false
     t.index ["habit_tag_id"], name: "index_habit_posts_on_habit_tag_id"
     t.index ["user_id"], name: "index_habit_posts_on_user_id"
   end
@@ -62,9 +62,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_26_045857) do
   end
 
   create_table "item_comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "item_post_id"
-    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "item_post_id", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_post_id"], name: "index_item_comments_on_item_post_id"
@@ -83,11 +83,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_26_045857) do
   create_table "item_posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item_post_image"
-    t.bigint "item_tag_id"
+    t.bigint "item_tag_id", null: false
     t.index ["item_tag_id"], name: "index_item_posts_on_item_tag_id"
     t.index ["user_id"], name: "index_item_posts_on_user_id"
   end
