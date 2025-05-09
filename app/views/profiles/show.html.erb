@@ -70,9 +70,7 @@
       <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
     </div>
 
-    <div class="my-8">
-      <%= link_to "【習慣】いいねした投稿", habit_likes_habit_posts_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
-    </div>
+
   </div>
   <div class="max-w-xl mx-auto border-b-2 mt-16">
     <div class = "mx-4 flex justify-between ">
@@ -81,7 +79,7 @@
       <%= link_to item_likes_item_posts_path ,class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" do%>
         <p>【アイテム】<br>いいね</p>
       <% end %>
-      <%= link_to item_likes_item_posts_path ,class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" do%>
+      <%= link_to habit_likes_habit_posts_path ,class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" do%>
         <p>【習慣】<br>いいね</p>
       <% end %>
     </div>
@@ -110,10 +108,11 @@
       <% else %>
         <p class="text-center">投稿がありません</p>
       <% end %>
+
     <% elsif @active_tab == "item_likes" %>
       <h1 class="text-3xl font-bold mb-6 ">【アイテム】いいねした投稿</h1>
       <div class = "flex justify-center my-12">
-        <%= render 'search_form', q: @q, url: item_likes_item_posts_path %>
+        <%= render 'item_posts/search_form', q: @q, url: item_likes_item_posts_path %>
       </div>
       <% if @item_like_posts.present? %>
         <div class="grid grid-cols-1 gap-6">
@@ -123,6 +122,24 @@
       <% else %>
         <p class="text-gray-500 text-center">いいねした投稿はありません</p>
       <% end %>
+  
+
+    <% elsif @active_tab == "habit_likes" %>
+      <h1 class="text-3xl font-bold mb-6 ">【習慣】いいねした投稿</h1>
+      <div class = "flex justify-center my-12">
+        <%= render 'habit_posts/search_form', q: @q, url: habit_likes_habit_posts_path %>
+      </div>
+      <% if @habit_like_posts.present? %>
+        <div class="grid grid-cols-1 gap-6">
+          <%= render @habit_like_posts %>
+        </div>
+        <%= paginate @habit_like_posts %>
+      <% else %>
+        <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+      <% end %>
+      <%= paginate @habit_like_posts %>
+    <% else %>
+      <p class="text-gray-500 text-center">いいねした投稿はありません</p>
     <% end %>
   </div>
 </div>    
