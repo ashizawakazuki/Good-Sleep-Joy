@@ -74,12 +74,11 @@
   </div>
   <div class="max-w-xl mx-auto border-b-2 mt-16">
     <div class = "mx-4 flex justify-between ">
-      <%= link_to '日記', profile_path, class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" %>
-      <%= link_to '投稿', profile_path, class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300"  %>
-      <%= link_to item_likes_item_posts_path ,class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" do%>
+      <%= link_to '日記', profile_path, class: "text-sm md:text-base flex items-center rounded-lg px-2 py-2 hover:bg-gray-300" %>
+      <%= link_to item_likes_item_posts_path ,class: "text-sm md:text-base flex items-center rounded-lg px-2 py-2 hover:bg-gray-300" do%>
         <p>【アイテム】<br>いいね</p>
       <% end %>
-      <%= link_to habit_likes_habit_posts_path ,class: "flex items-center rounded-lg px-6 py-2 hover:bg-gray-300" do%>
+      <%= link_to habit_likes_habit_posts_path ,class: "text-sm md:text-base flex items-center rounded-lg px-2 py-2 hover:bg-gray-300" do%>
         <p>【習慣】<br>いいね</p>
       <% end %>
     </div>
@@ -110,7 +109,7 @@
       <% end %>
 
     <% elsif @active_tab == "item_likes" %>
-      <h1 class="text-3xl font-bold mb-6 ">【アイテム】いいねした投稿</h1>
+      <h1 class="text-3xl font-bold mb-6 ">【アイテム】<br>いいねした投稿</h1>
       <div class = "flex justify-center my-12">
         <%= render 'item_posts/search_form', q: @q, url: item_likes_item_posts_path %>
       </div>
@@ -125,7 +124,7 @@
   
 
     <% elsif @active_tab == "habit_likes" %>
-      <h1 class="text-3xl font-bold mb-6 ">【習慣】いいねした投稿</h1>
+      <h1 class="text-3xl font-bold mb-6 ">【習慣】<br>いいねした投稿</h1>
       <div class = "flex justify-center my-12">
         <%= render 'habit_posts/search_form', q: @q, url: habit_likes_habit_posts_path %>
       </div>
