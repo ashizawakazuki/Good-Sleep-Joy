@@ -91,11 +91,11 @@
 
     <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
     <% elsif @active_tab == "item_likes" %>
-      <%= render "profiles/item_likes", item_like_posts: @item_like_posts %>
+      <%= render "item_posts/item_likes", item_like_posts: @item_like_posts %>
       
     <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
     <% elsif @active_tab == "habit_likes" %>
-      <%= render "profiles/habit_likes", habit_like_posts: @habit_like_posts %>
+      <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
     <% end %>
   </div>
 </div>
