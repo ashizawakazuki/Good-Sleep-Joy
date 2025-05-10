@@ -117,21 +117,7 @@
       
     <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
     <% elsif @active_tab == "habit_likes" %>
-      <h2 class="text-xl font-bold mb-6 ">【習慣】<br>いいねした投稿一覧</h2>
-      <div class = "flex justify-center my-12">
-        <%= render 'habit_posts/search_form', q: @q, url: habit_likes_habit_posts_path %>
-      </div>
-      <% if @habit_like_posts.present? %>
-        <div class="grid grid-cols-1 gap-6">
-          <%= render @habit_like_posts %>
-        </div>
-        <%= paginate @habit_like_posts %>
-      <% else %>
-        <p class="text-gray-500 text-center">いいねした投稿はありません</p>
-      <% end %>
-      <%= paginate @habit_like_posts %>
-    <% else %>
-      <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+      <%= render "profiles/habit_likes", habit_like_posts: @habit_like_posts %>
     <% end %>
   </div>
 </div>    
