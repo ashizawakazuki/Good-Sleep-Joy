@@ -1,0 +1,25 @@
+<!-- マイページ画面で投稿した日記を表示させるためのパーシャル -->
+
+<h2 class="text-xl font-bold mb-6 ">3行ポジティブ日記</h2>
+<% if diaries.present? %> 
+  <table class="table-auto w-full">
+
+    <!-- 投稿した日記一覧 -->
+    <!-- テーブルの行にURLを含ませているため、クリックすると詳細画面へ遷移-->
+    <% diaries.each do |diary| %>
+      <tr class="even:bg-white odd:bg-gray-100 shadow transition-transform duration-300 hover:scale-105" 
+          data-url="<%= diary_path(diary) %>" 
+          onclick="location.href='<%= diary_path(diary) %>';">
+        <td class="p-6">
+          <div class="text-xs font-bold"><%= diary.date.strftime("%Y") %></div>
+          <div><%= diary.date.strftime("%m/%d") %></div>
+        </td>
+        <td class="p-6">
+          <div class="text-lg"><%= diary.title %></div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="text-center">投稿がありません</p>
+<% end %>
