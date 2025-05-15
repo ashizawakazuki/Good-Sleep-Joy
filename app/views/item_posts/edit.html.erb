@@ -2,26 +2,36 @@
 <div class="max-w-lg mx-auto p-4">
   <h1 class="text-xl font-bold my-20 text-center">アイテム投稿編集画面</h1>
   <%= form_with model: @item_post do |f| %> <!-- |f|はフォームとモデルをつなげる役割 -->
-
     <%= render 'shared/error_message', object: f.object %>
-    
-    <div class="flex flex-col mb-6"> 
-      <%= f.label :title, "アイテム名", class: "text-lg font-medium text-gray-700 mb-2" %>  
-      <%= f.text_field :title, autofocus: true, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
+    <div class="flex flex-col mb-6">
+      <div class = "flex flex-row" >
+        <%= f.label :title, "アイテム名", class: "text-lg font-medium text-gray-700 mb-2" %>  
+        <p class = "font-bold text-lg">（必須）</p>
+      </div>
+        <%= f.text_field :title, autofocus: true, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
     </div>
 
     <div class="flex flex-col mb-6">
-      <%= f.label :body, "本文（安眠効果など）", class: "text-lg font-medium text-gray-700 mb-2" %>  
+      <div class = "flex flex-row" >    
+        <%= f.label :body, "本文", class: "text-lg font-medium text-gray-700 mb-2" %>  
+        <p class = "font-bold text-lg">（必須）</p>
+      </div>
       <%= f.text_area :body, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none" %>   
     </div>
 
-    <div class="flex flex-col mb-6">     
-      <%= f.label :select, "カテゴリー", class: "text-lg font-medium text-gray-700 mb-2" %>  
+    <div class="flex flex-col mb-6">
+      <div class = "flex flex-row" >   
+        <%= f.label :select, "カテゴリー", class: "text-lg font-medium text-gray-700 mb-2" %>  
+        <p class = "font-bold text-lg">（必須）</p>
+      </div>
       <%= f.select :item_tag_id, ItemTag.all.map { |tag| [tag.name, tag.id] }, { include_blank: "未選択" }, class: "border border-gray-300 rounded-lg px-4 py-2 focus:ring focus:ring-blue-300 focus:outline-none"%>
     </div>
 
     <div class="flex flex-col mb-6">
-      <%= f.label :item_post_image,"画像を選択してください" %>
+      <%= f.label :item_post_image,"画像を選択してください", class: "text-lg font-medium text-gray-700" %>
+      <div>
+        <p class = "mb-4 font-bold">※画像を選択しない場合、デフォルト画像が表示されます</p>
+      </div>
       <%= f.file_field :item_post_image, class: "form-control", accept: 'image/*' %>
       <%= f.hidden_field :item_post_image_cache %> <!--「cache」は画像を一時保存するための仕組みで、フォーム失敗時に再アップロードしなくてよくなる-->
     </div>
