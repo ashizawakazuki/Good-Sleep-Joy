@@ -1,23 +1,25 @@
-<div class="relative bg-gray-50 p-4 border rounded-lg shadow hover:border-gray-400 transition-300 cursor-pointer">
-  <%= link_to habit_post_path(habit_post) do %>
-    <div class= "absolute top-4 left-4 flex flex-row gap-4">
-      <%= image_tag habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
-      <p class="text-md text-gray-800"><%= habit_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
-    </div>
-    <div class= "absolute top-4 right-4">
-      <p class="text-md text-gray-800"><%= habit_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></h1>
-    </div>
+<div class="relative bg-gray-50 p-4 border rounded-lg shadow transition-transform duration-300 hover:scale-105"
+     data-url="<%= habit_post_path(habit_post) %>" 
+     onclick="location.href='<%= habit_post_path(habit_post) %>';">
 
-    <!-- 選択した画像がある場合には表示 -->
-    <div class="flex justify-center mt-12">
-      <% if habit_post.habit_post_image.present? %>
-        <%= image_tag habit_post.habit_post_image, class: "w-72 h-48 object-cover", alt: "Habit post image"%><!-- object-coverで余白を埋める-->
-      <% else %>
-        <div class="w-72 h-48 bg-gray-200"></div>
-      <% end %>
-    </div>
-  <% end %>
-  <%= link_to habit_post.title, habit_post_path(habit_post), class: 'text-2xl font-bold text-gray-800 hover:bg-gray-300' %>
+  <div class= "absolute top-4 left-4 flex flex-row gap-4">
+    <%= image_tag habit_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+    <p class="text-md text-gray-800"><%= habit_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+  </div>
+  <div class= "absolute top-4 right-4">
+    <p class="text-md text-gray-800"><%= habit_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></p>
+  </div>
+
+  <!-- 選択した画像がある場合には表示 -->
+  <div class="flex justify-center mt-12">
+    <% if habit_post.habit_post_image.present? %>
+      <%= image_tag habit_post.habit_post_image, class: "rounded-lg w-72 h-48 object-cover", alt: "Habit post image"%><!-- object-coverで余白を埋める-->
+    <% else %>
+      <div class="w-72 h-48 bg-gray-200"></div>
+    <% end %>
+  </div>
+
+  <h1 class = 'text-2xl font-bold'><%= habit_post.title %></h1>
 
   <p class="text-sm text-gray-500 m-8"><%= habit_post.body.truncate(100) %></p>
   <div class="absolute bottom-5 left-4 flex items-center gap-6">
