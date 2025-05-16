@@ -15,7 +15,7 @@
 
     <div class ="flex flex-col gap-6">
       <% if @habit_post.habit_post_image.present? %>
-        <%= image_tag @habit_post.habit_post_image, alt: "Habit post image" %>
+        <%= image_tag @habit_post.habit_post_image, class: "rounded-lg", alt: "Habit post image" %>
       <% end %>
     </div>
 
