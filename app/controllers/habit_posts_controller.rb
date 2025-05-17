@@ -1,5 +1,5 @@
 class HabitPostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :my_habit_posts]
   before_action :set_habit_post, only: [:edit, :update, :destroy]
 
   def index
