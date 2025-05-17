@@ -30,7 +30,6 @@ Rails.application.routes.draw do
     collection do
       get :my_item_posts
     end
-
     resources :item_likes, only: %i[create destroy] 
     resources :item_comments, only: %i[create destroy], shallow: true
   end
@@ -44,6 +43,9 @@ Rails.application.routes.draw do
     end
     collection do
       get :search
+    end
+    collection do
+      get :my_habit_posts
     end
     resources :habit_likes, only: %i[create destroy]
     resources :habit_comments, only: %i[create destroy], shallow: true
