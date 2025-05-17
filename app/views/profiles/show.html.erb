@@ -81,6 +81,9 @@
       <%= link_to habit_likes_habit_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
         <p>【習慣】<br>いいね</p>
       <% end %>
+      <%= link_to my_item_posts_item_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
+        <p>【アイテム】<br>投稿</p>
+      <% end %>
     </div>
   </div>
   
@@ -96,6 +99,10 @@
     <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
     <% elsif @active_tab == "habit_likes" %>
       <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
+
+    <% elsif @active_tab == "my_item_posts" %>
+      <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
     <% end %>
+    
   </div>
 </div>
