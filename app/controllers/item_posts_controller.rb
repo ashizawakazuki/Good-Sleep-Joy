@@ -60,7 +60,7 @@ class ItemPostsController < ApplicationController
   end
 
   def my_item_posts
-    @my_item_posts = current_user.item_posts
+    @my_item_posts = current_user.item_posts.includes(:user)
     @active_tab = "my_item_posts"
     render "profiles/show"
   end
