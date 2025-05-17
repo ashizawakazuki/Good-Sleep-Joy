@@ -61,6 +61,7 @@ class HabitPostsController < ApplicationController
 
   def my_habit_posts
     @my_habit_posts = current_user.habit_posts
+    @active_tab = "my_habit_posts"
     render "profiles/show"
   end
 
