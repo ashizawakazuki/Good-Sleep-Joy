@@ -97,11 +97,13 @@
     <% if @active_tab == "diaries" %> 
       <%= render "diaries/diaries", diaries: @diaries %>
 
+    <!--"my_item_posts"の時、自分が投稿したアイテム投稿の一覧を表示  -->
     <% elsif @active_tab == "my_item_posts" %>
       <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
     
+    <!--"my_habit_posts"の時、自分が投稿した習慣投稿の一覧を表示  -->
     <% elsif @active_tab == "my_habit_posts" %>
-      <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
+      <%= render "habit_posts/my_habit_posts", my_habit_posts: @my_habit_posts %>
 
     <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
     <% elsif @active_tab == "item_likes" %>
