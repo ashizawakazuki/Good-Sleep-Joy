@@ -1,0 +1,9 @@
+<!-- 自分の習慣投稿をマイページで表示させるためのパーシャル -->
+<h2 class="text-2xl font-bold my-6 ">【習慣】<br>投稿</h2>
+<% if my_habit_posts.present? %>
+  <div class = "my-12">
+    <%= render my_habit_posts %>
+  </div>
+<% else %>
+  <p class="text-gray-500 text-center">投稿はありません</p>
+<% end %>

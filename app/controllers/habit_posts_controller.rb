@@ -59,6 +59,12 @@ class HabitPostsController < ApplicationController
     render partial: "search"
   end
 
+  def my_habit_posts
+    @my_habit_posts = current_user.habit_posts
+    @active_tab = "my_habit_posts"
+    render "profiles/show"
+  end
+
   private
 
   def habit_post_params
