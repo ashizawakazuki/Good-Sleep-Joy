@@ -1,37 +1,53 @@
 <% content_for(:title, '日記詳細画面') %>
 <div class="max-w-lg mx-auto p-4">
   <div class = "relative p-4 my-4 border rounded-lg shadow">
-    <h1 class="text-2xl font-bold my-20 text-center">３行ポジティブ日記詳細</h1>
+    <h1 class="text-3xl font-bold my-20 text-center"><%= @diary.title %></h1>
     <div class= "absolute top-4 left-4 flex flex-row gap-4">
       <%= link_to profile_path, class: "text-md text-gray-800 hover:text-blue-900" do %>
         <i class="fa-solid fa-chevron-left"></i> <span>戻る</span>
       <% end %>
-    
-      <%= link_to edit_diary_path data: { turbo: false } do %>
+    </div>
+
+    <div class="px-16">
+      <div class="mb-20 text-left"> 
+        <!-- 日付 -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fa-solid fa-calendar-days text-2xl"></i>
+          <h2 class="text-2xl font-bold text-gray-800">日付</h2>
+        </div>
+        <p class=" text-gray-800 mb-4 pl-8"><%= @diary.date.strftime("%y/%m/%d") %></p>
+
+        <div class="divider my-4"></div>
+
+        <!-- 日記 -->
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fa-solid fa-book text-2xl"></i>
+          <h2 class="text-2xl font-bold text-gray-800">内容</h2>
+        </div>
+        
+         <!-- 日記内容 -->
+          <div class = "pl-8">
+            <% if @diary.content.present? %>
+              <p class=" text-gray-800"><%= simple_format(@diary.content) %></p>
+            <% else %>
+              <p>まだ投稿がありません</p>
+            <% end %>
+          </div>
+        <div class="divider my-4"></div>
+      </div>
+    </div>
+
+    <!-- 編集・削除 -->
+    <div class = "flex flex-row gap-7" >
+     <%= link_to edit_diary_path data: { turbo: false } do %>
         <i class="fa-solid fa-pencil align-middle"></i>
       <% end %>
-
       <%= link_to diary_path(@diary), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } do %>
         <i class="fa-solid fa-trash align-middle"></i>
       <% end %>
     </div>
-
-    <div class="mb-20 text-center"> 
-      <!-- 日付 -->
-      <h2 class="text-xl font-bold text-gray-800 mb-4">日付</h2>
-      <p class=" text-gray-800 mb-8"><%= @diary.date.strftime("%y/%m/%d") %></h1>
-
-      <!-- タイトル -->
-      <h2 class="text-xl font-bold text-gray-800 mb-4">タイトル</h2>
-      <p class=" text-gray-800 mb-8"><%= @diary.title %></p>
-
-      <!-- 日記 -->
-      <h2 class="text-xl font-bold text-gray-800 mb-4">内容</h2>
-      <% if @diary.content.present? %>
-        <p class=" text-gray-800 mb-8"><%= simple_format(@diary.content) %></p>
-      <% else %>
-        <p class="mb-8">まだ投稿がありません</p>
-      <% end %>
+    <div class= "absolute bottom-4 right-8">
+      <%= image_tag "logo-reverse.png", class: "w-24", alt: "月のマーク" %>
     </div>
   </div>
 </div>
