@@ -1,27 +1,30 @@
-<div class="relative bg-gray-50 p-4 border rounded-lg shadow transition-transform duration-300 hover:scale-105"
-     data-url="<%= item_post_path(item_post) %>" 
-     onclick="location.href='<%= item_post_path(item_post) %>';">
-  
-  <div class= "absolute top-4 left-4 flex flex-row gap-4">
-    <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
-    <p class="text-md text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
-  </div>
-  <div class= "absolute top-4 right-4">
-    <p class="text-md text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></p>
-  </div>
+<div class="relative bg-gray-50 p-4 border rounded-lg shadow transition-transform duration-300 hover:scale-105">
+     
+  <!-- 指定の範囲をクリックした際に詳細画面へ遷移 -->
+  <div data-url="<%= item_post_path(item_post) %>" 
+       onclick="location.href='<%= item_post_path(item_post) %>';">
+    <div class= "absolute top-4 left-4 flex flex-row gap-4">
+      <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
+      <p class="text-md text-gray-800"><%= item_post.user.name %></p>  <%# ここで余計なクエリが発行されないよう、indexアクションでincludesを使ってN+1問題を回避している %>
+    </div>
+    <div class= "absolute top-4 right-4">
+      <p class="text-md text-gray-800"><%= item_post.created_at.strftime("%y/%m/%d %H:%M:%S") %></p>
+    </div>
 
-  <!-- 選択した画像がある場合には画像を表示、なければデフォルトの画像を表示 -->
-  <div class="flex justify-center mt-12">
-    <% if item_post.item_post_image_url.present? %>
-      <%= image_tag item_post.item_post_image_url, class: "rounded-lg w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
-    <% else %>
-      <div class="w-72 h-48 bg-gray-200"></div>
-    <% end %>
-  </div>
+    <!-- 選択した画像がある場合には画像を表示、なければデフォルトの画像を表示 -->
+    <div class="flex justify-center mt-12">
+      <% if item_post.item_post_image_url.present? %>
+        <%= image_tag item_post.item_post_image_url, class: "rounded-lg w-72 h-48 object-cover", alt: "Item post image" %><!-- object-coverで余白を埋める-->
+      <% else %>
+        <div class="w-72 h-48 bg-gray-200"></div>
+      <% end %>
+    </div>
  
-  <h1 class = 'text-2xl font-bold'><%= item_post.title %></h1>
+    <h1 class = 'text-2xl font-bold'><%= item_post.title %></h1>
+    <p class="text-sm text-gray-500 m-8"><%= item_post.body.truncate(100) %></p>
+  </div>
 
-  <p class="text-sm text-gray-500 m-8"><%= item_post.body.truncate(100) %></p>
+  <!-- 編集と削除 -->
   <div class="absolute bottom-5 left-4 flex items-center gap-6">
     <% if current_user && current_user.own?(item_post) %>  
       <div>
@@ -37,16 +40,17 @@
     <% end %>
   </div>
 
-  <% if item_post.item_tag.present? %>
-    <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 ">
-      <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= item_post.item_tag.name %></p>
-    </div>
-  <% end %>
+  <!-- タグ -->
+  <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 ">
+    <p class = "bg-white text-xs border border-black rounded-[10px] px-2"><%= item_post.item_tag.name %></p>
+  </div>
 
+  <!-- いいね -->
   <div class="absolute bottom-4 right-14 z-10">
     <%= render 'item_like_bottons', {item_post: item_post} %>
   </div>
 
+  <!-- コメント -->
   <div class="absolute bottom-4 right-3 text-lg">
     <i class="fa-regular fa-comment"></i>
     <%= item_post.item_comments.count %>
