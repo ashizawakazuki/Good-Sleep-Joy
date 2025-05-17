@@ -1,0 +1,9 @@
+<!-- 自分のアイテム投稿をマイページで表示させるためのパーシャル -->
+<h2 class="text-2xl font-bold my-6 ">【アイテム】<br>投稿</h2>
+<% if my_item_posts.present? %>
+  <div class = "my-12">
+    <%= render my_item_posts %>
+  </div>
+<% else %>
+  <p class="text-gray-500 text-center">投稿はありません</p>
+<% end %>
