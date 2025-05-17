@@ -59,6 +59,11 @@ class ItemPostsController < ApplicationController
     render partial: "search"
   end
 
+  def my_item_posts
+    @my_item_posts = current_user.item_posts
+    render "profiles/show"
+  end
+
   private
 
   def item_post_params
