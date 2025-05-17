@@ -71,20 +71,21 @@
     </div>
   </div>
   <div class="max-w-xl mx-auto border-b-2 mt-16">
-    <div class = "mx-8 flex justify-between ">
+    <div class = "mx-8 flex justify-between overflow-x-auto">
 
     <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
-      <%= link_to '日記', profile_path, class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
-      <%= link_to my_item_posts_item_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
+    <!-- flex-shrink-0で要素が縮まないように設定-->
+      <%= link_to '日記', profile_path, class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
+      <%= link_to my_item_posts_item_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
         <p>【アイテム】<br>投稿</p>
       <% end %>
-      <%= link_to my_habit_posts_habit_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
+      <%= link_to my_habit_posts_habit_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
         <p>【習慣】<br>投稿</p>
       <% end %>
-      <%= link_to item_likes_item_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
+      <%= link_to item_likes_item_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
         <p>【アイテム】<br>いいね</p>
       <% end %>
-      <%= link_to habit_likes_habit_posts_path ,class: "text-sm md:text-base flex items-center px-2 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
+      <%= link_to habit_likes_habit_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
         <p>【習慣】<br>いいね</p>
       <% end %>
     </div>

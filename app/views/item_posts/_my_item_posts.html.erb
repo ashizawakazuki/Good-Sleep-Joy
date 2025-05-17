@@ -1,5 +1,7 @@
 <!-- 自分のアイテム投稿をマイページで表示させるためのパーシャル -->
 <h2 class="text-2xl font-bold my-6 ">【アイテム】<br>投稿</h2>
+
+<!-- my_item_postsの中の投稿を_item_post.html.erbを使って繰り返し表示している--> 
 <% if my_item_posts.present? %>
   <div class = "my-12">
     <%= render my_item_posts %>
