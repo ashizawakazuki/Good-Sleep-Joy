@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    collection do
+      get :my_item_posts
+    end
+
     resources :item_likes, only: %i[create destroy] 
     resources :item_comments, only: %i[create destroy], shallow: true
   end
