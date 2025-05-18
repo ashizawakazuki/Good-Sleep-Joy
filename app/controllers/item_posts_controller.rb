@@ -4,7 +4,7 @@ class ItemPostsController < ApplicationController
   
   def index
     @q = ItemPost.ransack(params[:q])
-    @item_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @item_posts = @q.result(distinct: true).includes(:user, :item_comments, :item_likes, :item_tag).order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def new
@@ -45,7 +45,7 @@ class ItemPostsController < ApplicationController
   
   def item_likes
     @q = current_user.liked_item_posts.ransack(params[:q])
-    @item_like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page]).per(20)
+    @item_like_posts = @q.result(distinct: true).includes(:user, :item_comments, :item_tag).order(created_at: :desc).page(params[:page]).per(20)
     @active_tab = "item_likes"
     render "profiles/show"
   end
@@ -60,7 +60,7 @@ class ItemPostsController < ApplicationController
   end
 
   def my_item_posts
-    @my_item_posts = current_user.item_posts.includes(:user)
+    @my_item_posts = current_user.item_posts.includes(:user, :item_comments, :item_likes, :item_tag).order(created_at: :desc)
     @active_tab = "my_item_posts"
     render "profiles/show"
   end
