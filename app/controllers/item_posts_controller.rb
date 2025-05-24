@@ -4,7 +4,7 @@ class ItemPostsController < ApplicationController
   
   def index
     @q = ItemPost.ransack(params[:q])
-    @item_posts = @q.result(distinct: true).includes(:user, :item_comments, :item_likes, :item_tag).order(created_at: :desc).page(params[:page]).per(20)
+    @item_posts = @q.result(distinct: true).includes(:user, :item_comments, :item_likes, :item_tag).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def new
