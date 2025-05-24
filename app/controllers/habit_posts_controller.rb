@@ -4,7 +4,7 @@ class HabitPostsController < ApplicationController
 
   def index
     @q = HabitPost.ransack(params[:q])
-    @habit_posts = @q.result(distinct: true).includes(:user, :habit_comments, :habit_likes, :habit_tag).order(created_at: :desc).page(params[:page]).per(20)
+    @habit_posts = @q.result(distinct: true).includes(:user, :habit_comments, :habit_likes, :habit_tag).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def new
