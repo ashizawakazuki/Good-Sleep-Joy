@@ -1,118 +1,120 @@
 <% content_for(:title, 'マイページ') %>
-<div class = "text-center p-4" >
-  <div>
-    <h1 class = "text-3xl font-bold my-20">マイページ</h1>
-  </div>
+<div class="max-w-xl mx-auto p-4">
+  <div class = "text-center" >
+    <div>
+      <h1 class = "text-3xl font-bold my-20">マイページ</h1>
+    </div>
 
-  <!-- プロフィール画像 -->
-  <div class="max-w-xl mx-auto p-4 my-4 border rounded-lg shadow">
-    <div class="flex justify-center">
-     <div class="flex flex-col items-center">
-        <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-32 h-32 rounded-full shadow-lg border border-gray-200" %>
-        <div class="mt-4">
-          <h2 class = "font-bold"><%= current_user.name %></h2>
+    <!-- プロフィール画像 -->
+    <div class="my-4 p-4 border rounded-lg shadow">
+      <div class="flex justify-center">
+       <div class="flex flex-col items-center">
+          <%= image_tag current_user.avatar.url, alt: "プロフィール画像", class: "w-32 h-32 rounded-full shadow-lg border border-gray-200" %>
+          <div class="mt-4">
+            <h2 class = "font-bold"><%= current_user.name %></h2>
+          </div>
+        </div>
+        <div class="px-4 flex justify-center"> 
+          <table>
+            <tr class="flex flex-col items-center">   
+              <th class="px-2 flex items-center space-x-2">
+                <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
+               <p class="text-xs sm:text-lg">起床時間</p>
+              </th>
+              <% if current_user.wake_up_time.present? %>
+                <td class="text-xs sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
+              <% else %>
+                <td class="text-xs sm:text-lg">未設定</td>
+              <% end %>
+            </tr>
+
+            <tr class="flex flex-col items-center">
+              <th class="px-2 flex items-center space-x-2">
+                <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
+                <p class="text-xs sm:text-lg">就寝時間</p>
+              </th>
+              <% if current_user.bed_time.present? %>
+                <td class="text-xs sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
+              <% else %>
+                <td class="text-xs sm:text-lg">未設定</td>
+              <% end %>
+            </tr>
+
+            <tr class="flex flex-col items-center">
+              <th class="px-2 flex items-center space-x-2">
+                <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
+                <p class="text-xs sm:text-lg">睡眠時間</p>
+              </th>
+
+              <% if current_user.wake_up_time.present? && current_user.bed_time.present? %>
+                <% wake_up_time = current_user.wake_up_time.hour * 60 + current_user.wake_up_time.min %> 
+                <% bed_time = current_user.bed_time.hour * 60 + current_user.bed_time.min %>
+                <% if wake_up_time < bed_time %>
+                  <% sleep_min = (24 * 60 - bed_time) + wake_up_time %>
+                <% else %>
+                  <% sleep_min = wake_up_time - bed_time %>
+                <% end %>
+                <% sleep_hour = sleep_min / 60 %>
+                <% sleep_min = sleep_min % 60 %>
+                <td class="text-xs sm:text-lg font-bold"><%= format('%02d:%02d',sleep_hour, sleep_min) %></td>
+              <% else %>
+                <td class="text-xs sm:text-lg">未設定</td>
+              <% end %>
+            </tr>
+          </table>
         </div>
       </div>
-      <div class="px-4 flex justify-center"> 
-        <table>
-          <tr class="flex flex-col items-center">   
-            <th class="px-2 flex items-center space-x-2">
-              <%= image_tag "sun.png", alt: '起床時間のアイコン'%>
-             <p class="text-xs sm:text-lg">起床時間</p>
-            </th>
-            <% if current_user.wake_up_time.present? %>
-              <td class="text-xs sm:text-lg font-bold"><%= current_user.wake_up_time&.strftime('%H:%M') %></td>
-            <% else %>
-              <td class="text-xs sm:text-lg">未設定</td>
-            <% end %>
-          </tr>
-
-          <tr class="flex flex-col items-center">
-            <th class="px-2 flex items-center space-x-2">
-              <%= image_tag "moon.png", alt: '就寝時間のアイコン'%>
-              <p class="text-xs sm:text-lg">就寝時間</p>
-            </th>
-            <% if current_user.bed_time.present? %>
-              <td class="text-xs sm:text-lg font-bold"><%= current_user.bed_time&.strftime('%H:%M') %></td>
-            <% else %>
-              <td class="text-xs sm:text-lg">未設定</td>
-            <% end %>
-          </tr>
-
-          <tr class="flex flex-col items-center">
-            <th class="px-2 flex items-center space-x-2">
-              <%= image_tag "sleep.png", alt: '睡眠時間のアイコン'%>
-              <p class="text-xs sm:text-lg">睡眠時間</p>
-            </th>
-
-            <% if current_user.wake_up_time.present? && current_user.bed_time.present? %>
-              <% wake_up_time = current_user.wake_up_time.hour * 60 + current_user.wake_up_time.min %> 
-              <% bed_time = current_user.bed_time.hour * 60 + current_user.bed_time.min %>
-              <% if wake_up_time < bed_time %>
-                <% sleep_min = (24 * 60 - bed_time) + wake_up_time %>
-              <% else %>
-                <% sleep_min = wake_up_time - bed_time %>
-              <% end %>
-              <% sleep_hour = sleep_min / 60 %>
-              <% sleep_min = sleep_min % 60 %>
-              <td class="text-xs sm:text-lg font-bold"><%= format('%02d:%02d',sleep_hour, sleep_min) %></td>
-            <% else %>
-              <td class="text-xs sm:text-lg">未設定</td>
-            <% end %>
-          </tr>
-        </table>
+      <div class ="my-8">
+        <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
+      </div>
+      <div class="my-8">
+        <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
       </div>
     </div>
-    <div class ="my-8">
-       <%= link_to "日記を書く", new_diary_path ,class: "bg-sky-100 rounded-lg px-6 py-2 hover:bg-sky-300 shadow-xl"%>
-    </div>
-    <div class="my-8">
-      <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
-    </div>
-  </div>
-  <div class="max-w-xl mx-auto border-b-2 mt-16">
-    <div class = "mx-8 flex justify-between overflow-x-auto">
+    <div class="border-b-2 mt-16">
+      <div class = "mx-4 flex justify-between overflow-x-auto">
 
-    <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
-    <!-- flex-shrink-0で要素が縮まないように設定-->
-      <%= link_to '日記', profile_path, class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
-      <%= link_to my_item_posts_item_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
-        <p>【アイテム】<br>投稿</p>
-      <% end %>
-      <%= link_to my_habit_posts_habit_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
-        <p>【習慣】<br>投稿</p>
-      <% end %>
-      <%= link_to item_likes_item_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
-        <p>【アイテム】<br>いいね</p>
-      <% end %>
-      <%= link_to habit_likes_habit_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
-        <p>【習慣】<br>いいね</p>
-      <% end %>
+        <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
+        <!-- flex-shrink-0で要素が縮まないように設定-->
+        <%= link_to '日記', profile_path, class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
+        <%= link_to my_item_posts_item_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
+          <p>【アイテム】<br>投稿</p>
+        <% end %>
+        <%= link_to my_habit_posts_habit_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
+          <p>【習慣】<br>投稿</p>
+        <% end %>
+        <%= link_to item_likes_item_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
+          <p>【アイテム】<br>いいね</p>
+        <% end %>
+        <%= link_to habit_likes_habit_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
+          <p>【習慣】<br>いいね</p>
+        <% end %>
+      </div>
     </div>
-  </div>
   
-  <div class = "overflow-x-auto max-w-xl mx-auto p-4 my-4">
+    <div class = "overflow-x-auto p-4 my-4">
 
   
-    <!--"diaries"の時、日記一覧を表示  -->
-    <% if @active_tab == "diaries" %> 
-      <%= render "diaries/diaries", diaries: @diaries %>
+      <!--"diaries"の時、日記一覧を表示  -->
+      <% if @active_tab == "diaries" %> 
+        <%= render "diaries/diaries", diaries: @diaries %>
 
-    <!--"my_item_posts"の時、自分が投稿したアイテム投稿の一覧を表示  -->
-    <% elsif @active_tab == "my_item_posts" %>
-      <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
+      <!--"my_item_posts"の時、自分が投稿したアイテム投稿の一覧を表示  -->
+      <% elsif @active_tab == "my_item_posts" %>
+        <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
     
-    <!--"my_habit_posts"の時、自分が投稿した習慣投稿の一覧を表示  -->
-    <% elsif @active_tab == "my_habit_posts" %>
-      <%= render "habit_posts/my_habit_posts", my_habit_posts: @my_habit_posts %>
+      <!--"my_habit_posts"の時、自分が投稿した習慣投稿の一覧を表示  -->
+      <% elsif @active_tab == "my_habit_posts" %>
+        <%= render "habit_posts/my_habit_posts", my_habit_posts: @my_habit_posts %>
 
-    <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
-    <% elsif @active_tab == "item_likes" %>
-      <%= render "item_posts/item_likes", item_like_posts: @item_like_posts %>
+      <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
+      <% elsif @active_tab == "item_likes" %>
+        <%= render "item_posts/item_likes", item_like_posts: @item_like_posts %>
       
-    <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
-    <% elsif @active_tab == "habit_likes" %>
-      <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
-    <% end %>
+      <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
+      <% elsif @active_tab == "habit_likes" %>
+        <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
+      <% end %>
+    </div>
   </div>
 </div>
