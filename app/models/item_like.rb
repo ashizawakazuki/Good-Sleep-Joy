@@ -1,6 +1,6 @@
 class ItemLike < ApplicationRecord
   belongs_to :user
-  belongs_to :item_post, counter_cashe: true # いいねが押されたら、item_postのitem_likes_countに+1(-1)カウントするよう設定
+  belongs_to :item_post, counter_cache: true # いいねが押されたら、item_postのitem_likes_countに+1(-1)カウントするよう設定
 
   # どのカラムを検索対象にして許可するかを設定
   def self.ransackable_attributes(auth_object = nil)

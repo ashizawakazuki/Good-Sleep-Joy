@@ -1,5 +1,5 @@
 <% item_like = current_user.item_likes.find_by(item_post_id: item_post.id) %>
 
 <%= link_to item_post_item_like_path(item_post.id,item_like), id: "unlike-button-for-item-post-#{item_post.id}", class: "text-xl text-yellow-400", data: { turbo_method: :delete } do %>
-  <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
+  <i class="fa-solid fa-moon"></i><%= item_post.item_likes_count %>
 <% end %>
