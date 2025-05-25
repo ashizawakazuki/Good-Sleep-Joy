@@ -51,7 +51,7 @@ class ItemPostsController < ApplicationController
   end
 
   def ranking
-    @item_post_ranking = ItemPost.find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
+    @item_post_ranking = ItemPost.includes(:user).find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
   end
 
   def search
