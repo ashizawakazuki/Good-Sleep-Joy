@@ -45,7 +45,7 @@ class ItemPostsController < ApplicationController
   
   def item_likes
     @q = current_user.liked_item_posts.ransack(params[:q])
-    @item_like_posts = @q.result(distinct: true).includes(:user, :item_tag).order(created_at: :desc).page(params[:page]).per(20)
+    @item_like_posts = @q.result(distinct: true).includes(:user, :item_tag).order(created_at: :desc).page(params[:page]).per(3)
     @active_tab = "item_likes"
     render "profiles/show"
   end
