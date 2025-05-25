@@ -19,7 +19,7 @@
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "gold.png", alt: '金の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
           <td class = "py-4"><%= rank.user.name %></td>
-          <td class = "py-4"><%= rank.item_likes.count %></td>
+          <td class = "py-4"><%= rank.item_likes_count %></td>
         </tr>
       <% elsif i == 2 %>
         <!-- ionclick="locationで 行をクリックした際に実行されるジャバスクリプトを埋め込み、その遷移先を指定-->
@@ -28,7 +28,7 @@
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "silver.png", alt: '銀の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
           <td class = "py-4"><%= rank.user.name %></td>
-          <td class = "py-4"><%= rank.item_likes.count %></td>
+          <td class = "py-4"><%= rank.item_likes_count %></td>
         </tr>
       <% elsif i == 3 %>
         <!-- ionclick="locationで 行をクリックした際に実行されるジャバスクリプトを埋め込み、その遷移先を指定-->
@@ -37,7 +37,7 @@
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "bronze.png", alt: '銅の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
           <td class = "py-4"><%= rank.user.name %></td>
-          <td class = "py-4"><%= rank.item_likes.count %></td>
+          <td class = "py-4"><%= rank.item_likes_count %></td>
         </tr>
       <% else %>
         <!-- ionclick="locationで 行をクリックした際に実行されるジャバスクリプトを埋め込み、その遷移先を指定-->
@@ -46,7 +46,7 @@
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
           <td class = "py-4"><%= rank.user.name %></td>
-          <td class = "py-4"><%= rank.item_likes.count %></td>
+          <td class = "py-4"><%= rank.item_likes_count %></td>
         </tr>
       <% end %>
     <% end %>

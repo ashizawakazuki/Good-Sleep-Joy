@@ -4,7 +4,7 @@ class HabitPostsController < ApplicationController
 
   def index
     @q = HabitPost.ransack(params[:q])
-    @habit_posts = @q.result(distinct: true).includes(:user, :habit_comments, :habit_likes, :habit_tag).order(created_at: :desc).page(params[:page]).per(12)
+    @habit_posts = @q.result(distinct: true).includes(:user, :habit_tag).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def new
@@ -45,13 +45,13 @@ class HabitPostsController < ApplicationController
 
   def habit_likes
     @q = current_user.liked_habit_posts.ransack(params[:q])
-    @habit_like_posts = @q.result(distinct: true).includes(:user, :habit_comments, :habit_tag).order(created_at: :desc).page(params[:page]).per(20)
+    @habit_like_posts = @q.result(distinct: true).includes(:user, :habit_tag).order(created_at: :desc).page(params[:page]).per(20)
     @active_tab = "habit_likes"
     render "profiles/show"
   end
   
   def ranking
-    @habit_post_ranking = HabitPost.find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
+    @habit_post_ranking = HabitPost.includes(:user).find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
   end
 
   def search
@@ -60,7 +60,7 @@ class HabitPostsController < ApplicationController
   end
 
   def my_habit_posts
-    @my_habit_posts = current_user.habit_posts.includes(:user, :habit_comments, :habit_likes, :habit_tag).order(created_at: :desc)
+    @my_habit_posts = current_user.habit_posts.includes(:user, :habit_tag).order(created_at: :desc)
     @active_tab = "my_habit_posts"
     render "profiles/show"
   end

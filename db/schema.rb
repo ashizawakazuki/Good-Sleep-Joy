@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_09_202348) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_25_050004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_09_202348) do
     t.datetime "updated_at", null: false
     t.string "habit_post_image", null: false
     t.bigint "habit_tag_id", null: false
+    t.integer "habit_likes_count", default: 0, null: false
+    t.integer "habit_comments_count", default: 0, null: false
     t.index ["habit_tag_id"], name: "index_habit_posts_on_habit_tag_id"
     t.index ["user_id"], name: "index_habit_posts_on_user_id"
   end
@@ -88,6 +90,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_09_202348) do
     t.datetime "updated_at", null: false
     t.string "item_post_image"
     t.bigint "item_tag_id", null: false
+    t.integer "item_likes_count", default: 0, null: false
+    t.integer "item_comments_count", default: 0, null: false
     t.index ["item_tag_id"], name: "index_item_posts_on_item_tag_id"
     t.index ["user_id"], name: "index_item_posts_on_user_id"
   end
