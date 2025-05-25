@@ -45,7 +45,7 @@ class HabitPostsController < ApplicationController
 
   def habit_likes
     @q = current_user.liked_habit_posts.ransack(params[:q])
-    @habit_like_posts = @q.result(distinct: true).includes(:user, :habit_comments, :habit_tag).order(created_at: :desc).page(params[:page]).per(20)
+    @habit_like_posts = @q.result(distinct: true).includes(:user, :habit_tag).order(created_at: :desc).page(params[:page]).per(20)
     @active_tab = "habit_likes"
     render "profiles/show"
   end
