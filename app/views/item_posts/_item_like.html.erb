@@ -1,3 +1,3 @@
 <%= link_to item_post_item_likes_path(item_post.id), id: "like-button-for-item-post-#{item_post.id}", class: "text-lg", data: { turbo_method: :post } do %>
-  <i class="fa-solid fa-moon"></i><%= item_post.item_likes.count %>
+  <i class="fa-solid fa-moon"></i><%= item_post.item_likes_count %>
 <% end %>
