@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]  
   
   def show
-    @diaries = @user.diaries.order(created_at: :desc)
+    @diaries = @user.diaries.order(created_at: :desc).page(params[:page]).per(7)
     @active_tab = "diaries"
   end
 
