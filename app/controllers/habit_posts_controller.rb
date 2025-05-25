@@ -60,7 +60,7 @@ class HabitPostsController < ApplicationController
   end
 
   def my_habit_posts
-    @my_habit_posts = current_user.habit_posts.includes(:user, :habit_comments, :habit_likes, :habit_tag).order(created_at: :desc)
+    @my_habit_posts = current_user.habit_posts.includes(:user, :habit_tag).order(created_at: :desc)
     @active_tab = "my_habit_posts"
     render "profiles/show"
   end
