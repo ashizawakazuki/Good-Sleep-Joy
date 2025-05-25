@@ -51,7 +51,7 @@ class HabitPostsController < ApplicationController
   end
   
   def ranking
-    @habit_post_ranking = HabitPost.find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
+    @habit_post_ranking = HabitPost.includes(:user).find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
   end
 
   def search
