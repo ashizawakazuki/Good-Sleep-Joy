@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const characterCountwrap = document.getElementById('characterCountwrap');
 
     if (num >= 0) {
-      characterCountwrap.style.color = 'black';
+      characterCountwrap.style.color = 'gray';
     } else {
       characterCountwrap.style.color = 'red';
     }
