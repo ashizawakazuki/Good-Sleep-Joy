@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
   // 入力欄の要素を取得
   const inputText = document.getElementById('inputText');
 
