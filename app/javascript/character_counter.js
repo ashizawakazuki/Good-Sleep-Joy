@@ -1,34 +1,32 @@
 document.addEventListener('turbo:load', function() {
-  // 入力欄の要素を取得
-  const inputText = document.getElementById('inputText');
-
-  // 入力欄にキーを押したときのイベントを設定
-  inputText.addEventListener('keyup', keyUp, false);
-
-  // キーが押されたときの処理
-  function keyUp() {
-    // 入力された文字列を取得
+  function keyUp (){
+    //入力された値を取得
     let str = inputText.value;
-
-    // 改行を取り除く
+  
+    //replaceで第一引数で改行を、第二引数で空文字にしている（詳しくは説明なかった）
     str = str.replace(/\r?\n/g, '');
-
-    // 残りの文字数を計算（最大100文字）
-    let num = 100 - str.length;
-
-    // 文字数を表示する部分の要素を取得
+  
+    //残りの文字数をnumに入れてる
+    let num = 50 - str.length;
+    console.log(num);
+  
+    //文字数表示部分の要素を取得
     const characterCount = document.getElementById('characterCount');
-
-    // 数字を表示
+  
+    //残りの文字数をセットして表示
     characterCount.textContent = num;
-
-    // ラップ部分の<p>タグを取得して色を変える
+  
+    //残り文字数表示部分のp要素を取得
     const characterCountwrap = document.getElementById('characterCountwrap');
-
-    if (num >= 0) {
+  
+    //0以上の時は文字の色は黒、マイナスの時は赤にする
+    if(num >= 0) {
       characterCountwrap.style.color = 'gray';
     } else {
       characterCountwrap.style.color = 'red';
     }
   }
+  
+  const inputText = document.getElementById('inputText');
+  inputText.addEventListener('keyup', keyUp, false);
 });
