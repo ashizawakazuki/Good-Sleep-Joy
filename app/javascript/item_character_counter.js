@@ -1,8 +1,23 @@
 document.addEventListener('turbo:load', function() {
+  
   //アイテム投稿（編集）のtitleの文字数カウンター
 
-  //入力フォームをtitleInputに入れている
+  
   const titleInput = document.getElementById('titleInput');
+  //アイテム投稿編集時、titleの初期文字数を正しく表示するため関数を記述
+  function updateTitleCount() {
+    let titleStr = titleInput.value;
+    titleStr = titleStr.replace(/\r?\n/g, '');
+    let num = 50 - titleStr.length;
+    const titleCount = document.getElementById('titleCount');
+    titleCount.textContent = num;
+  }
+
+  //関数を呼び出し
+  updateTitleCount();
+
+  //入力フォームをtitleInputに入れている
+
   //入力フォームにユーザーが入力したら、function()以下を実行する（イベントリスナー）
   titleInput.addEventListener('keyup', function() {
   
@@ -34,7 +49,20 @@ document.addEventListener('turbo:load', function() {
 
   
   //アイテム投稿（編集）のbodyの文字数カウンター
+
+  //アイテム投稿編集時、bodyの初期文字数を正しく表示するため関数を記述
   const bodyInput = document.getElementById('bodyInput');
+
+  function updateBodyCount() {
+    let bodyStr = bodyInput.value;
+    bodyStr = bodyStr.replace(/\r?\n/g, '');
+    let num = 1000 - bodyStr.length;
+    const bodyCount = document.getElementById('bodyCount');
+    bodyCount.textContent = num;
+  }
+
+  //関数を呼び出し
+  updateBodyCount();
 
   bodyInput.addEventListener('keyup', function() {
     let str = bodyInput.value;
