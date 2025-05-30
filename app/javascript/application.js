@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./hamburger"
-import "./item_character_counter"
+import "./character_counter"
