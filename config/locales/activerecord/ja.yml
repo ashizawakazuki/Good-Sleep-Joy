@@ -16,6 +16,7 @@ ja:
       diary:
         date: '日付'
         title: 'タイトル'
+        content: '日記内容'
     errors:
       models:
         habit_post:
