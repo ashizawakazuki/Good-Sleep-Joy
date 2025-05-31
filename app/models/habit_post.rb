@@ -1,5 +1,5 @@
 class HabitPost < ApplicationRecord
-  validates :title, presence: true, length: { maximum: 100 }
+  validates :title, presence: true, length: { maximum: 50 }
   validates :body, presence: true, length: { maximum: 1000 }
   validates :habit_post_image, presence: true, if: -> { Rails.env.production? } # 本番環境のみ画像は必須に設定（開発環境ではダミーデータは画像を必須にする必要ないため）
 
