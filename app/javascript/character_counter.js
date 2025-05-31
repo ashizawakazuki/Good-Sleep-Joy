@@ -1,4 +1,5 @@
-document.addEventListener('turbo:load', function() {
+//関数で処理をまとめる
+function CharacterCounter() {
   
   //アイテム投稿（編集）のtitleの文字数カウンター
 
@@ -78,4 +79,8 @@ document.addEventListener('turbo:load', function() {
       bodyCountwrap.style.color = 'red'
     }
   });
-});
+}
+
+// イベントリスナー（loadもrender(バリデーションエラー時）もカバー）
+document.addEventListener('turbo:load', CharacterCounter);
+document.addEventListener('turbo:render', CharacterCounter);
