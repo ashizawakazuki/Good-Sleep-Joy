@@ -14,6 +14,7 @@
       <% i += 1 %>
       <% if i == 1 %>
         <tr class = "text-xs md:text-base lg:text-xl bg-gray-100 shadow transition-transform duration-300 hover:scale-105"
+          data-action="click->loading#show"
           onclick="location.href='<%= habit_post_path(rank) %>';">
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "gold.png", alt: '金の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
@@ -22,6 +23,7 @@
         </tr>
       <% elsif i == 2 %>
         <tr class = "text-xs md:text-base lg:text-xl bg-white shadow transition-transform duration-300 hover:scale-105"
+          data-action="click->loading#show"
           onclick="location.href='<%= habit_post_path(rank) %>';">
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "silver.png", alt: '銀の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
@@ -30,6 +32,7 @@
         </tr>
       <% elsif i == 3 %>
         <tr class = "text-xs md:text-base lg:text-xl bg-gray-100 shadow transition-transform duration-300 hover:scale-105"
+          data-action="click->loading#show"
           onclick="location.href='<%= habit_post_path(rank) %>';">
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= image_tag "bronze.png", alt: '銅の冠のアイコン', class: "w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8" %><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
@@ -38,6 +41,7 @@
         </tr>
       <% else %>
         <tr class = "text-xs md:text-base lg:text-xl odd:bg-white even:bg-gray-100 shadow transition-transform duration-300 hover:scale-105"
+          data-action="click->loading#show"
           onclick="location.href='<%= habit_post_path(rank) %>';">
           <td class = "flex flex-row items-center justify-center gap-2 py-4"><%= "#{i}" %></td>
           <td class = "py-4 font-bold text-gray-800"><%= rank.title %></td>
