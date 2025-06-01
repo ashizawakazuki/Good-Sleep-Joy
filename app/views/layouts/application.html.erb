@@ -25,13 +25,21 @@
   </head>
 
   <body class= "flex flex-col min-h-screen">
-    <%= render 'shared/header' %>
-    <%= render 'shared/flash_message' %>
+    <!-- 全てのページでローディングアニメーションが表示されるように記述 -->
+    <div data-controller="loading">
+      <div data-loading-target="spinner" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+        <div class="h-[150px] w-[150px] flex items-center justify-center">
+          <span class="loading loading-spinner text-default w-full h-full"></span>
+        </div>
+      </div>
+      <%= render 'shared/header' %>
+      <%= render 'shared/flash_message' %>
 
-    <!-- flex-grow:main のコンテンツが少ない場合でも、フッターが自然にページの一番下に配置される  -->
-    <div class="flex-grow">
-      <%= yield %>
+      <!-- flex-grow:main のコンテンツが少ない場合でも、フッターが自然にページの一番下に配置される  -->
+      <div class="flex-grow">
+        <%= yield %>
+      </div>
+      <%= render 'shared/footer' %>
     </div>
-    <%= render 'shared/footer' %>
   </body>
 </html>
