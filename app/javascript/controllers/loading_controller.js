@@ -6,7 +6,11 @@ export default class extends Controller {
   
   connect() {
     this.hide()
-  }
+    // ブラウザバックでローディングアニメーションが表示されないよう設定
+    window.addEventListener("pageshow", () => {
+        this.hide();
+      });
+    }
   
   show() {
     this.spinnerTarget.classList.remove("hidden")
