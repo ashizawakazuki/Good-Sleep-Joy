@@ -1,7 +1,8 @@
 <div class="relative bg-gray-50 p-4 border rounded-lg shadow transition-transform duration-300 hover:scale-105">
      
   <!-- 指定の範囲をクリックした際に詳細画面へ遷移 -->
-  <div data-url="<%= item_post_path(item_post) %>" 
+  <div data-url="<%= item_post_path(item_post) %>"
+       data-action="click->loading#show"
        onclick="location.href='<%= item_post_path(item_post) %>';">
     <div class= "absolute top-4 left-4 flex flex-row gap-4">
       <%= image_tag item_post.user.avatar.url , class:"w-8 h-8 rounded-full border border-gray-200" %>
