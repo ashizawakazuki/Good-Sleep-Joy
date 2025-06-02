@@ -71,50 +71,52 @@
         <%= link_to "プロフィールを編集", edit_profile_path ,class: "bg-gray-200 rounded-lg px-6 py-2 hover:bg-gray-300 shadow-xl"%>
       </div>
     </div>
-    <div class="border-b-2 mt-16">
-      <div class = "mx-4 flex justify-between overflow-x-auto">
 
-        <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
-        <!-- flex-shrink-0で要素が縮まないように設定-->
-        <%= link_to '日記', profile_path, class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
-        <%= link_to my_item_posts_item_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
-          <p>【アイテム】<br>投稿</p>
-        <% end %>
-        <%= link_to my_habit_posts_habit_posts_path ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
-          <p>【習慣】<br>投稿</p>
-        <% end %>
-        <%= link_to item_likes_item_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
-          <p>【アイテム】<br>いいね</p>
-        <% end %>
-        <%= link_to habit_likes_habit_posts_path ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
-          <p>【習慣】<br>いいね</p>
+    <%= turbo_frame_tag "tab" do %>
+      <div class="border-b-2 mt-16">
+        <div class = "mx-4 flex justify-between overflow-x-auto">
+
+          <!-- 条件式を式展開に埋め込み、条件が一致する時は、 下線を水色に着色-->
+          <!-- flex-shrink-0で要素が縮まないように設定-->
+          <%= link_to '日記', profile_path, data: { turbo_frame: "tab" }, class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'diaries'} " %>
+          <%= link_to my_item_posts_item_posts_path, data: { turbo_frame: "tab" },class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_item_posts'}" do%>
+            <p>【アイテム】<br>投稿</p>
+          <% end %>
+          <%= link_to my_habit_posts_habit_posts_path, data: { turbo_frame: "tab" } ,class: "flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'my_habit_posts'}" do%>
+            <p>【習慣】<br>投稿</p>
+          <% end %>
+          <%= link_to item_likes_item_posts_path, data: { turbo_frame: "tab" } ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'item_likes'} " do%>
+            <p>【アイテム】<br>いいね</p>
+          <% end %>
+          <%= link_to habit_likes_habit_posts_path, data: { turbo_frame: "tab" } ,class: " flex-shrink-0 text-sm md:text-base flex items-center mx-4 py-2 hover:bg-gray-300 #{' border-b-4 border-sky-300' if @active_tab == 'habit_likes'}" do%>
+            <p>【習慣】<br>いいね</p>
+          <% end %>
+        </div>
+      </div>
+  
+      <div class = "overflow-x-auto p-4 my-4">
+
+        <!--"diaries"の時、日記一覧を表示  -->
+        <% if @active_tab == "diaries" %> 
+          <%= render "diaries/diaries", diaries: @diaries %>
+
+        <!--"my_item_posts"の時、自分が投稿したアイテム投稿の一覧を表示  -->
+        <% elsif @active_tab == "my_item_posts" %>
+          <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
+    
+        <!--"my_habit_posts"の時、自分が投稿した習慣投稿の一覧を表示  -->
+        <% elsif @active_tab == "my_habit_posts" %>
+          <%= render "habit_posts/my_habit_posts", my_habit_posts: @my_habit_posts %>
+
+        <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
+        <% elsif @active_tab == "item_likes" %>
+          <%= render "item_posts/item_likes", item_like_posts: @item_like_posts %>
+      
+        <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
+        <% elsif @active_tab == "habit_likes" %>
+          <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
         <% end %>
       </div>
-    </div>
-  
-    <div class = "overflow-x-auto p-4 my-4">
-
-  
-      <!--"diaries"の時、日記一覧を表示  -->
-      <% if @active_tab == "diaries" %> 
-        <%= render "diaries/diaries", diaries: @diaries %>
-
-      <!--"my_item_posts"の時、自分が投稿したアイテム投稿の一覧を表示  -->
-      <% elsif @active_tab == "my_item_posts" %>
-        <%= render "item_posts/my_item_posts", my_item_posts: @my_item_posts %>
-    
-      <!--"my_habit_posts"の時、自分が投稿した習慣投稿の一覧を表示  -->
-      <% elsif @active_tab == "my_habit_posts" %>
-        <%= render "habit_posts/my_habit_posts", my_habit_posts: @my_habit_posts %>
-
-      <!--"item_likes"の時、【アイテム】いいね一覧を表示  -->
-      <% elsif @active_tab == "item_likes" %>
-        <%= render "item_posts/item_likes", item_like_posts: @item_like_posts %>
-      
-      <!--"habit_likes"の時、【習慣】いいね一覧を表示  -->
-      <% elsif @active_tab == "habit_likes" %>
-        <%= render "habit_posts/habit_likes", habit_like_posts: @habit_like_posts %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
