@@ -1,12 +1,12 @@
 <!-- アイテム投稿の中でいいねした投稿をマイページで表示させるためのパーシャル -->
-
-<h2 class="text-2xl font-bold my-6 ">【アイテム】<br>いいねした投稿一覧</h2>
-<% if @item_like_posts.present? %>
-  <div class="grid grid-cols-1 gap-6 my-12">
-    <%= render item_like_posts %>
-  </div>
-  <%= paginate item_like_posts %>
-<% else %>
-  <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+<%= turbo_frame_tag "tab" do %>
+  <h2 class="text-2xl font-bold my-6 ">【アイテム】<br>いいねした投稿一覧</h2>
+  <% if @item_like_posts.present? %>
+    <div class="grid grid-cols-1 gap-6 my-12">
+      <%= render item_like_posts %>
+    </div>
+    <%= paginate item_like_posts %>
+  <% else %>
+    <p class="text-gray-500 text-center">いいねした投稿はありません</p>
+  <% end %>
 <% end %>
-  
