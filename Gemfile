@@ -80,8 +80,12 @@ group :development do
   gem 'bullet'
 end
 
-#dotenv-rails を 開発環境 と テスト環境 でのみ有効にする（本番環境では不要なので有効にしない（セキュリティ対策）。）
-gem 'dotenv-rails', groups: [:development, :test]
+#dotenv-rails は 開発環境 と テスト環境 でのみ有効にする（本番環境では不要なので有効にしない（セキュリティ対策）。）
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

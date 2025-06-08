@@ -1,0 +1,2 @@
+--require spec_helper
+--format documentation # テストコードの実行結果をターミナル上に可視化
