@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Diary, type: :model do
   describe 'バリデーションチェック' do
-    it 'dateとtitleとbodyとが有効であること' do
+    it 'dateとtitleとbodyが有効であること' do
       diary = build(:diary) 
       expect(diary).to be_valid
     end
@@ -30,6 +30,5 @@ RSpec.describe Diary, type: :model do
       diary.valid?
       expect(diary.errors[:content]).not_to be_empty
     end
-
   end
 end
