@@ -40,10 +40,6 @@ end
 
 #開発環境のみ実行する
 if Rails.env.development?
-  # 既存のデータを削除
-  ItemPost.delete_all
-  HabitPost.delete_all
-  User.delete_all
   
   # ユーザーを10人作成
   10.times do
@@ -55,7 +51,7 @@ if Rails.env.development?
     )
   
     # 各ユーザーにランダムなアイテム投稿を3件作成
-    20.times do
+    3.times do
       user.item_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
         body: Faker::Lorem.paragraph(sentence_count: 5),
@@ -64,11 +60,12 @@ if Rails.env.development?
     end
 
     # 各ユーザーにランダムな習慣投稿を3件作成
-    20.times do
+    3.times do
       user.habit_posts.create!(
         title: Faker::Lorem.sentence(word_count: 3),
         body: Faker::Lorem.paragraph(sentence_count: 5),
         habit_tag: HabitTag.all.sample,
+        habit_post_image: "str.png" # 全投稿ストレッチの画像
       )
     end
   end
