@@ -31,4 +31,18 @@ RSpec.describe ItemPost, type: :model do #ItemPostのモデルであることを
       expect(item_post.errors[:body]).not_to be_empty
     end
   end
+
+  describe 'アソシエーションチェック' do
+    it 'Userに属していること' do
+      user = create(:user) # factory botよりオブジェクトを生成し保存し、userに格納
+      item_post = create(:item_post, user_id: user.id) # factory botにより生成されたオブジェクトのuser_idカラムにuser_idをセット
+      expect(item_post.user).to eq(user) # item_post.userで生成されるオブジェクトとuserオブジェクトが一致しているか検証
+    end
+
+    it 'ItemTagに属していること' do
+      item_tag = create(:item_tag)
+      item_post = create(:item_post, item_tag_id: item_tag.id)
+      expect(item_post.item_tag).to eq(item_tag)
+    end
+  end 
 end
