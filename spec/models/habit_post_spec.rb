@@ -37,4 +37,32 @@ RSpec.describe HabitPost, type: :model do
       expect(habit_post.errors[:habit_post_image]).not_to be_empty
     end
   end
+
+  describe 'アソシエーションチェック' do
+    it 'Userに属していること' do
+      user = create(:user)
+      habit_post = create(:habit_post, user_id: user.id)
+      expect(habit_post.user).to eq(user)
+    end
+
+    it 'HabitTagに属していること' do
+      habit_tag = create(:habit_tag)
+      habit_post = create(:habit_post, habit_tag_id: habit_tag.id)
+      expect(habit_post.habit_tag).to eq(habit_tag)
+    end
+
+    it 'HabitLikesを含んでいること' do
+      habit_post = create(:habit_post)
+      habit_like1 = create(:habit_like, habit_post_id: habit_post.id)
+      habit_like2 = create(:habit_like, habit_post_id: habit_post.id)
+      expect(habit_post.habit_likes).to include(habit_like1,habit_like2)
+    end
+
+    it 'HabitCommentを含んでいること' do
+      habit_post = create(:habit_post)
+      habit_comment1 = create(:habit_comment, habit_post_id: habit_post.id)
+      habit_comment2 = create(:habit_comment, habit_post_id: habit_post.id)
+      expect(habit_post.habit_comments).to include(habit_comment1,habit_comment2)
+    end
+  end
 end
