@@ -31,4 +31,12 @@ RSpec.describe Diary, type: :model do
       expect(diary.errors[:content]).not_to be_empty
     end
   end
+
+  describe 'アソシエーションチェック' do
+    it 'Userに属していること' do
+      user = create(:user)
+      diary = create(:diary, user_id: user.id)
+      expect(diary.user).to eq(user)
+    end
+  end
 end
