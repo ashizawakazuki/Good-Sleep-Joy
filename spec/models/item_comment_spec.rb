@@ -18,5 +18,19 @@ RSpec.describe ItemComment, type: :model do
       item_comment.valid?
       expect(item_comment.errors[:body]).not_to be_empty
     end
+
+    describe 'アソシエーションチェック' do
+      it 'Userに属していること' do
+        user = create(:user)
+        item_comment = create(:item_comment, user_id: user.id)
+        expect(item_comment.user).to eq(user)
+      end
+  
+      it 'ItemPostに属していること' do
+        item_post = create(:item_post)
+        item_comment = create(:item_comment, item_post_id: item_post.id)
+        expect(item_comment.item_post).to eq(item_post)
+      end
+    end
   end
 end
