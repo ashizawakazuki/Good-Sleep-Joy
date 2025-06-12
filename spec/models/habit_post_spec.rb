@@ -58,7 +58,7 @@ RSpec.describe HabitPost, type: :model do
       expect(habit_post.habit_likes).to include(habit_like1,habit_like2)
     end
 
-    it 'HabitCommentを含んでいること' do
+    it 'HabitCommentsを含んでいること' do
       habit_post = create(:habit_post)
       habit_comment1 = create(:habit_comment, habit_post_id: habit_post.id)
       habit_comment2 = create(:habit_comment, habit_post_id: habit_post.id)
