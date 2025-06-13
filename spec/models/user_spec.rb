@@ -71,8 +71,8 @@ RSpec.describe User, type: :model do
       user = create(:user)
       item_post1 = create(:item_post, user_id: user.id)
       item_post2 = create(:item_post, user_id: user.id)
-      item_like1 = create(:item_like, user: user.id, item_post_id: item_post1.id)
-      item_like2 = create(:item_like, user: user.id, item_post_id: item_post2.id)
+      item_like1 = create(:item_like, user_id: user.id, item_post_id: item_post1.id)
+      item_like2 = create(:item_like, user_id: user.id, item_post_id: item_post2.id)
       expect(user.liked_item_posts).to include(item_post1,item_post2)
     end
 
