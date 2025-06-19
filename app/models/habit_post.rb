@@ -9,12 +9,11 @@ class HabitPost < ApplicationRecord
   has_many :habit_comments, dependent: :destroy
 
   def self.ransackable_attributes(auth_object = nil)
-    ["title","body","habit_tag_id"]
+    [ "title", "body", "habit_tag_id" ]
   end
-  
+
 
   def self.ransackable_associations(auth_object = nil)
     []
   end
-
 end

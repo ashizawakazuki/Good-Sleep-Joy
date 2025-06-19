@@ -22,7 +22,7 @@ class ItemPostImageUploader < CarrierWave::Uploader::Base
   # end
 
   def default_url
-    'no_image.png'
+    "no_image.png"
   end
 
   # Process files as they are uploaded:
@@ -42,7 +42,7 @@ class ItemPostImageUploader < CarrierWave::Uploader::Base
   # キャリーウェーブがアップロードできるファイル形式（拡張子）を制限している
   # extension_allowlist メソッドは、**CarrierWaveが提供するメソッド
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # S3を使用するのに記述した箇所

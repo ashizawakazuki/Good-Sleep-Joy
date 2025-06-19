@@ -19,7 +19,7 @@ RSpec.describe ItemTag, type: :model do
       item_tag = create(:item_tag)
       item_post1 = create(:item_post, item_tag_id: item_tag.id)
       item_post2 = create(:item_post, item_tag_id: item_tag.id)
-      expect(item_tag.item_posts).to include(item_post1,item_post2)
+      expect(item_tag.item_posts).to include(item_post1, item_post2)
     end
   end
 end

@@ -49,46 +49,46 @@ gem "bootsnap", require: false
 
 gem "devise"
 
-gem 'faker'
+gem "faker"
 
-gem 'carrierwave', '~> 3.0'
+gem "carrierwave", "~> 3.0"
 
-gem 'fog-aws'
+gem "fog-aws"
 
-gem 'rails-i18n'
+gem "rails-i18n"
 
-gem 'devise-i18n'
+gem "devise-i18n"
 
-gem 'kaminari'
+gem "kaminari"
 
-gem 'draper'
+gem "draper"
 
-gem 'ransack'
+gem "ransack"
 
-gem 'meta-tags'
+gem "meta-tags"
 
-gem 'omniauth'
+gem "omniauth"
 
-gem 'omniauth-google-oauth2'
+gem "omniauth-google-oauth2"
 
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth-rails_csrf_protection"
 
-gem 'mini_magick'
+gem "mini_magick"
 
 # dotenv-rails は 開発環境 と テスト環境 でのみ有効にする（本番環境では不要なので有効にしない（セキュリティ対策）。）
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
-  gem 'dotenv-rails'
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem "dotenv-rails"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
   gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem 'bullet' # N+1問題を検知可能
+  gem "bullet" # N+1問題を検知可能
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

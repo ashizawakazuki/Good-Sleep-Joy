@@ -4,4 +4,3 @@ FactoryBot.define do
     association :habit_post
   end
 end
-  
