@@ -82,6 +82,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
