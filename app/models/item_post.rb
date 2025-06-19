@@ -1,7 +1,7 @@
 class ItemPost < ApplicationRecord
-  #バリデーション設定(DBに保存される前にデータが正しい形式や条件を満たしているかを「presence」や「length」で確認)
-  validates :title, presence: true, length: { maximum: 50 } #空でない、最大50文字
-  validates :body, presence: true, length: { maximum: 1000 } #空でない、最大1000文字
+  # バリデーション設定(DBに保存される前にデータが正しい形式や条件を満たしているかを「presence」や「length」で確認)
+  validates :title, presence: true, length: { maximum: 50 } # 空でない、最大50文字
+  validates :body, presence: true, length: { maximum: 1000 } # 空でない、最大1000文字
 
   belongs_to :user
   belongs_to :item_tag
@@ -10,9 +10,9 @@ class ItemPost < ApplicationRecord
 
   # どのカラムを検索対象にして許可するかを設定
   def self.ransackable_attributes(auth_object = nil)
-    ["title","body","item_tag_id"]
+    [ "title", "body", "item_tag_id" ]
   end
-  
+
   # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定
   def self.ransackable_associations(auth_object = nil)
     []
@@ -24,4 +24,3 @@ class ItemPost < ApplicationRecord
   # CarrierWaveでアップロードされた画像のURLを取得することができるようになる
   mount_uploader :item_post_image, ItemPostImageUploader
 end
- 

@@ -1,6 +1,6 @@
 class HabitPostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :my_habit_posts]
-  before_action :set_habit_post, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :my_habit_posts ]
+  before_action :set_habit_post, only: [ :edit, :update, :destroy ]
 
   def index
     @q = HabitPost.ransack(params[:q])
@@ -14,9 +14,9 @@ class HabitPostsController < ApplicationController
   def create
     @habit_post = current_user.habit_posts.build(habit_post_params)
     if @habit_post.save
-      redirect_to habit_posts_path, notice: '投稿が成功しました！'
+      redirect_to habit_posts_path, notice: "投稿が成功しました！"
     else
-      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください"
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,16 +31,16 @@ class HabitPostsController < ApplicationController
 
   def update
     if @habit_post.update(habit_post_params)
-      redirect_to habit_post_path(@habit_post), notice: '編集が成功しました！'
+      redirect_to habit_post_path(@habit_post), notice: "編集が成功しました！"
     else
-      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @habit_post.destroy!
-    redirect_to habit_posts_path, notice: '削除が成功しました！'
+    redirect_to habit_posts_path, notice: "削除が成功しました！"
   end
 
   def habit_likes
@@ -49,9 +49,9 @@ class HabitPostsController < ApplicationController
     @active_tab = "habit_likes"
     render "profiles/show"
   end
-  
+
   def ranking
-    @habit_post_ranking = HabitPost.includes(:user).find(HabitLike.group(:habit_post_id).order('count(id) desc').limit(5).pluck(:habit_post_id))
+    @habit_post_ranking = HabitPost.includes(:user).find(HabitLike.group(:habit_post_id).order("count(id) desc").limit(5).pluck(:habit_post_id))
   end
 
   def search

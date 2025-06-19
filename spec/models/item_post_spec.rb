@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ItemPost, type: :model do #ItemPostのモデルであることを意味
+RSpec.describe ItemPost, type: :model do # ItemPostのモデルであることを意味
   describe 'バリデーションチェック' do
     it 'titleとbodyが有効であること' do
       item_post = build(:item_post) # factory botによりitem_post.rbよりデータを生成
@@ -49,14 +49,14 @@ RSpec.describe ItemPost, type: :model do #ItemPostのモデルであることを
       item_post = create(:item_post)
       item_like1 = create(:item_like, item_post_id: item_post.id)
       item_like2 = create(:item_like, item_post_id: item_post.id)
-      expect(item_post.item_likes).to include(item_like1,item_like2)
+      expect(item_post.item_likes).to include(item_like1, item_like2)
     end
 
     it 'Item_commentを含んでいること' do
       item_post = create(:item_post)
       item_comment1 = create(:item_comment, item_post_id: item_post.id)
       item_comment2 = create(:item_comment, item_post_id: item_post.id)
-      expect(item_post.item_comments).to include(item_comment1,item_comment2)
+      expect(item_post.item_comments).to include(item_comment1, item_comment2)
     end
-  end 
+  end
 end

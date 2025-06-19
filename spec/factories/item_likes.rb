@@ -4,4 +4,3 @@ FactoryBot.define do
       association :item_post
     end
   end
-    

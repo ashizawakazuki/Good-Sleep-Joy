@@ -21,9 +21,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # end
 
   def default_url
-    'default.png'
+    "default.png"
   end
-  
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -42,7 +42,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   %w(jpg jpeg gif png)
   # end
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # S3を使用するのに記述した箇所

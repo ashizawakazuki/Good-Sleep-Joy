@@ -4,7 +4,7 @@ RSpec.describe HabitPost, type: :model do
   describe 'バリデーションチェック' do
     it 'titleとbodyとhabit_post_imageが有効であること' do
       habit_post = build(:habit_post)
-      expect(habit_post).to be_valid 
+      expect(habit_post).to be_valid
     end
 
     it 'titleが空だと無効であること' do
@@ -55,14 +55,14 @@ RSpec.describe HabitPost, type: :model do
       habit_post = create(:habit_post)
       habit_like1 = create(:habit_like, habit_post_id: habit_post.id)
       habit_like2 = create(:habit_like, habit_post_id: habit_post.id)
-      expect(habit_post.habit_likes).to include(habit_like1,habit_like2)
+      expect(habit_post.habit_likes).to include(habit_like1, habit_like2)
     end
 
     it 'HabitCommentsを含んでいること' do
       habit_post = create(:habit_post)
       habit_comment1 = create(:habit_comment, habit_post_id: habit_post.id)
       habit_comment2 = create(:habit_comment, habit_post_id: habit_post.id)
-      expect(habit_post.habit_comments).to include(habit_comment1,habit_comment2)
+      expect(habit_post.habit_comments).to include(habit_comment1, habit_comment2)
     end
   end
 end

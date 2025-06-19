@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # 独自のメソッドを定義。Userモデルに書いているので、Userインスタンスに対して使えるメソッド
   # ビューファイルの「current_user_own?(item_post)」でitem_postがresourceに代入される
   def own?(resource)
-    resource&.user_id == id #左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを確認
+    resource&.user_id == id # 左辺「この投稿のID」と、右辺「現在ログインしてるID」は一致してるのかを確認
   end
 
   # 「liked_item_posts」は「ユーザーがいいねした投稿」の一覧を取得できるメソッド
@@ -55,12 +55,10 @@ class User < ApplicationRecord
   # Googleログインしたユーザーをアプリに登録する(authにユーザー情報が入る)
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-
       user.name = auth.info.name
       user.avatar = auth.info.image
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
   end
-
 end

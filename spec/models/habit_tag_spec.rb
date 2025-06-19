@@ -19,7 +19,7 @@ RSpec.describe HabitTag, type: :model do
       habit_tag = create(:habit_tag)
       habit_post1 = create(:habit_post, habit_tag_id: habit_tag.id)
       habit_post2 = create(:habit_post, habit_tag_id: habit_tag.id)
-      expect(habit_tag.habit_posts).to include(habit_post1,habit_post2)
+      expect(habit_tag.habit_posts).to include(habit_post1, habit_post2)
     end
   end
 end

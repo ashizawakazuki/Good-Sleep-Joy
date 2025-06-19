@@ -1,7 +1,7 @@
 class ItemPostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :my_item_posts]
-  before_action :set_item_post, only: [:edit, :update, :destroy]
-  
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy, :my_item_posts ]
+  before_action :set_item_post, only: [ :edit, :update, :destroy ]
+
   def index
     @q = ItemPost.ransack(params[:q])
     @item_posts = @q.result(distinct: true).includes(:user, :item_tag).order(created_at: :desc).page(params[:page]).per(12)
@@ -14,35 +14,35 @@ class ItemPostsController < ApplicationController
   def create
     @item_post = current_user.item_posts.build(item_post_params)
     if @item_post.save
-      redirect_to item_posts_path, notice: '投稿が成功しました！'
+      redirect_to item_posts_path, notice: "投稿が成功しました！"
     else
-      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください"
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show 
+  def show
     @item_post = ItemPost.find(params[:id])
     @item_comment = ItemComment.new
     @item_comments = @item_post.item_comments.includes(:user).order(created_at: :asc)
   end
-  
+
   def edit; end
 
   def update
     if @item_post.update(item_post_params)
-      redirect_to item_post_path(@item_post), notice: '編集が成功しました！'
+      redirect_to item_post_path(@item_post), notice: "編集が成功しました！"
     else
-      flash.now[:alert] = '投稿に失敗しました。入力内容を確認してください'
+      flash.now[:alert] = "投稿に失敗しました。入力内容を確認してください"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @item_post.destroy!
-    redirect_to item_posts_path, notice: '削除が成功しました！'
+    redirect_to item_posts_path, notice: "削除が成功しました！"
   end
-  
+
   def item_likes
     @q = current_user.liked_item_posts.ransack(params[:q])
     @item_like_posts = @q.result(distinct: true).includes(:user, :item_tag).order(created_at: :desc).page(params[:page]).per(3)
@@ -51,7 +51,7 @@ class ItemPostsController < ApplicationController
   end
 
   def ranking
-    @item_post_ranking = ItemPost.includes(:user).find(ItemLike.group(:item_post_id).order('count(id) desc').limit(5).pluck(:item_post_id))
+    @item_post_ranking = ItemPost.includes(:user).find(ItemLike.group(:item_post_id).order("count(id) desc").limit(5).pluck(:item_post_id))
   end
 
   def search

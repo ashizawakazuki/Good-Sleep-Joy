@@ -88,20 +88,20 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # 独自ドメインを取得し、下記のドメインでアクセスできるよう設定（wwwがついても可）
-  config.hosts << 'good-sleep-joy.com'
+  config.hosts << "good-sleep-joy.com"
   config.hosts << "www.good-sleep-joy.com"
 
   # パスワードリセット機能を実装。
-  config.action_mailer.default_url_options = { host: 'https://good-sleep-joy.com/' } 
+  config.action_mailer.default_url_options = { host: "https://good-sleep-joy.com/" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              "smtp.gmail.com",
     port:                 587,
-    domain:               'good-sleep-joy.com',
-    user_name:            ENV['MAILER_SENDER'],
-    password:             ENV['MAILER_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true 
+    domain:               "good-sleep-joy.com",
+    user_name:            ENV["MAILER_SENDER"],
+    password:             ENV["MAILER_PASSWORD"],
+    authentication:       "plain",
+    enable_starttls_auto: true
   }
 
 

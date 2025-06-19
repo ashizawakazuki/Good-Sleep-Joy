@@ -6,10 +6,10 @@ class ItemLike < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     []
   end
-  
+
   # アソシエーションで関連づいているモデルでどのモデルを検索対象にしているかを設定
   def self.ransackable_associations(auth_object = nil)
-    ["item_post"]
+    [ "item_post" ]
   end
 
   # 「user_id と item_post_id の組み合わせがデータベース内で一意（ユニーク）であることを保証する」という制約
