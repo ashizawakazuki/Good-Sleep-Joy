@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "habit_posts/index"
   # 「devise_for」でログイン・登録に関するルートを1行で追加
   # 「registrations: 'users/registrations'」で新規登録をカスタマイズ
   # 「passwards: 'users/passwords'」でパスワードリセット機能を実装
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
+  # トップページ
   root "static_pages#top"
   # プライバシーポリシー
   get "privacy_policy", to: "static_pages#privacy_policy"
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :item_posts, only: %i[new index create show edit update destroy] do
     collection do
-      get :item_likes # collectionでitem_postsに新しいアクション(item_likes)を加えることができる
+      get :item_likes
     end
     collection do
       get :ranking
