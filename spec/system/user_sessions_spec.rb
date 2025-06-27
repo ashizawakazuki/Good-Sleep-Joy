@@ -3,7 +3,6 @@ require 'rails_helper'
 include LoginMacros # 事前の設定により、login_macros.rbを読み込む
 
 RSpec.describe "ログイン処理", type: :system do
-
   # 軽量なrack_testドライバを使って、ブラウザを立ち上げずにテストを実行する
   before do
     driven_by(:rack_test)
