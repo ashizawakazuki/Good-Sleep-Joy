@@ -8,9 +8,8 @@ RSpec.describe "ログイン処理", type: :system do
   before do
     driven_by(:rack_test)
   end
-
   # ファクトリーボットのテスト用のユーザーオブジェクトを保存し、userという変数に代入
-  let(:user) {create(:user)}
+  let(:user) { create(:user) }
 
   describe "ログイン前チェック" do
     context "フォームの入力値が正常な場合" do
